@@ -8,10 +8,10 @@ export class Escenario2 extends Phaser.Scene {
   }
 
   preload() {
-    this.load.tilemapTiledJSON("map1", "assets/tilemaps/esc2.json");
-    this.load.image("tilesBelow1", "assets/images/fondonoche - atlas.png");
+    this.load.tilemapTiledJSON("map2", "assets/tilemaps/esc2.json");
+    this.load.image("tilesBelow2", "assets/images/fondonoche - atlas.png");
     this.load.image(
-      "tilesPlatform1",
+      "tilesPlatform2",
       "assets/images/plataforma noche - atlas.png"
     );
   }
@@ -27,25 +27,25 @@ export class Escenario2 extends Phaser.Scene {
     //this.audio3 = this.sound.add('theme3', {loop: true});
     //this.audio3.play();
 
-    const map1 = this.make.tilemap({ key: "map1" });
+    const map2 = this.make.tilemap({ key: "map2" });
 
-    const tilesetBelow1 = map1.addTilesetImage(
+    const tilesetBelow2 = map2.addTilesetImage(
       "fondonoche - atlas",
-      "tilesBelow1"
+      "tilesBelow2"
     );
 
-    const tilesetPlatform1 = map1.addTilesetImage(
+    const tilesetPlatform2 = map2.addTilesetImage(
       "plataforma noche - atlas",
-      "tilesPlatform1"
+      "tilesPlatform2"
     );
 
-    const belowLayer = map1.createLayer("Fondo", tilesetBelow1, 0, 0);
-    const worldLayer = map1.createLayer("Plataformas", tilesetPlatform1, 0, 0);
-    const objectsLayer = map1.getObjectLayer("Objetos");
+    const belowLayer = map2.createLayer("Fondo", tilesetBelow2, 0, 0);
+    const worldLayer = map2.createLayer("Plataformas", tilesetPlatform2, 0, 0);
+    const objectsLayer = map2.getObjectLayer("Objetos");
 
     worldLayer.setCollisionByProperty({ collides: true });
 
-    const spawnPoint = map1.findObject("Objetos", (obj) => obj.name === "dude");
+    const spawnPoint = map2.findObject("Objetos", (obj) => obj.name === "dude");
 
     this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "dude2");
 
@@ -53,7 +53,7 @@ export class Escenario2 extends Phaser.Scene {
 
     this.isJumping = false;
 
-    const spawnPoint2 = map1.findObject(
+    const spawnPoint2 = map2.findObject(
       "Objetos",
       (obj) => obj.name === "final"
     );
@@ -107,7 +107,7 @@ export class Escenario2 extends Phaser.Scene {
   }
 
   hitTacho(player, tacho) {
-    this.tacho.destroy();
+    tacho.destroy();
     this.count = this.count + 1;
     this.physics.pause();
 
@@ -127,7 +127,7 @@ export class Escenario2 extends Phaser.Scene {
   }
 
   hitGato(player, gato) {
-    this.gato.destroy();
+    gato.destroy();
     this.count = this.count + 1;
 
     this.physics.pause();
@@ -150,7 +150,7 @@ export class Escenario2 extends Phaser.Scene {
   hitFinal(player, final) {
 
     this.physics.pause();
-    this.player.anims.play("jump2");
+    player.anims.play("jump2");
     let victory = this.add.image(
       this.cameras.main.midPoint.x - 6,
       this.cameras.main.midPoint.y - 45,
@@ -193,7 +193,7 @@ export class Escenario2 extends Phaser.Scene {
     if (this.cursors.up.isDown && this.player.body.blocked.down) {
       this.player.saltar();
     } else {
-      if (this.isJumping && this.player.body.blocked.down) {
+      if (this.player.isJumping && this.player.body.blocked.down) {
         this.player.correr();
       }
     }

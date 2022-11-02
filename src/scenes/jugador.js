@@ -31,7 +31,7 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
         frames: [{ key: "dude2", frame: 3 }],
         frameRate: 20,
       });
-      this.setCircle(50, 40, 40);
+      this.setCircle(50, 10, 40);
     }
 
       if (texture === "dude") {
@@ -67,7 +67,7 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 }
   saltar() {
     this.setVelocityY(-520);
-    this.setVelocityX(200);
+    this.setVelocityX(120);
     this.anims.play(this.jump);
     this.isJumping = true;
   }

@@ -171,7 +171,7 @@ export class Escenario1 extends Phaser.Scene {
   hitFinal(player, final) {
 
     this.physics.pause();
-    this.player.anims.play("jump");
+    player.anims.play("jump");
     let victory = this.add.image(
       this.cameras.main.midPoint.x - 6,
       this.cameras.main.midPoint.y,
