@@ -1,20 +1,6 @@
 import Phaser from "phaser";
 import Jugador from "./jugador";
 
-let player;
-
-let cursors;
-let gameOver;
-
-let number;
-let isJumping;
-let distancia;
-let distancia2;
-let turno;
-//let audio3;
-//let audio2;
-var texto;
-
 export class Escenario1 extends Phaser.Scene {
 
   constructor() {
@@ -32,11 +18,11 @@ export class Escenario1 extends Phaser.Scene {
     this.turno = data.turno;
     this.movimiento = data.movimiento;
     this.contar = data.contar;
-    //audio2=data.audio2;
+    //this.audio2=data.audio2;
   }
   create() {
-    //audio3 = this.sound.add('theme3', {loop: true});
-    //audio3.play();
+    //this.audio3 = this.sound.add('theme3', {loop: true});
+    //this.audio3.play();
 
     const map1 = this.make.tilemap({ key: "map1" });
 
@@ -58,12 +44,13 @@ export class Escenario1 extends Phaser.Scene {
     this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "dude");
     this.player.correr();
 
-    isJumping = false;
+    this.isJumping = false;
 
     const spawnPoint2 = map1.findObject(
       "Objetos",
       (obj) => obj.name === "final"
     );
+
     this.final = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "banderaEsc");
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -107,7 +94,7 @@ export class Escenario1 extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.snakes, this.hitSnake, null, this);
     this.physics.add.overlap(this.player, this.final, this.hitFinal, null, this);
 
-    this.texto = this.player.vida();
+    this.texto2 = this.player.vida();
 
     this.gameOver = false;
 
@@ -182,7 +169,7 @@ export class Escenario1 extends Phaser.Scene {
   }
 
   hitFinal(player, final) {
-    this.texto.destroy()
+
     this.physics.pause();
     this.player.anims.play("jump");
     let victory = this.add.image(
@@ -199,14 +186,14 @@ export class Escenario1 extends Phaser.Scene {
       .setInteractive()
 
       .on("pointerdown", () => {
-        //audio3.stop()
-        //audio2.play()
+        //this.audio3.stop()
+        //this.audio2.play()
         this.scene.start("Tablero", {
           distancia: this.distancia,
           distancia2: this.distancia2,
           turno: this.turno,
           movimiento: 1,
-          audio2: null,
+          //audio2: this.audio2,
           contar: this.contar,
         });
       })
@@ -220,8 +207,6 @@ export class Escenario1 extends Phaser.Scene {
   } 
 
   update() {
-
-    //player.setVelocityX(100);
 
     if (this.gameOver) {
       return;
@@ -237,55 +222,6 @@ export class Escenario1 extends Phaser.Scene {
 
     if (this.count === 3) {
       this.player.muerte();
-   /*    setTimeout(() => {
-        gameOver = true;
-
-        this.cameras.main.stopFollow();
-        this.physics.pause();
-        player.setTint(0xff0000);
-        player.anims.play("jump");
-
-        let derrota = this.add.image(
-          this.cameras.main.midPoint.x,
-          this.cameras.main.midPoint.y,
-          "derrota"
-        );
-        let boton = this.add
-          .image(
-            this.cameras.main.midPoint.x - 6,
-            this.cameras.main.midPoint.y + 120,
-            "botone"
-          )
-          .setInteractive()
-          .on("pointerdown", () => {
-            //audio3.stop()
-            //audio2.play()
-
-            if (turno === 1) {
-              turno = 0;
-            } else {
-              if (turno === 0) {
-                turno = 1;
-              }
-            }
-
-            this.scene.start("Tablero", {
-              distancia: distancia,
-              distancia2: distancia2,
-              turno: turno,
-              movimiento: 0,
-              audio2: null,
-              contar: this.contar,
-            });
-          })
-          .on("pointerover", () => {
-            boton.setScale(1.1);
-          })
-
-          .on("pointerout", () => {
-            boton.setScale(1);
-          });
-      }, 900); */
     }
   }
 }

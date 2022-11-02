@@ -8,8 +8,10 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 
     if (texture === "dude2") {
 
-      this.run= "run2"
-      this.jump= "jump2"
+      this.run= "run2";
+      this.jump= "jump2";
+      this.derrota = "derrota2";
+      this.boton = "botone2";
 
       this.texture,
         {
@@ -33,8 +35,10 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     }
 
       if (texture === "dude") {
-        this.run= "run"
-        this.jump= "jump"
+        this.run= "run";
+        this.jump= "jump";
+        this.derrota = "derrota";
+        this.boton = "botone";
 
         this.texture,
           {
@@ -54,7 +58,7 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
           frames: [{ key: "dude", frame: 1 }],
           frameRate: 20,
         });
-      //this.anims.play("run");
+      
       this.setCircle(50, 40, 40);
     }
 
@@ -102,13 +106,13 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
       let derrota = this.scene.add.image(
         this.scene.cameras.main.midPoint.x,
         this.scene.cameras.main.midPoint.y,
-        "derrota"
+        this.derrota
       );
       let boton = this.scene.add
         .image(
           this.scene.cameras.main.midPoint.x - 6,
           this.scene.cameras.main.midPoint.y + 120,
-          "botone"
+          this.boton
         )
         .setInteractive()
         .on("pointerdown", () => {
@@ -121,7 +125,7 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
               this.scene.turno = 1;
             }
           }
-          //error
+  
           this.scene.scene.start("Tablero", {
             distancia: this.scene.distancia,
             distancia2: this.scene.distancia2,
@@ -139,6 +143,16 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
           boton.setScale(1);
         });
     }, 900);
+  }
+
+  movimientoJ1(){
+    this.scene.player.setX(this.scene.distancia + 128 * this.scene.valor);
+    this.scene.player.setScale(1);
+  }
+
+  movimientoJ2(){
+    this.scene.player2.setX(this.scene.distancia2 + 128 * this.scene.valor);
+    this.scene.player2.setScale(1);
   }
   
 }

@@ -3,7 +3,7 @@ import Jugador from "./jugador";
 import Dado from "./dado";
 
 export class Tablero extends Phaser.Scene {
-
+  number;
   constructor() {
     super("Tablero");
   }
@@ -22,6 +22,8 @@ export class Tablero extends Phaser.Scene {
     this.audio2 = data.audio2;
     this.movimiento = data.movimiento;
     this.contar = data.contar;
+    this.number = data.number;
+    this.avance = data.avance;
   }
 
   create() {
@@ -53,6 +55,8 @@ export class Tablero extends Phaser.Scene {
 
     this.player2 = new Jugador(this, this.distancia2, 862.83, "prota2", 1);
     this.player = new Jugador(this, this.distancia, 862.83, "prota", 0);
+
+    this.avance = false;
 
     this.physics.add.collider(this.player, worldLayer);
     this.physics.add.collider(this.player2, worldLayer);
@@ -121,6 +125,7 @@ export class Tablero extends Phaser.Scene {
       fontSize: "50px Arial",
       fill: "white",
     });
+
     this.cartelTurno.setScrollFactor(0);
 
     this.dado = new Dado(this, 535, 320, "dado");
@@ -136,7 +141,7 @@ export class Tablero extends Phaser.Scene {
           audio2: null,
           turno: this.turno,
           movimiento: 1,
-          valor: this.valor,
+          activo: this.activo,
         });
       }, 3000);
     }
@@ -164,7 +169,7 @@ export class Tablero extends Phaser.Scene {
           distancia: this.player.x,
           distancia2: this.player2.x,
           audio2: this.audio2,
-          contar: this.contar,
+          activo: this.activo,
           turno: 0,
           movimiento: 1,
           valor: this.valor,
@@ -196,7 +201,7 @@ export class Tablero extends Phaser.Scene {
           distancia: this.player.x,
           distancia2: this.player2.x,
           audio2: this.audio2,
-          contar: this.contar,
+          activo: this.activo,
           turno: 1,
           movimiento: 1,
           valor: this.valor,
@@ -282,5 +287,29 @@ export class Tablero extends Phaser.Scene {
     }, 3000);
   }
 
-  update() {}
+  update() {
+    if (this.turno === 0 && this.avance === true) {
+      setTimeout(() => {
+        this.number.destroy();
+        this.player.movimientoJ1();
+        this.turno === 1;
+        this.avance = false;
+
+        this.cambiarLetreroJ2();
+        this.mostrarCartas2();
+      }, 3000);
+    }
+
+    if (this.turno === 1 && this.avance === true) {
+      setTimeout(() => {
+        this.number.destroy();
+        this.player.movimientoJ2();
+        this.turno === 0;
+        this.avance = false;
+
+        this.cambiarLetreroJ1();
+        this.mostrarCartas();
+      }, 3000);
+    }
+  }
 }

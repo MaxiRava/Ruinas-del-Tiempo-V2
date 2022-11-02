@@ -10,10 +10,10 @@ export class Cartas extends Phaser.Scene {
   init(data) {
     this.distancia = data.distancia;
     this.distancia2 = data.distancia2;
-    this.contar = data.contar;
     this.audio2 = data.audio2;
     this.turno = data.turno;
     this.movimiento = data.movimiento;
+    this.activo = data.activo;
   }
   create() {
     this.add.image(
@@ -27,7 +27,7 @@ export class Cartas extends Phaser.Scene {
       this.cameras.main.centerY - 140,
       "elegirCarta"
     );
-    let texto = this.add.text(
+    this.texto = this.add.text(
       this.cameras.main.centerX - 180,
       this.cameras.main.centerY - 160,
       `Elige tu destino...`,
@@ -42,123 +42,33 @@ export class Cartas extends Phaser.Scene {
     let salvado = Phaser.Math.Between(1, 3);
     console.log(salvado);
 
-     let card = this.add
+    this.card = this.add
       .image(this.cameras.main.centerX, this.cameras.main.centerY + 50, "carta")
       .setInteractive()
 
       .on("pointerdown", () => {
         if (salvado === 1) {
-          texto.destroy();
-          card.destroy();
-          card2.destroy();
-          card3.destroy();
-          this.add.image(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY + 50,
-            "cartacorrer"
-          );
-          this.add.text(
-            this.cameras.main.centerX - 230,
-            this.cameras.main.centerY - 160,
-            `Corre para sobrevivir`,
-            {
-              stroke: "black",
-              strokeThickness: 5,
-              fontSize: "54px Arial",
-              fill: "white",
-            }
-          );
-          setTimeout(() => {
-            //this.audio2.stop();
-            this.scene.start("Escenario1", {
-              distancia: this.distancia,
-              distancia2: this.distancia2,
-              turno: this.turno,
-              movimiento: this.movimiento,
-              audio2: this.audio2,
-              contar: this.contar,
-            });
-          }, 3000);
+          this.cartaJungla();
         }
 
         if (salvado === 2) {
-          texto.destroy();
-          card.destroy();
-          card2.destroy();
-          card3.destroy();
-          this.add.image(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY + 50,
-            "cartabuena"
-          );
-          this.add.text(
-            this.cameras.main.centerX - 240,
-            this.cameras.main.centerY - 160,
-            `La suerte te acompaña`,
-            {
-              stroke: "black",
-              strokeThickness: 5,
-              fontSize: "54px Arial",
-              fill: "white",
-            }
-          );
-
-          setTimeout(() => {
-            this.scene.start("Tablero", {
-              distancia: this.distancia,
-              distancia2: this.distancia2,
-              turno: this.turno,
-              movimiento: this.movimiento,
-              audio2: this.audio2,
-              contar: this.contar,
-            });
-          }, 3000);
+          this.cartaBuena();
         }
 
         if (salvado === 3) {
-          texto.destroy();
-          card.destroy();
-          card2.destroy();
-          card3.destroy();
-          this.add.image(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY + 50,
-            "cartacorrer"
-          );
-          this.add.text(
-            this.cameras.main.centerX - 230,
-            this.cameras.main.centerY - 160,
-            `Corre para sobrevivir`,
-            {
-              stroke: "black",
-              strokeThickness: 5,
-              fontSize: "54px Arial",
-              fill: "white",
-            }
-          );
-
-          setTimeout(() => {
-            this.scene.start("Escenario2", {
-              distancia: this.distancia,
-              distancia2: this.distancia2,
-              turno: this.turno,
-              movimiento: this.movimiento,
-              audio2: this.audio2,
-              contar: this.contar,
-            });
-          }, 3000);
+          this.cartaNoche();
         }
       })
 
       .on("pointerover", () => {
-        card.setScale(1.1);
+        this.card.setScale(1.1);
       })
 
       .on("pointerout", () => {
-        card.setScale(1);
+        this.card.setScale(1);
       });
 
-    let card2 = this.add
+    this.card2 = this.add
       .image(
         this.cameras.main.centerX - 170,
         this.cameras.main.centerY + 50,
@@ -168,118 +78,27 @@ export class Cartas extends Phaser.Scene {
 
       .on("pointerdown", () => {
         if (salvado === 2) {
-          texto.destroy();
-          card.destroy();
-          card2.destroy();
-          card3.destroy();
-          this.add.image(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY + 50,
-            "cartacorrer"
-          );
-          this.add.text(
-            this.cameras.main.centerX - 230,
-            this.cameras.main.centerY - 160,
-            `Corre para sobrevivir`,
-            {
-              stroke: "black",
-              strokeThickness: 5,
-              fontSize: "54px Arial",
-              fill: "white",
-            }
-          );
-
-          setTimeout(() => {
-            //this.audio2.stop();
-            this.scene.start("Escenario2", {
-              distancia: this.distancia,
-              distancia2: this.distancia2,
-              turno: this.turno,
-              movimiento: this.movimiento,
-              audio2: this.audio2,
-              contar: this.contar,
-            });
-          }, 3000);
+          this.cartaNoche();
         }
 
         if (salvado === 1) {
-          texto.destroy();
-          card.destroy();
-          card2.destroy();
-          card3.destroy();
-          this.add.image(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY + 50,
-            "cartabuena"
-          );
-          this.add.text(
-            this.cameras.main.centerX - 240,
-            this.cameras.main.centerY - 160,
-            `La suerte te acompaña`,
-            {
-              stroke: "black",
-              strokeThickness: 5,
-              fontSize: "54px Arial",
-              fill: "white",
-            }
-          );
-
-          setTimeout(() => {
-            this.scene.start("Tablero", {
-              distancia: this.distancia,
-              distancia2: this.distancia2,
-              turno: this.turno,
-              movimiento: this.movimiento,
-              audio2: this.audio2,
-              contar: this.contar,
-            });
-          }, 3000);
+          this.cartaBuena();
         }
 
         if (salvado === 3) {
-          texto.destroy();
-          card.destroy();
-          card2.destroy();
-          card3.destroy();
-          this.add.image(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY + 50,
-            "cartacorrer"
-          );
-          this.add.text(
-            this.cameras.main.centerX - 230,
-            this.cameras.main.centerY - 160,
-            `Corre para sobrevivir`,
-            {
-              stroke: "black",
-              strokeThickness: 5,
-              fontSize: "54px Arial",
-              fill: "white",
-            }
-          );
-
-          setTimeout(() => {
-            this.scene.start("Escenario1", {
-              distancia: this.distancia,
-              distancia2: this.distancia2,
-              turno: this.turno,
-              movimiento: this.movimiento,
-              audio2: this.audio2,
-              contar: this.contar,
-            });
-          }, 3000);
+          this.cartaJungla();
         }
       })
 
       .on("pointerover", () => {
-        card2.setScale(1.1);
+        this.card2.setScale(1.1);
       })
 
       .on("pointerout", () => {
-        card2.setScale(1);
+        this.card2.setScale(1);
       });
 
-    let card3 = this.add
+    this.card3 = this.add
       .image(
         this.cameras.main.centerX + 170,
         this.cameras.main.centerY + 50,
@@ -289,118 +108,130 @@ export class Cartas extends Phaser.Scene {
 
       .on("pointerdown", () => {
         if (salvado === 2) {
-          texto.destroy();
-          card.destroy();
-          card2.destroy();
-          card3.destroy();
-          this.add.image(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY + 50,
-            "cartacorrer"
-          );
-          this.add.text(
-            this.cameras.main.centerX - 230,
-            this.cameras.main.centerY - 160,
-            `Corre para sobrevivir`,
-            {
-              stroke: "black",
-              strokeThickness: 5,
-              fontSize: "54px Arial",
-              fill: "white",
-            }
-          );
-
-          setTimeout(() => {
-            //this.audio2.stop();
-            this.scene.start("Escenario1", {
-              distancia: this.distancia,
-              distancia2: this.distancia2,
-              turno: this.turno,
-              movimiento: this.movimiento,
-              audio2: this.audio2,
-              contar: this.contar,
-            });
-          }, 3000);
+          this.cartaJungla();
         }
 
         if (salvado === 1) {
-          texto.destroy();
-          card.destroy();
-          card2.destroy();
-          card3.destroy();
-          this.add.image(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY + 50,
-            "cartacorrer"
-          );
-          this.add.text(
-            this.cameras.main.centerX - 230,
-            this.cameras.main.centerY - 160,
-            `Corre para sobrevivir`,
-            {
-              stroke: "black",
-              strokeThickness: 5,
-              fontSize: "54px Arial",
-              fill: "white",
-            }
-          );
-
-          setTimeout(() => {
-            this.scene.start("Escenario2", {
-              distancia: this.distancia,
-              distancia2: this.distancia2,
-              turno: this.turno,
-              movimiento: this.movimiento,
-              audio2: this.audio2,
-              contar: this.contar,
-            });
-          }, 3000);
+          this.cartaNoche();
         }
-        
-        if (salvado === 3) {
-          texto.destroy();
-          card.destroy();
-          card2.destroy();
-          card3.destroy();
-          this.add.image(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY + 50,
-            "cartabuena"
-          );
-          this.add.text(
-            this.cameras.main.centerX - 240,
-            this.cameras.main.centerY - 160,
-            `La suerte te acompaña`,
-            {
-              stroke: "black",
-              strokeThickness: 5,
-              fontSize: "54px Arial",
-              fill: "white",
-            }
-          );
 
-          setTimeout(() => {
-            this.scene.start("Tablero", {
-              distancia: this.distancia,
-              distancia2: this.distancia2,
-              turno: this.turno,
-              movimiento: this.movimiento,
-              audio2: this.audio2,
-              contar: this.contar,
-            });
-          }, 3000);
+        if (salvado === 3) {
+          this.cartaBuena();
         }
       })
 
       .on("pointerover", () => {
-        card3.setScale(1.1);
+        this.card3.setScale(1.1);
       })
 
       .on("pointerout", () => {
-        card3.setScale(1);
+        this.card3.setScale(1);
       });
 
     this.cameras.main.setZoom(2.5);
+  }
+
+  cartaBuena() {
+    this.texto.destroy();
+    this.card.destroy();
+    this.card2.destroy();
+    this.card3.destroy();
+    this.add.image(
+      this.cameras.main.centerX,
+      this.cameras.main.centerY + 50,
+      "cartabuena"
+    );
+    this.add.text(
+      this.cameras.main.centerX - 240,
+      this.cameras.main.centerY - 160,
+      `La suerte te acompaña`,
+      {
+        stroke: "black",
+        strokeThickness: 5,
+        fontSize: "54px Arial",
+        fill: "white",
+      }
+    );
+
+    setTimeout(() => {
+      this.scene.start("Tablero", {
+        distancia: this.distancia,
+        distancia2: this.distancia2,
+        turno: this.turno,
+        movimiento: this.movimiento,
+        audio2: this.audio2,
+        activo: this.activo,
+      });
+    }, 3000);
+  }
+
+  cartaJungla() {
+    this.texto.destroy();
+    this.card.destroy();
+    this.card2.destroy();
+    this.card3.destroy();
+    this.add.image(
+      this.cameras.main.centerX,
+      this.cameras.main.centerY + 50,
+      "cartacorrer"
+    );
+    this.add.text(
+      this.cameras.main.centerX - 230,
+      this.cameras.main.centerY - 160,
+      `Corre para sobrevivir`,
+      {
+        stroke: "black",
+        strokeThickness: 5,
+        fontSize: "54px Arial",
+        fill: "white",
+      }
+    );
+    setTimeout(() => {
+      //this.audio2.stop();
+      this.scene.start("Escenario1", {
+        distancia: this.distancia,
+        distancia2: this.distancia2,
+        turno: this.turno,
+        movimiento: this.movimiento,
+        audio2: this.audio2,
+        activo: this.activo,
+      });
+    }, 3000);
+  }
+
+  cartaNoche() {
+    this.texto.destroy();
+    this.card.destroy();
+    this.card2.destroy();
+    this.card3.destroy();
+    this.add.image(
+      this.cameras.main.centerX,
+      this.cameras.main.centerY + 50,
+      "cartacorrer"
+    );
+    this.add.text(
+      this.cameras.main.centerX - 230,
+      this.cameras.main.centerY - 160,
+      `Corre para sobrevivir`,
+      {
+        stroke: "black",
+        strokeThickness: 5,
+        fontSize: "54px Arial",
+        fill: "white",
+      }
+    );
+
+    setTimeout(() => {
+      //this.audio2.stop();
+      this.scene.start("Escenario2", {
+        distancia: this.distancia,
+        distancia2: this.distancia2,
+        turno: this.turno,
+        movimiento: this.movimiento,
+        audio2: this.audio2,
+        activo: this.activo,
+      });
+    }, 3000);
   }
 
   update() {}
