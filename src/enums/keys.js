@@ -5,10 +5,21 @@ const sceneGame = {
 };
 
 const sceneInicio = {
-    Jugar: 'Jugar',
-    hello: 'Hola',
-    howAreU: '¿Cómo estás?',
+    JUGAR: 'JUGAR',
+    CREDITOS: 'CRÉDITOS'
+    
 };
+const sceneInstrucciones = {
+
+    INTRODUCCION: 'SALTAR INTRODUCCIÓN'
+
+}
+
+/* const sceneTablero = {
+
+} */
+
+
 
 const sceneGameOver = {
     gameOver: 'Perdiste',
@@ -16,7 +27,8 @@ const sceneGameOver = {
 }
 
 export default {
-    sceneGame,
     sceneInicio,
-    sceneGameOver,
-};
+    sceneInstrucciones,
+    //sceneTablero,
+}
+;

@@ -13,6 +13,8 @@ export class Preloads extends Phaser.Scene {
     this.load.image("jugar", "assets/images/jugar.png");
     this.load.image("credito", "assets/images/credi.png");
     this.load.image("creditos", "assets/images/Creditos.png");
+    this.load.image("arg", "assets/images/ARGENTINA.png");
+    this.load.image("eng", "assets/images/INGLES.png");
     this.load.image("music", "assets/images/sonido.png");
     this.load.image("mute", "assets/images/sin sonido.png");
     this.load.image("music2", "assets/images/sonido2.png");
@@ -37,7 +39,7 @@ export class Preloads extends Phaser.Scene {
     this.load.image("botone2", "assets/images/pop ups victoria derrota/boton_de_ciudad.png");
     this.load.image("banderaTablero", "assets/images/Victoria tablero.png");
     this.load.image("banderaEsc", "assets/images/Victoria jungla.png");
-    this.load.image("banderaciudad", "assets/images/victoriaciudad.png");
+    this.load.image("banderaciudad", "assets/images/victoria_de_ciudad_nada.png");
     this.load.image("roca", "assets/images/PIEDRAS2.png");
     this.load.image("roca2", "assets/images/PIEDRAS3.png");
     this.load.image("snake", "assets/images/snake.png");
@@ -49,7 +51,7 @@ export class Preloads extends Phaser.Scene {
       frameWidth: 150,
       frameHeight: 155,
     });
-    this.load.spritesheet("dude2", "assets/images/spritesnoche.png", {
+    this.load.spritesheet("dude2", "assets/images/sheet.png", {
       frameWidth: 116,
       frameHeight: 155,
     });

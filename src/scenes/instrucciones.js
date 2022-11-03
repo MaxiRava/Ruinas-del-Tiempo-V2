@@ -1,23 +1,30 @@
 import Phaser from "phaser";
 import Parlante from "./parlante";
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 
 export class Instrucciones extends Phaser.Scene {
   #parlante;
+  #wasChangedLanguage = TODO;
+  #language;
   constructor() {
     super("Instrucciones");
   }
 
-  preload() {
-    //imagenes
-  }
-
   init(data) {
-    this.contar = data.contar;
     this.activo = data.activo;
     console.log(data);
+    this.#language = data.language;
+    console.log(this.#language);
   }
 
   create() {
+    const { width, height } = this.scale;
+    const positionCenter = {
+      x: width / 2,
+      y: height / 2,
+    };
     //let audio2 = this.sound.add('theme2', {loop: true});
     //audio2.play();
 
@@ -31,17 +38,18 @@ export class Instrucciones extends Phaser.Scene {
       this.cameras.main.centerY / 1.1,
       "dale"
     );
-    let intro = this.add
+    this.intro = this.add
       .text(
-        this.cameras.main.centerX- 380,
-        this.cameras.main.centerY +440,
-        "SALTAR INTRODUCCIÓN",
+        this.cameras.main.centerX - 380,
+        this.cameras.main.centerY + 440,
+        getPhrase("SALTAR INTRODUCCIÓN"),
         {
           stroke: "black",
           strokeThickness: 6,
           fontSize: "70px Arial",
           fill: "white",
-        })
+        }
+      )
 
       .setInteractive()
 
@@ -51,31 +59,39 @@ export class Instrucciones extends Phaser.Scene {
           distancia2: 65,
           turno: 0,
           movimiento: 0,
-          contar: this.contar,
           activo: true,
         });
       })
 
       .on("pointerover", () => {
-        intro.setScale(1.1);
+        this.intro.setScale(1.1);
       })
 
       .on("pointerout", () => {
-        intro.setScale(1);
+        this.intro.setScale(1);
       });
 
-    let iconoSonido = "music";
-
-    if (this.contar === 1) {
-      iconoSonido = "mute";
-      //audio2.play();
-      //audio2.pause();
-    }
-
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
+
+  }
+
+  updateWasChangedLanguage = () => {
+    this.#wasChangedLanguage = FETCHED;
+  };
+
+  async getTranslations(language) {
+    this.#language = language;
+    this.#wasChangedLanguage = FETCHING;
+
+    await getTranslations(language, this.updateWasChangedLanguage);
   }
 
   update() {
     this.activo = this.#parlante.activo;
+
+    if (this.#wasChangedLanguage === FETCHED) {
+      this.#wasChangedLanguage = READY;
+      this.intro.setText(getPhrase("SALTAR INTRODUCCIÓN"));
+    }
   }
 }

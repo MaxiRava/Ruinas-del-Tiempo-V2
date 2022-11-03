@@ -22,7 +22,7 @@ class Dado extends Phaser.GameObjects.Sprite {
             fill: "white",
           }
         );
-        scene.avance = true;
+        scene?.avanzar();
 
       })
       .on("pointerover", () => {

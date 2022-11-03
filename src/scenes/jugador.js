@@ -21,14 +21,14 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 
       this.anims.create({
         key: "run2",
-        frames: this.anims.generateFrameNumbers("dude2", { start: 0, end: 2 }),
+        frames: this.anims.generateFrameNumbers("dude2", { start: 0, end: 3 }),
         frameRate: 7,
         repeat: -1,
       });
 
       this.anims.create({
         key: "jump2",
-        frames: [{ key: "dude2", frame: 3 }],
+        frames: [{ key: "dude2", frame: 4 }],
         frameRate: 20,
       });
       this.setCircle(50, 10, 40);
@@ -154,7 +154,8 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.scene.player2.setX(this.scene.distancia2 + 128 * this.scene.valor);
     this.scene.player2.setScale(1);
   }
-  
+  //https://labs.phaser.io/edit.html?src=src/game%20objects/text/align%20text.js&v=3.55.2
+  //https://phaser.io/examples/v3/view/game-objects/text/word-wrap-by-width
 }
 
 export default Jugador;

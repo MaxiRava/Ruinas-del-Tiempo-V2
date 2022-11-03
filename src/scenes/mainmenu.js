@@ -1,12 +1,12 @@
 import Phaser from "phaser";
 import Parlante from "./parlante";
-import { getTranslations, getPhrase } from '../services/translations'
-import keys from '../enums/keys';
-import { FETCHED, FETCHING, READY, TODO } from '../enums/status'
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 
 export class MainMenu extends Phaser.Scene {
   #parlante;
-  #wasChangedLanguage = TODO
+  #wasChangedLanguage = TODO;
   #language;
   constructor() {
     super("MainMenu");
@@ -17,15 +17,16 @@ export class MainMenu extends Phaser.Scene {
     this.activo = data.activo;
     console.log(data);
     this.#language = data.language;
+    console.log(this.#language);
   }
 
   create() {
-    let Jugar;
-    const {width, height} = this.scale;
-        const positionCenter = {
-            x: width / 2,
-            y: height / 2,
-        }
+    console.log(this.cameras.main);
+    const { width, height } = this.scale;
+    const positionCenter = {
+      x: width / 2,
+      y: height / 2,
+    };
 
     this.add.image(
       this.cameras.main.centerX,
@@ -37,22 +38,12 @@ export class MainMenu extends Phaser.Scene {
       this.cameras.main.centerY / 1.8,
       "inicio"
     );
-    const buttonEn = this.add.rectangle(width * 0.1, height * 0.15, 150, 75, 0xffffff)
-			.setInteractive()
-			.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-                this.getTranslations('en-US')
-			})
 
-      const buttonEs = this.add.rectangle(width * 0.5, height * 0.15, 150, 75, 0xffffff)
-			.setInteractive()
-			.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-                this.getTranslations('es-US')
-			})
-    Jugar = this.add
+    this.Jugar = this.add
       .text(
-        this.cameras.main.centerX - 205,
+        this.cameras.main.centerX - 210,
         this.cameras.main.centerY + 230,
-        "Jugar",
+        getPhrase("JUGAR"),
         {
           stroke: "black",
           strokeThickness: 6,
@@ -68,18 +59,18 @@ export class MainMenu extends Phaser.Scene {
       })
 
       .on("pointerover", () => {
-        Jugar.setScale(1.1);
+        this.Jugar.setScale(1.1);
       })
 
       .on("pointerout", () => {
-        Jugar.setScale(1);
+        this.Jugar.setScale(1);
       });
 
-    let creditos = this.add
+    this.creditos = this.add
       .text(
-        this.cameras.main.centerX - 215,
+        this.cameras.main.centerX - 210,
         this.cameras.main.centerY + 390,
-        "CRÉDITOS",
+        getPhrase("CRÉDITOS"),
         {
           stroke: "black",
           strokeThickness: 6,
@@ -95,66 +86,61 @@ export class MainMenu extends Phaser.Scene {
       })
 
       .on("pointerover", () => {
-        creditos.setScale(1.1);
+        this.creditos.setScale(1.1);
       })
 
       .on("pointerout", () => {
-        creditos.setScale(1);
+        this.creditos.setScale(1);
       });
 
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
 
-    /*
-      
-  
-        let musica = this.add.image(1830,80,iconoSonido).setInteractive()
-  
-        .on('pointerdown', () => {
-          
-          if(this.activo===0){
-            iconoSonido= "mute"
-            this.contar = 1
-            //this.audio.pause()
-          }else{
-            if (this.contar === 1){
-              iconoSonido= "music"
-              this.contar = 0
-              //this.audio.resume()
-            }
-          }
-          
-        })
-    
-        .on('pointerover', () => {
-          musica.setScale(1.1)
-          //sonido.setScale(1.1)
-        })
-    
-        .on('pointerout', () => {
-          musica.setScale(1)
-          //sonido.setScale(1)
-        })
-        */
+    const buttonEn = this.add
+      .image(180, 80, "eng")
+      .setInteractive()
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+        this.getTranslations("en-US");
+      })
+      .on("pointerover", () => {
+        buttonEn.setScale(1.1);
+      })
 
-        this.txt = this.add.text(400, 400, getPhrase('Jugar'), {fontSize: 100})
+      .on("pointerout", () => {
+        buttonEn.setScale(1);
+      });
+
+    const buttonEs = this.add
+      .image(70, 80, "arg")
+      .setInteractive()
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+        this.getTranslations("es-US");
+      })
+      .on("pointerover", () => {
+        buttonEs.setScale(1.1);
+      })
+
+      .on("pointerout", () => {
+        buttonEs.setScale(1);
+      });
   }
 
   updateWasChangedLanguage = () => {
-    this.#wasChangedLanguage = FETCHED
-};
+    this.#wasChangedLanguage = FETCHED;
+  };
 
-  async getTranslations(language){
+  async getTranslations(language) {
     this.#language = language;
     this.#wasChangedLanguage = FETCHING;
-    
-    await getTranslations(language, this.updateWasChangedLanguage)
-}
+
+    await getTranslations(language, this.updateWasChangedLanguage);
+  }
 
   update() {
     this.activo = this.#parlante.activo;
-    if(this.#wasChangedLanguage === FETCHED){
+    if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
-      this.txt.setText(getPhrase('Jugar'))
-  }
+      this.Jugar.setText(getPhrase("JUGAR"));
+      this.creditos.setText(getPhrase("CRÉDITOS"));
+    }
   }
 }

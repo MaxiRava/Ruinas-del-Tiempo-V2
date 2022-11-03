@@ -12,7 +12,7 @@ export class Escenario2 extends Phaser.Scene {
     this.load.image("tilesBelow2", "assets/images/fondonoche - atlas.png");
     this.load.image(
       "tilesPlatform2",
-      "assets/images/plataforma noche - atlas.png"
+      "assets/images/plataformas-ladrillos.png" 
     );
   }
   init(data) {
@@ -21,6 +21,8 @@ export class Escenario2 extends Phaser.Scene {
     this.turno = data.turno;
     this.movimiento = data.movimiento;
     this.contar = data.contar;
+
+    // recibir mapa a usar
     //this.audio2=data.audio2;
   }
   create() {
@@ -35,7 +37,7 @@ export class Escenario2 extends Phaser.Scene {
     );
 
     const tilesetPlatform2 = map2.addTilesetImage(
-      "plataforma noche - atlas",
+      "plataformas-ladrillos",
       "tilesPlatform2"
     );
 
@@ -60,7 +62,7 @@ export class Escenario2 extends Phaser.Scene {
     this.final = this.physics.add.sprite(
       spawnPoint2.x,
       spawnPoint2.y,
-      "banderaEsc"
+      "banderaciudad"
     );
 
     this.cursors = this.input.keyboard.createCursorKeys();

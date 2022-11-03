@@ -145,7 +145,10 @@ export class Tablero extends Phaser.Scene {
         });
       }, 3000);
     }
+
+    //this.movimientoTablero();
   }
+
   cambiarLetreroJ1() {
     console.log("cambiarLetreroJ1", this.gameOver);
     if (!this.gameOver) {
@@ -287,7 +290,7 @@ export class Tablero extends Phaser.Scene {
     }, 3000);
   }
 
-  update() {
+  /*  movimientoTablero(){
     if (this.turno === 0 && this.avance === true) {
       setTimeout(() => {
         this.number.destroy();
@@ -310,6 +313,49 @@ export class Tablero extends Phaser.Scene {
         this.cambiarLetreroJ1();
         this.mostrarCartas();
       }, 3000);
+    } 
+  } */
+
+  avanzar() {
+    setTimeout(() => {
+      this.number.destroy();
+      if (this.turno === 0) {
+        this.turno = 1;
+        this.player.movimientoJ1();
+        this.cambiarLetreroJ2();
+        this.mostrarCartas2();
+      } else {
+        this.turno = 0;
+        this.player.movimientoJ2();
+        this.cambiarLetreroJ1();
+        this.mostrarCartas();
+      }
+    }, 3000);
+  }
+
+  update() {
+    /*  if (this.turno === 0 && this.avance === true) {
+      setTimeout(() => {
+        this.number.destroy();
+        this.player.movimientoJ1();
+        this.turno === 1;
+        this.avance = false;
+
+        this.cambiarLetreroJ2();
+        this.mostrarCartas2();
+      }, 3000);
     }
+
+    if (this.turno === 1 && this.avance === true) {
+      setTimeout(() => {
+        this.number.destroy();
+        this.player.movimientoJ2();
+        this.turno === 0;
+        this.avance = false;
+
+        this.cambiarLetreroJ1();
+        this.mostrarCartas();
+      }, 3000);
+    }   */
   }
 }
