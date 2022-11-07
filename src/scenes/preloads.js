@@ -57,18 +57,17 @@ export class Preloads extends Phaser.Scene {
     });
 
   
-    //this.load.audio("theme", "public/assets/sounds/musica.mp3");
-    //this.load.audio("theme2", "public/assets/sounds/tablero.mp3");
-    //this.load.audio("theme3", "public/assets/sounds/jungla.mp3");
+    this.load.audio("theme", "assets/sounds/musica.mp3");
+    this.load.audio("theme2", "assets/sounds/tablero.mp3");
+    this.load.audio("theme3", "assets/sounds/jungla.mp3");
 
   }
 
   create() {
+  
+    this.audio = this.sound.add('theme', {loop: true});
+    this.audio.play();
     
-    /*
-    let audio = this.sound.add('theme', {loop: true});
-    audio.play();
-    */
     this.scene.start("MainMenu", {distancia:75, distancia2:75, turno:0, contar:0}
     );
     

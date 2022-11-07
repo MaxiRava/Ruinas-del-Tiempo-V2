@@ -11,8 +11,15 @@ class Parlante extends Phaser.GameObjects.Sprite{
     .on('pointerdown', () => {
 
       this.activo = !this.activo
-      this.setTexture(this.activo ? 'music' : 'mute')
-          
+
+      if (this.activo == true) {
+        scene.audio.pause()
+      } else{
+        scene.audio.resume()
+      } 
+      
+      this.setTexture(this.activo ? 'music': 'mute')
+    
     })
     
     .on('pointerover', () => {

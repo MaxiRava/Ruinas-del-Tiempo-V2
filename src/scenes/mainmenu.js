@@ -13,15 +13,13 @@ export class MainMenu extends Phaser.Scene {
   }
 
   init(data) {
-    //this.audio = data.audio;
+    this.audio = data.audio;
     this.activo = data.activo;
     console.log(data);
     this.#language = data.language;
-    console.log(this.#language);
   }
 
   create() {
-    console.log(this.cameras.main);
     const { width, height } = this.scale;
     const positionCenter = {
       x: width / 2,
@@ -54,7 +52,7 @@ export class MainMenu extends Phaser.Scene {
       .setInteractive()
 
       .on("pointerdown", () => {
-        //this.audio.stop();
+        this.audio.stop();
         this.scene.start("Instrucciones", { activo: this.activo });
       })
 
