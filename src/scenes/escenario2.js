@@ -69,24 +69,33 @@ export class Escenario2 extends Phaser.Scene {
 
     this.tachos = this.physics.add.group();
     this.gatos = this.physics.add.group();
+    
 
     objectsLayer.objects.forEach((objData) => {
       const { x = 0, y = 0, name, type } = objData;
       switch (name) {
         case "tacho": {
-          this.tacho = this.tachos.create(x, y, "tacho");
+          const tacho = this.tachos.create(x, y, "tacho");
 
           break;
         }
         case "gato": {
-          this.gato = this.gatos.create(x, y, "gato");
-          //this.gato.anims.play("gatoAnims");
+          const gato = this.gatos.create(x, y, "gato");
+          console.log("🚀 ~ file: escenario2.js ~ line 83 ~ Escenario2 ~ objectsLayer.objects.forEach ~ this.gato", this.gatos)
+          
 
           break;
         }
       }
     });
+    console.log("🚀 ~ file: escenario2.js ~ line 72 ~ Escenario2 ~ create ~ this.gatos", this.gatos)
 
+    //this.gatos.children.each(gato=>gato.anims.play("gatoAnims"))
+    /* this.gatos.getChildren().forEach(gato => {
+      console.log("🚀 ~ file: escenario2.js ~ line 95 ~ Escenario2 ~ create ~ gato", gato)
+      gato.anims.play("gatoAnims")
+      
+    }) */
     this.count = 0;
     
     this.physics.add.collider(this.player, worldLayer);

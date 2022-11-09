@@ -106,7 +106,7 @@ export class Preloads extends Phaser.Scene {
     this.audio = this.sound.add('theme', {loop: true});
     this.audio.play();
     
-    this.scene.start("MainMenu", {distancia:75, distancia2:75, turno:0, contar:0, audio: this.audio}
+    this.scene.start("Escenario2", {distancia:75, distancia2:75, turno:0, contar:0, audio: this.audio}
     );
     
   }
