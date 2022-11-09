@@ -45,20 +45,26 @@ export class Preloads extends Phaser.Scene {
     this.load.image("tacho", "assets/images/tacho.png");
 
     this.load.spritesheet("snake", "assets/images/snakeA.png", {
-      frameWidth: 80,
+      frameWidth: 70,
       frameHeight: 100,
     });
 
     this.load.spritesheet("gato", "assets/images/gatoA.png", {
-      frameWidth: 69,
+      frameWidth: 60,
       frameHeight: 72,
     });
 
     this.load.image("prota", "assets/images/prota.png");
     this.load.image("prota2", "assets/images/prota2.png");
 
-    this.load.spritesheet("dude", "assets/images/spritesheet (5).png");
-    this.load.spritesheet("dude2", "assets/images/sheet.png");
+    this.load.spritesheet("dude", "assets/images/spritesheet (5).png", {
+      frameWidth: 116,
+      frameHeight: 155,
+    });
+    this.load.spritesheet("dude2", "assets/images/sheet.png", {
+      frameWidth: 150,
+      frameHeight: 155,
+    });
 
     //serpiente enemigo
     this.anims.create({

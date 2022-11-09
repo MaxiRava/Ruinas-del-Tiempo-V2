@@ -12,8 +12,6 @@ export class Instrucciones extends Phaser.Scene {
   init(data) {
     this.activo = data.activo;
     console.log(data);
-    this.#language = data.language;
-    console.log(this.#language);
   }
 
   create() {
@@ -31,16 +29,10 @@ export class Instrucciones extends Phaser.Scene {
       "dale"
     );
     this.intro = this.add
-      .text(
+      .image(
         this.cameras.main.centerX - 380,
         this.cameras.main.centerY + 440,
-        "SALTAR INTRODUCCIÓN",
-        {
-          stroke: "black",
-          strokeThickness: 6,
-          fontSize: "70px Arial",
-          fill: "white",
-        }
+        "intro",
       )
 
       .setInteractive()
