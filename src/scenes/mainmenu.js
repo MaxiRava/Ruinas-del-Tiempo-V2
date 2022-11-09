@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Parlante from "./parlante";
+import Parlante from "../objects/parlante";
 import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
@@ -13,15 +13,13 @@ export class MainMenu extends Phaser.Scene {
   }
 
   init(data) {
-    //this.audio = data.audio;
+    this.audio = data.audio;
     this.activo = data.activo;
     console.log(data);
     this.#language = data.language;
-    console.log(this.#language);
   }
 
   create() {
-    console.log(this.cameras.main);
     const { width, height } = this.scale;
     const positionCenter = {
       x: width / 2,
@@ -54,7 +52,7 @@ export class MainMenu extends Phaser.Scene {
       .setInteractive()
 
       .on("pointerdown", () => {
-        //this.audio.stop();
+        this.audio.stop();
         this.scene.start("Instrucciones", { activo: this.activo });
       })
 
@@ -82,7 +80,8 @@ export class MainMenu extends Phaser.Scene {
 
       .on("pointerdown", () => {
         console.log("pointerdown", this.activo);
-        this.scene.start("Creditos", { audio: null, activo: this.activo });
+
+        this.scene.start("Creditos", { audio: this.audio, activo: this.activo });
       })
 
       .on("pointerover", () => {
@@ -92,8 +91,11 @@ export class MainMenu extends Phaser.Scene {
       .on("pointerout", () => {
         this.creditos.setScale(1);
       });
-
+      
+    this.activo ? "music" : "mute"
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
+
+    this.escena = 1;
 
     const buttonEn = this.add
       .image(180, 80, "eng")
@@ -136,7 +138,7 @@ export class MainMenu extends Phaser.Scene {
   }
 
   update() {
-    this.activo = this.#parlante.activo;
+    this.activo=this.#parlante.activo
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
       this.Jugar.setText(getPhrase("JUGAR"));

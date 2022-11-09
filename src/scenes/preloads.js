@@ -39,7 +39,7 @@ export class Preloads extends Phaser.Scene {
     this.load.image("botone2", "assets/images/pop ups victoria derrota/boton_de_ciudad.png");
     this.load.image("banderaTablero", "assets/images/Victoria tablero.png");
     this.load.image("banderaEsc", "assets/images/Victoria jungla.png");
-    this.load.image("banderaciudad", "assets/images/victoria_de_ciudad_nada.png");
+    this.load.image("banderaciudad", "assets/images/victoriaciudad.png");
     this.load.image("roca", "assets/images/PIEDRAS2.png");
     this.load.image("roca2", "assets/images/PIEDRAS3.png");
     this.load.image("snake", "assets/images/snake.png");
@@ -57,19 +57,18 @@ export class Preloads extends Phaser.Scene {
     });
 
   
-    //this.load.audio("theme", "public/assets/sounds/musica.mp3");
-    //this.load.audio("theme2", "public/assets/sounds/tablero.mp3");
-    //this.load.audio("theme3", "public/assets/sounds/jungla.mp3");
-
+    this.load.audio("theme", "assets/sounds/musica.mp3");
+    this.load.audio("theme2", "assets/sounds/tablero.mp3");
+    this.load.audio("theme3", "assets/sounds/jungla.mp3");
+    this.load.audio("theme4", "assets/sounds/noche.mp3");
   }
 
   create() {
+  
+    this.audio = this.sound.add('theme', {loop: true});
+    this.audio.play();
     
-    /*
-    let audio = this.sound.add('theme', {loop: true});
-    audio.play();
-    */
-    this.scene.start("MainMenu", {distancia:75, distancia2:75, turno:0, contar:0}
+    this.scene.start("MainMenu", {distancia:75, distancia2:75, turno:0, contar:0, audio: this.audio}
     );
     
   }

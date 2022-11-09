@@ -11,9 +11,10 @@ export class Cartas extends Phaser.Scene {
     this.distancia = data.distancia;
     this.distancia2 = data.distancia2;
     this.audio2 = data.audio2;
+    this.activo2 = data.activo2;
     this.turno = data.turno;
     this.movimiento = data.movimiento;
-    this.activo = data.activo;
+    
   }
   create() {
     this.add.image(
@@ -152,7 +153,6 @@ export class Cartas extends Phaser.Scene {
         fill: "white",
       }
     );
-
     setTimeout(() => {
       this.scene.start("Tablero", {
         distancia: this.distancia,
@@ -160,7 +160,7 @@ export class Cartas extends Phaser.Scene {
         turno: this.turno,
         movimiento: this.movimiento,
         audio2: this.audio2,
-        activo: this.activo,
+        activo2: this.activo2,
       });
     }, 3000);
   }
@@ -187,14 +187,14 @@ export class Cartas extends Phaser.Scene {
       }
     );
     setTimeout(() => {
-      //this.audio2.stop();
+      this.audio2.stop();
       this.scene.start("Escenario1", {
         distancia: this.distancia,
         distancia2: this.distancia2,
         turno: this.turno,
         movimiento: this.movimiento,
         audio2: this.audio2,
-        activo: this.activo,
+        activo2: this.activo2,
       });
     }, 3000);
   }
@@ -222,14 +222,14 @@ export class Cartas extends Phaser.Scene {
     );
 
     setTimeout(() => {
-      //this.audio2.stop();
+      this.audio2.stop();
       this.scene.start("Escenario2", {
         distancia: this.distancia,
         distancia2: this.distancia2,
         turno: this.turno,
         movimiento: this.movimiento,
         audio2: this.audio2,
-        activo: this.activo,
+        activo2: this.activo2,
       });
     }, 3000);
   }

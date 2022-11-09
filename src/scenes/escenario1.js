@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Jugador from "./jugador";
+import Jugador from "../objects/jugador";
 
 export class Escenario1 extends Phaser.Scene {
 
@@ -17,12 +17,12 @@ export class Escenario1 extends Phaser.Scene {
     this.distancia2 = data.distancia2;
     this.turno = data.turno;
     this.movimiento = data.movimiento;
-    this.contar = data.contar;
-    //this.audio2=data.audio2;
+    this.activo2 = data.activo2;
+    this.audio2 = data.audio2;
   }
   create() {
-    //this.audio3 = this.sound.add('theme3', {loop: true});
-    //this.audio3.play();
+    this.audio3 = this.sound.add('theme3', {loop: true});
+    this.audio3.play();
 
     const map1 = this.make.tilemap({ key: "map1" });
 
@@ -186,15 +186,15 @@ export class Escenario1 extends Phaser.Scene {
       .setInteractive()
 
       .on("pointerdown", () => {
-        //this.audio3.stop()
-        //this.audio2.play()
+        this.audio3.stop()
+        this.audio2.play()
         this.scene.start("Tablero", {
           distancia: this.distancia,
           distancia2: this.distancia2,
           turno: this.turno,
           movimiento: 1,
-          //audio2: this.audio2,
-          contar: this.contar,
+          audio2: this.audio2,
+          activo2: this.activo2,
         });
       })
       .on("pointerover", () => {
