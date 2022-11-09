@@ -138,7 +138,7 @@ export class MainMenu extends Phaser.Scene {
   }
 
   update() {
-    
+    this.activo=this.#parlante.activo
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
       this.Jugar.setText(getPhrase("JUGAR"));

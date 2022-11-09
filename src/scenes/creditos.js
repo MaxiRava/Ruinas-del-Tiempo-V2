@@ -57,7 +57,7 @@ export class Creditos extends Phaser.Scene {
   }
 
   update() {
-
+    this.activo=this.#parlante.activo
   }
 }
 
