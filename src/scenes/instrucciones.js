@@ -25,8 +25,9 @@ export class Instrucciones extends Phaser.Scene {
       x: width / 2,
       y: height / 2,
     };
-    //let audio2 = this.sound.add('theme2', {loop: true});
-    //audio2.play();
+
+    this.audio2 = this.sound.add("theme2", { loop: true });
+    this.audio2.play();
 
     this.add.image(
       this.cameras.main.centerX,
@@ -59,7 +60,8 @@ export class Instrucciones extends Phaser.Scene {
           distancia2: 65,
           turno: 0,
           movimiento: 0,
-          activo: true,
+          activo: this.activo,
+          audio2: this.audio2,
         });
       })
 
@@ -73,6 +75,12 @@ export class Instrucciones extends Phaser.Scene {
 
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
 
+    if (this.#parlante.activo) {
+      console.log("🚀 ~ file: mainmenu.js ~ line 96 ~ MainMenu ~ create ~ this.#parlante", this.#parlante)
+      this.audio2.play()
+    } 
+
+    this.escena = 2;
   }
 
   updateWasChangedLanguage = () => {
@@ -88,6 +96,10 @@ export class Instrucciones extends Phaser.Scene {
 
   update() {
     this.activo = this.#parlante.activo;
+
+    if (!this.activo) {
+      this.audio2.pause();
+    }
 
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;

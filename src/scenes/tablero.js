@@ -3,7 +3,6 @@ import Jugador from "./jugador";
 import Dado from "./dado";
 
 export class Tablero extends Phaser.Scene {
-  number;
   constructor() {
     super("Tablero");
   }
@@ -45,7 +44,7 @@ export class Tablero extends Phaser.Scene {
     worldLayer.setCollisionByProperty({ collides: true });
 
     const spawnPoint = map.findObject("Objetos", (obj) => obj.name === "final");
-    this.final = this.physics.add.sprite(
+    this.finalTablero = this.physics.add.sprite(
       spawnPoint.x,
       spawnPoint.y,
       "banderaTablero"
@@ -60,18 +59,18 @@ export class Tablero extends Phaser.Scene {
 
     this.physics.add.collider(this.player, worldLayer);
     this.physics.add.collider(this.player2, worldLayer);
-    this.physics.add.collider(this.final, worldLayer);
+    this.physics.add.collider(this.finalTablero, worldLayer);
 
     this.physics.add.overlap(
       this.player,
-      this.final,
+      this.finalTablero,
       this.hitFinal,
       null,
       this
     );
     this.physics.add.overlap(
       this.player2,
-      this.final,
+      this.finalTablero,
       this.hitFinal2,
       null,
       this
@@ -96,13 +95,20 @@ export class Tablero extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, 1952, 1080);
 
     //parlante distinto
-    this.activo = true ? "music2" : "mute2";
+    
+    this.activo ? "music" : "mute";
 
     this.musica = this.add
       .image(1395, 310, this.activo)
       .setInteractive()
 
       .on("pointerdown", () => {
+        if (this.activo) {
+          this.audio2.pause();
+        } else {
+          this.audio2.resume();
+        }
+
         this.activo = !this.activo;
         this.musica.setTexture(this.activo ? "music2" : "mute2");
       })
@@ -114,6 +120,14 @@ export class Tablero extends Phaser.Scene {
       .on("pointerout", () => {
         this.musica.setScale(1);
       });
+
+    if (this.musica.activo) {
+      console.log(
+        "🚀 ~ file: mainmenu.js ~ line 96 ~ MainMenu ~ create ~ this.#parlante",
+        this.musica
+      );
+      this.audio2.play();
+    }
 
     this.musica.setScrollFactor(0);
 
@@ -138,7 +152,7 @@ export class Tablero extends Phaser.Scene {
         this.scene.start("Cartas", {
           distancia: this.player.x,
           distancia2: this.player2.x,
-          audio2: null,
+          audio2: this.audio2,
           turno: this.turno,
           movimiento: 1,
           activo: this.activo,
@@ -290,32 +304,6 @@ export class Tablero extends Phaser.Scene {
     }, 3000);
   }
 
-  /*  movimientoTablero(){
-    if (this.turno === 0 && this.avance === true) {
-      setTimeout(() => {
-        this.number.destroy();
-        this.player.movimientoJ1();
-        this.turno === 1;
-        this.avance = false;
-
-        this.cambiarLetreroJ2();
-        this.mostrarCartas2();
-      }, 3000);
-    }
-
-    if (this.turno === 1 && this.avance === true) {
-      setTimeout(() => {
-        this.number.destroy();
-        this.player.movimientoJ2();
-        this.turno === 0;
-        this.avance = false;
-
-        this.cambiarLetreroJ1();
-        this.mostrarCartas();
-      }, 3000);
-    } 
-  } */
-
   avanzar() {
     setTimeout(() => {
       this.number.destroy();
@@ -334,28 +322,6 @@ export class Tablero extends Phaser.Scene {
   }
 
   update() {
-    /*  if (this.turno === 0 && this.avance === true) {
-      setTimeout(() => {
-        this.number.destroy();
-        this.player.movimientoJ1();
-        this.turno === 1;
-        this.avance = false;
-
-        this.cambiarLetreroJ2();
-        this.mostrarCartas2();
-      }, 3000);
-    }
-
-    if (this.turno === 1 && this.avance === true) {
-      setTimeout(() => {
-        this.number.destroy();
-        this.player.movimientoJ2();
-        this.turno === 0;
-        this.avance = false;
-
-        this.cambiarLetreroJ1();
-        this.mostrarCartas();
-      }, 3000);
-    }   */
+    this.activo = this.musica.activo;
   }
 }

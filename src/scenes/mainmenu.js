@@ -80,7 +80,8 @@ export class MainMenu extends Phaser.Scene {
 
       .on("pointerdown", () => {
         console.log("pointerdown", this.activo);
-        this.scene.start("Creditos", { audio: null, activo: this.activo });
+
+        this.scene.start("Creditos", { audio: this.audio, activo: this.activo });
       })
 
       .on("pointerover", () => {
@@ -90,12 +91,11 @@ export class MainMenu extends Phaser.Scene {
       .on("pointerout", () => {
         this.creditos.setScale(1);
       });
-
+      
+    this.activo ? "music" : "mute"
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
-    if (this.#parlante.activo) {
-      console.log("🚀 ~ file: mainmenu.js ~ line 96 ~ MainMenu ~ create ~ this.#parlante", this.#parlante)
-      this.audio.play()
-    }
+
+    this.escena = 1;
 
     const buttonEn = this.add
       .image(180, 80, "eng")
@@ -138,7 +138,7 @@ export class MainMenu extends Phaser.Scene {
   }
 
   update() {
-    this.activo = this.#parlante.activo;
+    
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
       this.Jugar.setText(getPhrase("JUGAR"));
