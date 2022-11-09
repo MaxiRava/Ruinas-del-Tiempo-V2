@@ -154,14 +154,14 @@ export class Escenario2 extends Phaser.Scene {
     this.physics.pause();
     player.anims.play("jump2");
     let victory = this.add.image(
-      this.cameras.main.midPoint.x - 6,
-      this.cameras.main.midPoint.y - 45,
+      this.cameras.main.midPoint.x,
+      this.cameras.main.midPoint.y ,
       "victoria2"
     );
     let boton = this.add
       .image(
-        this.cameras.main.midPoint.x - 19,
-        this.cameras.main.midPoint.y + 118,
+        this.cameras.main.midPoint.x -10,
+        this.cameras.main.midPoint.y +120,
         "botone2"
       )
       .setInteractive()
