@@ -80,7 +80,7 @@ export class Escenario2 extends Phaser.Scene {
         }
         case "gato": {
           this.gato = this.gatos.create(x, y, "gato");
-          this.gato.anims.play("gatoAnims");
+          //this.gato.anims.play("gatoAnims");
 
           break;
         }

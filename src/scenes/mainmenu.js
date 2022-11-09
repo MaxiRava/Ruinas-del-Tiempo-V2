@@ -21,15 +21,15 @@ export class MainMenu extends Phaser.Scene {
       "cueva"
     );
     this.add.image(
-      this.cameras.main.centerX / 1,
-      this.cameras.main.centerY / 1.8,
+      this.cameras.main.centerX +50,
+      this.cameras.main.centerY - 210,
       "inicio"
     );
 
     this.Jugar = this.add
       .image(
         this.cameras.main.centerX ,
-        this.cameras.main.centerY ,
+        this.cameras.main.centerY + 320 ,
         "jugar"
       )
       .setInteractive()
@@ -49,8 +49,8 @@ export class MainMenu extends Phaser.Scene {
 
     this.creditos = this.add
       .image(
-        this.cameras.main.centerX - 210,
-        this.cameras.main.centerY + 390,
+        this.cameras.main.centerX ,
+        this.cameras.main.centerY + 450,
         "credito",
     
       )

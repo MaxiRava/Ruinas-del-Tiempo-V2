@@ -61,6 +61,7 @@ export class Escenario1 extends Phaser.Scene {
     this.enemys = this.physics.add.group();
     this.rooks = this.physics.add.group();
     this.snakes = this.physics.add.group();
+    
 
     objectsLayer.objects.forEach((objData) => {
       const { x = 0, y = 0, name, type } = objData;
@@ -72,7 +73,8 @@ export class Escenario1 extends Phaser.Scene {
         }
         case "snake": {
           this.snake = this.snakes.create(x, y, "snake");
-          this.snake.anims.play("snakeAnims");
+          //this.snake.anims.play("snakeAnims");
+
           break;
         }
         case "rook": {
@@ -82,7 +84,6 @@ export class Escenario1 extends Phaser.Scene {
         }
       }
     });
-
     this.count = 0;
 
     this.physics.add.collider(this.player, worldLayer);
