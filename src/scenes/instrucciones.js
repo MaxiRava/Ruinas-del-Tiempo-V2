@@ -12,8 +12,6 @@ export class Instrucciones extends Phaser.Scene {
   init(data) {
     this.activo = data.activo;
     console.log(data);
-    this.#language = data.language;
-    console.log(this.#language);
   }
 
   create() {
