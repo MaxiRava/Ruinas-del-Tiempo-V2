@@ -21,6 +21,7 @@ export class Preloads extends Phaser.Scene {
     this.load.image("mute2", "assets/images/sin sonido2.png");
     this.load.image("volver", "assets/images/retroceso.png");
     this.load.image("dale", "assets/images/Intrucciones.png");
+    this.load.image("pantallaIntro", "assets/images/introduccion.png");
     this.load.image("intro", "assets/images/saltar intro.png");
     this.load.image("dado", "assets/images/dados.png");
     this.load.image("turnoJugador", "assets/images/Turno_jugador.png");

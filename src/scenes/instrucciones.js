@@ -26,7 +26,7 @@ export class Instrucciones extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY / 1.1,
-      "dale"
+      "pantallaIntro"
     );
     this.intro = this.add
       .image(
