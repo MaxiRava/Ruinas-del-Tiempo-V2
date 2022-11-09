@@ -1,13 +1,10 @@
 import Phaser from "phaser";
 import Parlante from "../objects/parlante";
-import { getTranslations, getPhrase } from "../services/translations";
-import keys from "../enums/keys";
-import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 
 export class Instrucciones extends Phaser.Scene {
+
   #parlante;
-  #wasChangedLanguage = TODO;
-  #language;
+
   constructor() {
     super("Instrucciones");
   }
@@ -20,12 +17,6 @@ export class Instrucciones extends Phaser.Scene {
   }
 
   create() {
-    const { width, height } = this.scale;
-    const positionCenter = {
-      x: width / 2,
-      y: height / 2,
-    };
-
     this.audio2 = this.sound.add("theme2", { loop: true });
     this.audio2.play();
 
@@ -43,7 +34,7 @@ export class Instrucciones extends Phaser.Scene {
       .text(
         this.cameras.main.centerX - 380,
         this.cameras.main.centerY + 440,
-        getPhrase("SALTAR INTRODUCCIÓN"),
+        "SALTAR INTRODUCCIÓN",
         {
           stroke: "black",
           strokeThickness: 6,
@@ -88,27 +79,11 @@ export class Instrucciones extends Phaser.Scene {
     this.escena = 2;
   }
 
-  updateWasChangedLanguage = () => {
-    this.#wasChangedLanguage = FETCHED;
-  };
-
-  async getTranslations(language) {
-    this.#language = language;
-    this.#wasChangedLanguage = FETCHING;
-
-    await getTranslations(language, this.updateWasChangedLanguage);
-  }
-
   update() {
     this.activo = this.#parlante.activo;
 
     if (!this.activo) {
       this.audio2.pause();
-    }
-
-    if (this.#wasChangedLanguage === FETCHED) {
-      this.#wasChangedLanguage = READY;
-      this.intro.setText(getPhrase("SALTAR INTRODUCCIÓN"));
     }
   }
 }
