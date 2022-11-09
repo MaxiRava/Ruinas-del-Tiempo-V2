@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import Parlante from './parlante';
+import Parlante from '../objects/parlante';
 
 export class Creditos extends Phaser.Scene {
   #parlante

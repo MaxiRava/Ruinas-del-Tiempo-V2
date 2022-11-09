@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Parlante from "./parlante";
+import Parlante from "../objects/parlante";
 import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";

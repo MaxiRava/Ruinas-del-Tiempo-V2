@@ -1,6 +1,6 @@
 import Phaser from "phaser";
-import Jugador from "./jugador";
-import Dado from "./dado";
+import Jugador from "../objects/jugador";
+import Dado from "../objects/dado";
 
 export class Tablero extends Phaser.Scene {
   number;
@@ -145,8 +145,6 @@ export class Tablero extends Phaser.Scene {
         });
       }, 3000);
     }
-
-    //this.movimientoTablero();
   }
 
   cambiarLetreroJ1() {

@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Jugador from "./jugador";
+import Jugador from "../objects/jugador";
 
 export class Escenario2 extends Phaser.Scene {
 
@@ -59,7 +59,8 @@ export class Escenario2 extends Phaser.Scene {
       "Objetos",
       (obj) => obj.name === "final"
     );
-    this.final = this.physics.add.sprite(
+
+    var final = this.physics.add.sprite(
       spawnPoint2.x,
       spawnPoint2.y,
       "banderaciudad"
@@ -91,11 +92,11 @@ export class Escenario2 extends Phaser.Scene {
     this.physics.add.collider(this.player, worldLayer);
     this.physics.add.collider(this.tachos, worldLayer);
     this.physics.add.collider(this.gatos, worldLayer);
-    this.physics.add.collider(this.final, worldLayer);
+    this.physics.add.collider(final, worldLayer);
 
     this.physics.add.overlap(this.player, this.tachos, this.hitTacho, null, this);
     this.physics.add.overlap(this.player, this.gatos, this.hitGato, null, this);
-    this.physics.add.overlap(this.player, this.final, this.hitFinal, null, this);
+    this.physics.add.overlap(this.player, final, this.hitFinal, null, this);
 
     this.player.vida();
 

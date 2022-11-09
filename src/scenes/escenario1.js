@@ -1,8 +1,7 @@
 import Phaser from "phaser";
-import Jugador from "./jugador";
+import Jugador from "../objects/jugador";
 
 export class Escenario1 extends Phaser.Scene {
-
   constructor() {
     super("Escenario1");
   }
@@ -51,7 +50,11 @@ export class Escenario1 extends Phaser.Scene {
       (obj) => obj.name === "final"
     );
 
-    this.final = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "banderaEsc");
+    var final = this.physics.add.sprite(
+      spawnPoint2.x,
+      spawnPoint2.y,
+      "banderaEsc"
+    );
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -81,18 +84,35 @@ export class Escenario1 extends Phaser.Scene {
     });
 
     this.count = 0;
-    
 
     this.physics.add.collider(this.player, worldLayer);
     this.physics.add.collider(this.enemys, worldLayer);
     this.physics.add.collider(this.rooks, worldLayer);
     this.physics.add.collider(this.snakes, worldLayer);
-    this.physics.add.collider(this.final, worldLayer);
+    this.physics.add.collider(final, worldLayer);
 
-    this.physics.add.overlap(this.player, this.enemys, this.hitEnemy, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.enemys,
+      this.hitEnemy,
+      null,
+      this
+    );
     this.physics.add.overlap(this.player, this.rooks, this.hitRook, null, this);
-    this.physics.add.overlap(this.player, this.snakes, this.hitSnake, null, this);
-    this.physics.add.overlap(this.player, this.final, this.hitFinal, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.snakes,
+      this.hitSnake,
+      null,
+      this
+    );
+    this.physics.add.overlap(
+      this.player,
+      final,
+      this.hitFinal,
+      null,
+      this
+    );
 
     this.texto2 = this.player.vida();
 
@@ -103,7 +123,6 @@ export class Escenario1 extends Phaser.Scene {
     this.cameras.main.setZoom(1.5);
 
     this.cameras.main.setBounds(0, 0, 3200, 960);
-
   }
 
   hitEnemy(player, enemy) {
@@ -122,7 +141,6 @@ export class Escenario1 extends Phaser.Scene {
 
       this.player.anims.play("run");
       this.player.perderVida();
-
     }, 900);
   }
 
@@ -143,7 +161,6 @@ export class Escenario1 extends Phaser.Scene {
 
       this.player.anims.play("run");
       this.player.perderVida();
-   
     }, 900);
   }
 
@@ -164,12 +181,10 @@ export class Escenario1 extends Phaser.Scene {
 
       this.player.anims.play("run");
       this.player.perderVida();
-
     }, 900);
   }
 
   hitFinal(player, final) {
-
     this.physics.pause();
     player.anims.play("jump");
     let victory = this.add.image(
@@ -204,10 +219,9 @@ export class Escenario1 extends Phaser.Scene {
       .on("pointerout", () => {
         boton.setScale(1);
       });
-  } 
+  }
 
   update() {
-
     if (this.gameOver) {
       return;
     }
