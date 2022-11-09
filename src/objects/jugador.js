@@ -49,7 +49,7 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
         this.anims.create({
           key: "run",
           frames: this.anims.generateFrameNumbers("dude", { start: 0, end: 2 }),
-          frameRate: 7,
+          frameRate: 5,
           repeat: -1,
         });
   

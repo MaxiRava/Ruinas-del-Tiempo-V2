@@ -225,11 +225,11 @@ export class Tablero extends Phaser.Scene {
   }
 
   updateTexto() {
-    this.valor = Phaser.Math.Between(1, 6);
+    this.valor = Phaser.Math.Between(14, 14);
   }
 
   hitFinal(player, final) {
-    this.gameOver = true;
+    this.gameOver === true;
     this.physics.pause();
     this.cameras.main.startFollow(this.player);
     this.dado.destroy();
@@ -265,7 +265,7 @@ export class Tablero extends Phaser.Scene {
   }
 
   hitFinal2(player2, final) {
-    this.gameOver = true;
+    this.gameOver === true;
     this.physics.pause();
     this.cameras.main.startFollow(this.player2);
     this.dado.destroy();
