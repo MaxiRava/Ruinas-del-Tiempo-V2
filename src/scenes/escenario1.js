@@ -2,7 +2,6 @@ import Phaser from "phaser";
 import Jugador from "../objects/jugador";
 
 export class Escenario1 extends Phaser.Scene {
-
   constructor() {
     super("Escenario1");
   }
@@ -21,7 +20,7 @@ export class Escenario1 extends Phaser.Scene {
     this.audio2 = data.audio2;
   }
   create() {
-    this.audio3 = this.sound.add('theme3', {loop: true});
+    this.audio3 = this.sound.add("theme3", { loop: true });
     this.audio3.play();
 
     const map1 = this.make.tilemap({ key: "map1" });
@@ -51,7 +50,11 @@ export class Escenario1 extends Phaser.Scene {
       (obj) => obj.name === "final"
     );
 
-    this.final = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "banderaEsc");
+    this.final = this.physics.add.sprite(
+      spawnPoint2.x,
+      spawnPoint2.y,
+      "banderaEsc"
+    );
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -68,8 +71,8 @@ export class Escenario1 extends Phaser.Scene {
           break;
         }
         case "snake": {
-          const snake = this.snakes.create(x, y, "snake");
-
+          this.snake = this.snakes.create(x, y, "snake");
+          this.snake.anims.play("snakeAnims");
           break;
         }
         case "rook": {
@@ -81,7 +84,6 @@ export class Escenario1 extends Phaser.Scene {
     });
 
     this.count = 0;
-    
 
     this.physics.add.collider(this.player, worldLayer);
     this.physics.add.collider(this.enemys, worldLayer);
@@ -89,10 +91,28 @@ export class Escenario1 extends Phaser.Scene {
     this.physics.add.collider(this.snakes, worldLayer);
     this.physics.add.collider(this.final, worldLayer);
 
-    this.physics.add.overlap(this.player, this.enemys, this.hitEnemy, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.enemys,
+      this.hitEnemy,
+      null,
+      this
+    );
     this.physics.add.overlap(this.player, this.rooks, this.hitRook, null, this);
-    this.physics.add.overlap(this.player, this.snakes, this.hitSnake, null, this);
-    this.physics.add.overlap(this.player, this.final, this.hitFinal, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.snakes,
+      this.hitSnake,
+      null,
+      this
+    );
+    this.physics.add.overlap(
+      this.player,
+      this.final,
+      this.hitFinal,
+      null,
+      this
+    );
 
     this.texto2 = this.player.vida();
 
@@ -103,7 +123,6 @@ export class Escenario1 extends Phaser.Scene {
     this.cameras.main.setZoom(1.5);
 
     this.cameras.main.setBounds(0, 0, 3200, 960);
-
   }
 
   hitEnemy(player, enemy) {
@@ -122,7 +141,6 @@ export class Escenario1 extends Phaser.Scene {
 
       this.player.anims.play("run");
       this.player.perderVida();
-
     }, 900);
   }
 
@@ -143,7 +161,6 @@ export class Escenario1 extends Phaser.Scene {
 
       this.player.anims.play("run");
       this.player.perderVida();
-   
     }, 900);
   }
 
@@ -156,7 +173,7 @@ export class Escenario1 extends Phaser.Scene {
     this.player.setTint(0xff0000);
 
     this.player.anims.play("jump");
-
+    //this.snake.anims.play("snakeStop");
     setTimeout(() => {
       this.physics.resume();
 
@@ -164,12 +181,10 @@ export class Escenario1 extends Phaser.Scene {
 
       this.player.anims.play("run");
       this.player.perderVida();
-
     }, 900);
   }
 
   hitFinal(player, final) {
-
     this.physics.pause();
     player.anims.play("jump");
     let victory = this.add.image(
@@ -186,8 +201,8 @@ export class Escenario1 extends Phaser.Scene {
       .setInteractive()
 
       .on("pointerdown", () => {
-        this.audio3.stop()
-        this.audio2.play()
+        this.audio3.stop();
+        this.audio2.play();
         this.scene.start("Tablero", {
           distancia: this.distancia,
           distancia2: this.distancia2,
@@ -204,10 +219,9 @@ export class Escenario1 extends Phaser.Scene {
       .on("pointerout", () => {
         boton.setScale(1);
       });
-  } 
+  }
 
   update() {
-
     if (this.gameOver) {
       return;
     }

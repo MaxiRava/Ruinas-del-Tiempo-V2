@@ -42,20 +42,51 @@ export class Preloads extends Phaser.Scene {
     this.load.image("banderaciudad", "assets/images/victoriaciudad.png");
     this.load.image("roca", "assets/images/PIEDRAS2.png");
     this.load.image("roca2", "assets/images/PIEDRAS3.png");
-    this.load.image("snake", "assets/images/snake.png");
     this.load.image("tacho", "assets/images/tacho.png");
-    this.load.image("gato", "assets/images/gato.png");
-    this.load.image("prota", "assets/images/prota.png");
-    this.load.image("prota2", "assets/images/prota2.png");
-    this.load.spritesheet("dude", "assets/images/spritesheet (5).png", {
-      frameWidth: 150,
-      frameHeight: 155,
-    });
-    this.load.spritesheet("dude2", "assets/images/sheet.png", {
-      frameWidth: 116,
-      frameHeight: 155,
+
+    this.load.spritesheet("snake", "assets/images/snakeA.png", {
+      frameWidth: 80,
+      frameHeight: 100,
     });
 
+    this.load.spritesheet("gato", "assets/images/gatoA.png", {
+      frameWidth: 69,
+      frameHeight: 72,
+    });
+
+    this.load.image("prota", "assets/images/prota.png");
+    this.load.image("prota2", "assets/images/prota2.png");
+
+    this.load.spritesheet("dude", "assets/images/spritesheet (5).png");
+    this.load.spritesheet("dude2", "assets/images/sheet.png");
+
+    //serpiente enemigo
+    this.anims.create({
+      key: "snakeAnims",
+      frames: this.anims.generateFrameNumbers("snake", { start: 0, end: 2 }),
+      frameRate: 7,
+      repeat: -1,
+    });
+
+ /*    this.anims.create({
+      key: "snakeStop",
+      frames: [{ key: "snake", frame: 2 }],
+      frameRate: 20,
+    }); */
+
+    //gato enemigo
+    this.anims.create({
+      key: "gatoAnims",
+      frames: this.anims.generateFrameNumbers("gato", { start: 0, end: 2 }),
+      frameRate: 7,
+      repeat: -1,
+    });
+
+ /*    this.anims.create({
+      key: "gatoStop",
+      frames: [{ key: "gato", frame: 1 }],
+      frameRate: 20,
+    }); */
   
     this.load.audio("theme", "assets/sounds/musica.mp3");
     this.load.audio("theme2", "assets/sounds/tablero.mp3");

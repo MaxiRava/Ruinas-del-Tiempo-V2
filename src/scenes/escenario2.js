@@ -80,6 +80,7 @@ export class Escenario2 extends Phaser.Scene {
         }
         case "gato": {
           this.gato = this.gatos.create(x, y, "gato");
+          this.gato.anims.play("gatoAnims");
 
           break;
         }
@@ -137,6 +138,7 @@ export class Escenario2 extends Phaser.Scene {
     this.player.setTint(0xff0000);
 
     this.player.anims.play("jump2");
+    //this.gato.anims.play("gatoStop");
 
     setTimeout(() => {
       this.physics.resume();
