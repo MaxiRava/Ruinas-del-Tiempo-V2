@@ -2,6 +2,7 @@ class Parlante extends Phaser.GameObjects.Sprite{
   constructor(scene, x, y, activo = true){
       
     super(scene, x, y, activo ? 'music' : 'mute')
+    this.scene = scene;
 
     this.activo = activo;
 
@@ -10,13 +11,14 @@ class Parlante extends Phaser.GameObjects.Sprite{
     this.setInteractive()
     .on('pointerdown', () => {
 
-      this.activo = !this.activo
+      
 
-      if (this.activo == true) {
-        scene.audio.pause()
+      if (this.activo) {
+        this.scene.audio.pause()
       } else{
-        scene.audio.resume()
+        this.scene.audio.resume()
       } 
+      this.activo = !this.activo
       
       this.setTexture(this.activo ? 'music': 'mute')
     
