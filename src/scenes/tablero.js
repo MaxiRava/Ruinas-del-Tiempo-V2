@@ -1,6 +1,6 @@
 import Phaser from "phaser";
-import Jugador from "./jugador";
-import Dado from "./dado";
+import Jugador from "../objects/jugador";
+import Dado from "../objects/dado";
 
 export class Tablero extends Phaser.Scene {
   constructor() {
@@ -17,10 +17,10 @@ export class Tablero extends Phaser.Scene {
     this.distancia = data.distancia;
     this.distancia2 = data.distancia2;
     this.turno = data.turno;
-    this.activo = data.activo;
+    this.contar = data.contar;
+    this.activo2 = data.activo2;
     this.audio2 = data.audio2;
     this.movimiento = data.movimiento;
-    this.contar = data.contar;
     this.number = data.number;
     this.avance = data.avance;
   }
@@ -95,22 +95,29 @@ export class Tablero extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, 1952, 1080);
 
     //parlante distinto
-    
-    this.activo ? "music" : "mute";
+
+    this.activo2 = "music2";
+    if (!this.activo2) {
+      this.activo2 = "mute2";
+    }
 
     this.musica = this.add
-      .image(1395, 310, this.activo)
+      .image(1395, 310, this.activo2)
       .setInteractive()
 
       .on("pointerdown", () => {
-        if (this.activo) {
+        console.log(this.activo2);
+
+        if (this.activo2) {
           this.audio2.pause();
         } else {
-          this.audio2.resume();
+          if (!this.activo2) {
+            this.audio2.resume();
+          }
         }
+        this.activo2 = !this.activo2;
 
-        this.activo = !this.activo;
-        this.musica.setTexture(this.activo ? "music2" : "mute2");
+        this.musica.setTexture(this.activo2 ? "music2" : "mute2");
       })
 
       .on("pointerover", () => {
@@ -120,14 +127,6 @@ export class Tablero extends Phaser.Scene {
       .on("pointerout", () => {
         this.musica.setScale(1);
       });
-
-    if (this.musica.activo) {
-      console.log(
-        "🚀 ~ file: mainmenu.js ~ line 96 ~ MainMenu ~ create ~ this.#parlante",
-        this.musica
-      );
-      this.audio2.play();
-    }
 
     this.musica.setScrollFactor(0);
 
@@ -153,14 +152,12 @@ export class Tablero extends Phaser.Scene {
           distancia: this.player.x,
           distancia2: this.player2.x,
           audio2: this.audio2,
+          activo2: this.activo2,
           turno: this.turno,
           movimiento: 1,
-          activo: this.activo,
         });
       }, 3000);
     }
-
-    //this.movimientoTablero();
   }
 
   cambiarLetreroJ1() {
@@ -186,7 +183,7 @@ export class Tablero extends Phaser.Scene {
           distancia: this.player.x,
           distancia2: this.player2.x,
           audio2: this.audio2,
-          activo: this.activo,
+          activo2: this.activo2,
           turno: 0,
           movimiento: 1,
           valor: this.valor,
@@ -218,7 +215,7 @@ export class Tablero extends Phaser.Scene {
           distancia: this.player.x,
           distancia2: this.player2.x,
           audio2: this.audio2,
-          activo: this.activo,
+          activo2: this.activo2,
           turno: 1,
           movimiento: 1,
           valor: this.valor,
@@ -321,7 +318,5 @@ export class Tablero extends Phaser.Scene {
     }, 3000);
   }
 
-  update() {
-    this.activo = this.musica.activo;
-  }
+  update() {}
 }

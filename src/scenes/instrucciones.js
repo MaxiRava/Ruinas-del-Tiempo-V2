@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Parlante from "./parlante";
+import Parlante from "../objects/parlante";
 import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
@@ -55,12 +55,17 @@ export class Instrucciones extends Phaser.Scene {
       .setInteractive()
 
       .on("pointerdown", () => {
+        if (this.activo) {
+          this.activo2 = "music2";
+        }else{
+          this.activo2 = "mute2";
+        }
         this.scene.start("Tablero", {
           distancia: 75,
           distancia2: 65,
           turno: 0,
           movimiento: 0,
-          activo: this.activo,
+          activo2: this.activo2,
           audio2: this.audio2,
         });
       })

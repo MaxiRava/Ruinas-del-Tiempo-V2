@@ -11,9 +11,10 @@ export class Cartas extends Phaser.Scene {
     this.distancia = data.distancia;
     this.distancia2 = data.distancia2;
     this.audio2 = data.audio2;
+    this.activo2 = data.activo2;
     this.turno = data.turno;
     this.movimiento = data.movimiento;
-    this.activo2 = data.activo2;
+    
   }
   create() {
     this.add.image(
@@ -152,7 +153,6 @@ export class Cartas extends Phaser.Scene {
         fill: "white",
       }
     );
-
     setTimeout(() => {
       this.scene.start("Tablero", {
         distancia: this.distancia,
