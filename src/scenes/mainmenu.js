@@ -92,6 +92,10 @@ export class MainMenu extends Phaser.Scene {
       });
 
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
+    if (this.#parlante.activo) {
+      console.log("🚀 ~ file: mainmenu.js ~ line 96 ~ MainMenu ~ create ~ this.#parlante", this.#parlante)
+      this.audio.play()
+    }
 
     const buttonEn = this.add
       .image(180, 80, "eng")
