@@ -197,7 +197,7 @@ export class Escenario1 extends Phaser.Scene {
       .image(
         this.cameras.main.midPoint.x - 20,
         this.cameras.main.midPoint.y + 120,
-        "botone"
+        "Botonejungla"
       )
       .setInteractive()
 

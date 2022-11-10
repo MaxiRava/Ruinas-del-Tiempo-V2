@@ -31,29 +31,23 @@ export class Preloads extends Phaser.Scene {
     this.load.image("cara2", "assets/images/cara_2_de_costado.png");
     this.load.image("cartabuena", "assets/images/carta buena.png");
     this.load.image("cartacorrer", "assets/images/carta correr.png");
-    this.load.image("completo", "assets/images/JUEGO COMPLETADO.png");
+    this.load.image("juegoCompleto1", "assets/images/juegoCompletoJ1.png");
+    this.load.image("juegoCompleto2", "assets/images/juegoCompletoJ2.png");
     this.load.image("victoria", "assets/images/pop ups victoria derrota/Victoria Jungla.png");
     this.load.image("derrota", "assets/images/pop ups victoria derrota/Derrota Jungla.png");
     this.load.image("victoria2", "assets/images/pop ups victoria derrota/Victoria Ciudad.png");
     this.load.image("derrota2", "assets/images/pop ups victoria derrota/Derrota Ciudad.png");
     this.load.image("botone", "assets/images/pop ups victoria derrota/boton2.png");
     this.load.image("botone2", "assets/images/pop ups victoria derrota/boton_de_ciudad.png");
+    this.load.image("Botonejungla", "assets/images/pop ups victoria derrota/boton_jungla.png");
     this.load.image("banderaTablero", "assets/images/Victoria tablero.png");
     this.load.image("banderaEsc", "assets/images/Victoria jungla.png");
     this.load.image("banderaciudad", "assets/images/victoriaciudad.png");
     this.load.image("roca", "assets/images/PIEDRAS2.png");
     this.load.image("roca2", "assets/images/PIEDRAS3.png");
     this.load.image("tacho", "assets/images/tacho.png");
-
-    this.load.spritesheet("snake", "assets/images/snakeA.png", {
-      frameWidth: 80,
-      frameHeight: 100,
-    });
-
-    this.load.spritesheet("gato", "assets/images/gatoA.png", {
-      frameWidth: 56,
-      frameHeight: 70,
-    });
+    this.load.image("snake", "assets/images/snake.png");
+    this.load.image("gato", "assets/images/gato.png");
 
     this.load.image("prota", "assets/images/prota.png");
     this.load.image("prota2", "assets/images/prota2.png");
@@ -106,7 +100,7 @@ export class Preloads extends Phaser.Scene {
     this.audio = this.sound.add('theme', {loop: true});
     this.audio.play();
     
-    this.scene.start("Escenario2", {distancia:75, distancia2:75, turno:0, contar:0, audio: this.audio}
+    this.scene.start("MainMenu", {distancia:75, distancia2:75, turno:0, contar:0, audio: this.audio}
     );
     
   }

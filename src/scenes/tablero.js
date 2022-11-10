@@ -241,7 +241,7 @@ export class Tablero extends Phaser.Scene {
   }
 
   updateTexto() {
-    this.valor = Phaser.Math.Between(15, 15);
+    this.valor = Phaser.Math.Between(14, 14);
   }
 
   hitFinal(player, final) {
@@ -257,13 +257,13 @@ export class Tablero extends Phaser.Scene {
       this.add.image(
         this.cameras.main.midPoint.x,
         this.cameras.main.midPoint.y,
-        "completo"
+        "juegoCompleto1"
       );
       console.log("🚀 ~ file: tablero.js ~ line 252 ~ Tablero ~ setTimeout ~ otro")
       let otro = this.add
         .image(
-          this.cameras.main.midPoint.x,
-          this.cameras.main.midPoint.y,
+          this.cameras.main.midPoint.x - 10,
+          this.cameras.main.midPoint.y + 125,
           "botone"
         )
         .setInteractive()
@@ -295,13 +295,13 @@ export class Tablero extends Phaser.Scene {
 
       this.add.image(
         this.cameras.main.midPoint.x,
-        this.cameras.main.midPoint.y,
-        "completo"
+        this.cameras.main.midPoint.y + 5,
+        "juegoCompleto2"
       );
       let otro = this.add
         .image(
-          this.cameras.main.midPoint.x,
-          this.cameras.main.midPoint.y,
+          this.cameras.main.midPoint.x - 10,
+          this.cameras.main.midPoint.y + 125,
           "botone"
         )
         .setInteractive()

@@ -41,7 +41,7 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
         this.run= "run";
         this.jump= "jump";
         this.derrota = "derrota";
-        this.boton = "botone";
+        this.boton = "Botonejungla";
 
         this.texture,
           {
