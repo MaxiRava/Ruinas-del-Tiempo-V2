@@ -42,15 +42,26 @@ export class Preloads extends Phaser.Scene {
     this.load.image("banderaciudad", "assets/images/victoriaciudad.png");
     this.load.image("roca", "assets/images/PIEDRAS2.png");
     this.load.image("roca2", "assets/images/PIEDRAS3.png");
-    this.load.image("snake", "assets/images/snake.png");
     this.load.image("tacho", "assets/images/tacho.png");
-    this.load.image("gato", "assets/images/gato.png");
     this.load.image("prota", "assets/images/prota.png");
     this.load.image("prota2", "assets/images/prota2.png");
+
+    this.load.spritesheet("snakeA", "assets/images/snakeA.png", {
+      frameWidth: 80,
+      frameHeight: 80,
+    });
+
+    this.load.spritesheet("gatoA", "assets/images/gatoA.png", {
+      frameWidth: 56,
+      frameHeight: 70,
+    });
+
+
     this.load.spritesheet("dude", "assets/images/spritesheet (5).png", {
       frameWidth: 150,
       frameHeight: 155,
     });
+
     this.load.spritesheet("dude2", "assets/images/sheet.png", {
       frameWidth: 116,
       frameHeight: 155,
@@ -64,6 +75,21 @@ export class Preloads extends Phaser.Scene {
   }
 
   create() {
+
+    this.anims.create({
+      key: "snakeAnimacion",
+      frames: this.anims.generateFrameNumbers("snakeA", { start: 0, end: 2 }),
+      frameRate: 7,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "gatoAnimacion",
+      frames: this.anims.generateFrameNumbers("gatoA", { start: 0, end: 2 }),
+      frameRate: 7,
+      repeat: -1,
+    });
+  
   
     this.audio = this.sound.add('theme', {loop: true});
     this.audio.play();

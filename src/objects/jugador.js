@@ -154,8 +154,6 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.scene.player2.setX(this.scene.distancia2 + 128 * this.scene.valor);
     this.scene.player2.setScale(1);
   }
-  //https://labs.phaser.io/edit.html?src=src/game%20objects/text/align%20text.js&v=3.55.2
-  //https://phaser.io/examples/v3/view/game-objects/text/word-wrap-by-width
 }
 
 export default Jugador;
