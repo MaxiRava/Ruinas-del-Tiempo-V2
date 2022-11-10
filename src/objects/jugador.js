@@ -4,7 +4,8 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.scene = scene;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    if (texture === "prota" && texture === "prota2") {
+
+    if (texture === "prota" || texture === "prota2") {
       this.setCollideWorldBounds(true);
     }
     

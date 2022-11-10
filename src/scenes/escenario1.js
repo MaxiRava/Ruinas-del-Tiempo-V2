@@ -73,7 +73,6 @@ export class Escenario1 extends Phaser.Scene {
         }
         case "snake": {
           this.snake = this.snakes.create(x, y, "snake");
-          //this.snake.anims.play("snakeAnims");
 
           break;
         }
@@ -174,7 +173,6 @@ export class Escenario1 extends Phaser.Scene {
     this.player.setTint(0xff0000);
 
     this.player.anims.play("jump");
-    //this.snake.anims.play("snakeStop");
     setTimeout(() => {
       this.physics.resume();
 

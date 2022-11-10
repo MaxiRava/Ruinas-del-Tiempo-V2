@@ -11,10 +11,8 @@ export class Preloads extends Phaser.Scene {
     this.load.image("cueva2", "assets/images/cueva22.png");
     this.load.image("inicio", "assets/images/Ruinas_del_tiempo.png");
     this.load.image("jugar", "assets/images/jugar.png");
-    this.load.image("credito", "assets/images/credi.png");
-    this.load.image("creditos", "assets/images/Creditos.png");
-    this.load.image("arg", "assets/images/ARGENTINA.png");
-    this.load.image("eng", "assets/images/INGLES.png");
+    this.load.image("creditos", "assets/images/credi.png");
+    this.load.image("creditosMenu", "assets/images/Creditos.png");
     this.load.image("music", "assets/images/sonido.png");
     this.load.image("mute", "assets/images/sin sonido.png");
     this.load.image("music2", "assets/images/sonido2.png");
@@ -60,34 +58,6 @@ export class Preloads extends Phaser.Scene {
       frameWidth: 116,
       frameHeight: 155,
     });
-
-    //serpiente enemigo
-    this.anims.create({
-      key: "snakeAnims",
-      frames: this.anims.generateFrameNumbers("snake", { start: 0, end: 2 }),
-      frameRate: 7,
-      repeat: -1,
-    });
-
- /*    this.anims.create({
-      key: "snakeStop",
-      frames: [{ key: "snake", frame: 2 }],
-      frameRate: 20,
-    }); */
-
-    //gato enemigo
-    this.anims.create({
-      key: "gatoAnims",
-      frames: this.anims.generateFrameNumbers("gato", { start: 0, end: 2 }),
-      frameRate: 7,
-      repeat: -1,
-    });
-
- /*    this.anims.create({
-      key: "gatoStop",
-      frames: [{ key: "gato", frame: 1 }],
-      frameRate: 20,
-    }); */
   
     this.load.audio("theme", "assets/sounds/musica.mp3");
     this.load.audio("theme2", "assets/sounds/tablero.mp3");

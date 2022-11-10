@@ -24,7 +24,7 @@ export class Creditos extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY,
-      "creditos"
+      "creditosMenu"
     );
 
     let retroceso = this.add

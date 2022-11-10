@@ -22,7 +22,6 @@ export class Escenario2 extends Phaser.Scene {
     this.movimiento = data.movimiento;
     this.activo2 = data.activo2;
     this.audio2=data.audio2;
-    // recibir mapa a usar
     
   }
   create() {
@@ -81,21 +80,11 @@ export class Escenario2 extends Phaser.Scene {
         }
         case "gato": {
           const gato = this.gatos.create(x, y, "gato");
-          console.log("🚀 ~ file: escenario2.js ~ line 83 ~ Escenario2 ~ objectsLayer.objects.forEach ~ this.gato", this.gatos)
-          
 
           break;
         }
       }
     });
-    console.log("🚀 ~ file: escenario2.js ~ line 72 ~ Escenario2 ~ create ~ this.gatos", this.gatos)
-
-    //this.gatos.children.each(gato=>gato.anims.play("gatoAnims"))
-    /* this.gatos.getChildren().forEach(gato => {
-      console.log("🚀 ~ file: escenario2.js ~ line 95 ~ Escenario2 ~ create ~ gato", gato)
-      gato.anims.play("gatoAnims")
-      
-    }) */
     this.count = 0;
     
     this.physics.add.collider(this.player, worldLayer);
@@ -147,7 +136,6 @@ export class Escenario2 extends Phaser.Scene {
     this.player.setTint(0xff0000);
 
     this.player.anims.play("jump2");
-    //this.gato.anims.play("gatoStop");
 
     setTimeout(() => {
       this.physics.resume();

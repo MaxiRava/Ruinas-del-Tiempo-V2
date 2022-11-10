@@ -51,7 +51,7 @@ export class MainMenu extends Phaser.Scene {
       .image(
         this.cameras.main.centerX ,
         this.cameras.main.centerY + 450,
-        "credito",
+        "creditos",
     
       )
       .setInteractive()
