@@ -79,15 +79,27 @@ export class Preloads extends Phaser.Scene {
     this.anims.create({
       key: "snakeAnimacion",
       frames: this.anims.generateFrameNumbers("snakeA", { start: 0, end: 2 }),
-      frameRate: 7,
+      frameRate: 3,
       repeat: -1,
+    });
+
+    this.anims.create({
+      key: "snakeStop",
+      frames: [{ key: "skaneA", frame: 2 }],
+      frameRate: 20,
     });
 
     this.anims.create({
       key: "gatoAnimacion",
       frames: this.anims.generateFrameNumbers("gatoA", { start: 0, end: 2 }),
-      frameRate: 7,
+      frameRate: 5,
       repeat: -1,
+    });
+
+    this.anims.create({
+      key: "gatoStop",
+      frames: [{ key: "gatoA", frame: 1 }],
+      frameRate: 20,
     });
   
   

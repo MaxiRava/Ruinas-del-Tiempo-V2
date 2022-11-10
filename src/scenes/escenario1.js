@@ -68,8 +68,9 @@ export class Escenario1 extends Phaser.Scene {
           break;
         }
         case "snake": {
-          const snake = this.snakes.create(x, y, "snake");
-
+          this.snake = this.snakes.create(x, y, "snake");
+          this.snake.play("snakeAnimacion");
+          this.snake.setBodySize(80, 80);
           break;
         }
         case "rook": {
@@ -171,6 +172,7 @@ export class Escenario1 extends Phaser.Scene {
   hitFinal(player, final) {
 
     this.physics.pause();
+    this.snake.anims.play("snakeStop");
     player.anims.play("jump");
     let victory = this.add.image(
       this.cameras.main.midPoint.x - 6,

@@ -74,12 +74,14 @@ export class Escenario2 extends Phaser.Scene {
       const { x = 0, y = 0, name, type } = objData;
       switch (name) {
         case "tacho": {
-          this.tacho = this.tachos.create(x, y, "tacho");
+          const tacho = this.tachos.create(x, y, "tacho");
 
           break;
         }
         case "gato": {
           this.gato = this.gatos.create(x, y, "gato");
+          this.gato.play("gatoAnimacion");
+          this.gato.setBodySize(56, 70);
 
           break;
         }
@@ -152,6 +154,7 @@ export class Escenario2 extends Phaser.Scene {
   hitFinal(player, final) {
 
     this.physics.pause();
+    this.gato.anims.play("gatoStop");
     player.anims.play("jump2");
     let victory = this.add.image(
       this.cameras.main.midPoint.x - 6,
