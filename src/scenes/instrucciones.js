@@ -2,7 +2,6 @@ import Phaser from "phaser";
 import Parlante from "../objects/parlante";
 
 export class Instrucciones extends Phaser.Scene {
-
   #parlante;
 
   constructor() {
@@ -32,7 +31,7 @@ export class Instrucciones extends Phaser.Scene {
       .image(
         this.cameras.main.centerX,
         this.cameras.main.centerY + 470,
-        "intro",
+        "intro"
       )
 
       .setInteractive()
@@ -40,7 +39,7 @@ export class Instrucciones extends Phaser.Scene {
       .on("pointerdown", () => {
         if (this.activo) {
           this.activo2 = "music2";
-        }else{
+        } else {
           this.activo2 = "mute2";
         }
         this.scene.start("Tablero", {
@@ -64,9 +63,12 @@ export class Instrucciones extends Phaser.Scene {
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
 
     if (this.#parlante.activo) {
-      console.log("🚀 ~ file: mainmenu.js ~ line 96 ~ MainMenu ~ create ~ this.#parlante", this.#parlante)
-      this.audio2.play()
-    } 
+      console.log(
+        "🚀 ~ file: mainmenu.js ~ line 96 ~ MainMenu ~ create ~ this.#parlante",
+        this.#parlante
+      );
+      this.audio2.play();
+    }
 
     this.escena = 2;
   }

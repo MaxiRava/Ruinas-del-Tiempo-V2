@@ -14,7 +14,6 @@ export class Cartas extends Phaser.Scene {
     this.activo2 = data.activo2;
     this.turno = data.turno;
     this.movimiento = data.movimiento;
-    
   }
   create() {
     this.add.image(

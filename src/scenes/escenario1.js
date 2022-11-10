@@ -61,7 +61,6 @@ export class Escenario1 extends Phaser.Scene {
     this.enemys = this.physics.add.group();
     this.rooks = this.physics.add.group();
     this.snakes = this.physics.add.group();
-    
 
     objectsLayer.objects.forEach((objData) => {
       const { x = 0, y = 0, name, type } = objData;
@@ -234,6 +233,7 @@ export class Escenario1 extends Phaser.Scene {
     }
 
     if (this.count === 3) {
+      this.audio3.stop();
       this.player.muerte();
     }
   }

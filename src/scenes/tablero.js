@@ -104,7 +104,6 @@ export class Tablero extends Phaser.Scene {
       .setInteractive()
 
       .on("pointerdown", () => {
-
         if (this.activo2) {
           this.audio2.pause();
         } else {
@@ -127,7 +126,9 @@ export class Tablero extends Phaser.Scene {
 
     this.musica.setScrollFactor(0);
 
-    this.cartelFondo = this.add.image(960, 320, "turnoJugador").setScrollFactor(0);
+    this.cartelFondo = this.add
+      .image(960, 320, "turnoJugador")
+      .setScrollFactor(0);
     this.pj = this.add.image(1150, 320, this.cara).setScrollFactor(0);
     this.cartelTurno = this.add.text(790, 290, this.letrero, {
       stroke: "black",
@@ -158,7 +159,6 @@ export class Tablero extends Phaser.Scene {
   }
 
   cambiarLetreroJ1() {
-    
     if (!this.gameOver) {
       setTimeout(() => {
         if (this.gameOver) {
@@ -177,9 +177,7 @@ export class Tablero extends Phaser.Scene {
   }
 
   mostrarCartas() {
-    
     if (!this.gameOver) {
-      
       setTimeout(() => {
         if (this.gameOver) {
           return;
@@ -198,8 +196,6 @@ export class Tablero extends Phaser.Scene {
   }
 
   cambiarLetreroJ2() {
-    
-
     setTimeout(() => {
       if (this.gameOver) {
         return;
@@ -262,7 +258,6 @@ export class Tablero extends Phaser.Scene {
           "botone"
         )
         .setInteractive()
-      
 
         .on("pointerdown", () => {
           this.audio2.stop();

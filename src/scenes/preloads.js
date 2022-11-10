@@ -1,12 +1,9 @@
-
 export class Preloads extends Phaser.Scene {
   constructor() {
- 
     super("Preloads");
   }
 
   preload() {
-
     this.load.image("cueva", "assets/images/cueva1.png");
     this.load.image("cueva2", "assets/images/cueva22.png");
     this.load.image("inicio", "assets/images/Ruinas_del_tiempo.png");
@@ -31,13 +28,34 @@ export class Preloads extends Phaser.Scene {
     this.load.image("cartacorrer", "assets/images/carta correr.png");
     this.load.image("juegoCompleto1", "assets/images/juegoCompletoJ1.png");
     this.load.image("juegoCompleto2", "assets/images/juegoCompletoJ2.png");
-    this.load.image("victoria", "assets/images/pop ups victoria derrota/Victoria Jungla.png");
-    this.load.image("derrota", "assets/images/pop ups victoria derrota/Derrota Jungla.png");
-    this.load.image("victoria2", "assets/images/pop ups victoria derrota/Victoria Ciudad.png");
-    this.load.image("derrota2", "assets/images/pop ups victoria derrota/Derrota Ciudad.png");
-    this.load.image("botone", "assets/images/pop ups victoria derrota/boton2.png");
-    this.load.image("botone2", "assets/images/pop ups victoria derrota/boton_de_ciudad.png");
-    this.load.image("Botonejungla", "assets/images/pop ups victoria derrota/boton_jungla.png");
+    this.load.image(
+      "victoria",
+      "assets/images/pop ups victoria derrota/Victoria Jungla.png"
+    );
+    this.load.image(
+      "derrota",
+      "assets/images/pop ups victoria derrota/Derrota Jungla.png"
+    );
+    this.load.image(
+      "victoria2",
+      "assets/images/pop ups victoria derrota/Victoria Ciudad.png"
+    );
+    this.load.image(
+      "derrota2",
+      "assets/images/pop ups victoria derrota/Derrota Ciudad.png"
+    );
+    this.load.image(
+      "botone",
+      "assets/images/pop ups victoria derrota/boton2.png"
+    );
+    this.load.image(
+      "botone2",
+      "assets/images/pop ups victoria derrota/boton_de_ciudad.png"
+    );
+    this.load.image(
+      "Botonejungla",
+      "assets/images/pop ups victoria derrota/boton_jungla.png"
+    );
     this.load.image("banderaTablero", "assets/images/Victoria tablero.png");
     this.load.image("banderaEsc", "assets/images/Victoria jungla.png");
     this.load.image("banderaciudad", "assets/images/victoriaciudad.png");
@@ -58,7 +76,7 @@ export class Preloads extends Phaser.Scene {
       frameWidth: 116,
       frameHeight: 155,
     });
-  
+
     this.load.audio("theme", "assets/sounds/musica.mp3");
     this.load.audio("theme2", "assets/sounds/tablero.mp3");
     this.load.audio("theme3", "assets/sounds/jungla.mp3");
@@ -66,13 +84,15 @@ export class Preloads extends Phaser.Scene {
   }
 
   create() {
-  
-    this.audio = this.sound.add('theme', {loop: true});
+    this.audio = this.sound.add("theme", { loop: true });
     this.audio.play();
-    
-    this.scene.start("MainMenu", {distancia:75, distancia2:75, turno:0, contar:0, audio: this.audio}
-    );
-    
+
+    this.scene.start("MainMenu", {
+      distancia: 75,
+      distancia2: 75,
+      turno: 0,
+      contar: 0,
+      audio: this.audio,
+    });
   }
-  
 }
