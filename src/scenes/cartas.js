@@ -41,7 +41,6 @@ export class Cartas extends Phaser.Scene {
     );
 
     let salvado = Phaser.Math.Between(1, 3);
-    console.log(salvado);
 
     this.card = this.add
       .image(this.cameras.main.centerX, this.cameras.main.centerY + 50, "carta")

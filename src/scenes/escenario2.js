@@ -200,6 +200,7 @@ export class Escenario2 extends Phaser.Scene {
     }
 
     if (this.count === 3) {
+      this.audio4.stop();
       this.player.muerte();
     }
   }

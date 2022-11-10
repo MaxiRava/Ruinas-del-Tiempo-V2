@@ -120,8 +120,8 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
         )
         .setInteractive()
         .on("pointerdown", () => {
-          //audio3.stop()
-          //audio2.play()
+          this.scene.audio3.stop();
+          this.scene.audio2.play();
           if (this.scene.turno === 1) {
             this.scene.turno = 0;
           } else {
