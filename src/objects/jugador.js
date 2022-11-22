@@ -1,10 +1,16 @@
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 class Jugador extends Phaser.Physics.Arcade.Sprite {
+  #wasChangedLanguage = TODO;
+  #language;
   constructor(scene, x, y, texture, turno) {
     super(scene, x, y, texture, turno);
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.scene = scene;
+
 
     if (texture === "dude2") {
 
@@ -65,6 +71,23 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     
     // or en if ( == || ==)
 }
+
+init(data){
+
+  console.log(data);
+  this.#language = data.language;
+  console.log(this.#language);
+
+}
+create(){
+  
+    const { width, height } = this.scale;
+    const positionCenter = {
+      x: width / 2,
+      y: height / 2,
+    };
+}
+
   saltar() {
     this.setVelocityY(-520);
     this.setVelocityX(120);
@@ -80,7 +103,8 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 
   vida(){
     this.number = 3;
-    this.texto = this.scene.add.text(330, 200, `Vidas: ${this.number}`, {
+    
+    this.texto = this.scene.add.text(330, 200, getPhrase(`Vidas: ${this.number}`), {
       stroke: "black",
       strokeThickness: 5,
       fontSize: "54px Arial",
@@ -89,9 +113,10 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.texto.setScrollFactor(0);
   }
 
+
   perderVida(){
     this.number = 3 - this.scene.count;
-    this.texto.setText(`Vidas: ${this.number}`);
+    this.texto.setText(getPhrase(`Vidas: ${this.number}`));
   }
 
   muerte(){
@@ -154,8 +179,25 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.scene.player2.setX(this.scene.distancia2 + 128 * this.scene.valor);
     this.scene.player2.setScale(1);
   }
+  updateWasChangedLanguage = () => {
+    this.#wasChangedLanguage = FETCHED;
+  };
+
+  async getTranslations(language) {
+    this.#language = language;
+    this.#wasChangedLanguage = FETCHING;
+
+    await getTranslations(language, this.updateWasChangedLanguage);
+  }
+
+  update(){
+    if (this.#wasChangedLanguage === FETCHED) {
+      this.#wasChangedLanguage = READY;
+      this.texto.setText(getPhrase("Vidas:"));
+  }
   //https://labs.phaser.io/edit.html?src=src/game%20objects/text/align%20text.js&v=3.55.2
   //https://phaser.io/examples/v3/view/game-objects/text/word-wrap-by-width
+}
 }
 
 export default Jugador;
