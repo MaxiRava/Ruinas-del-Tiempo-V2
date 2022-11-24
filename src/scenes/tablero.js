@@ -9,8 +9,8 @@ export class Tablero extends Phaser.Scene {
 
   preload() {
     this.load.tilemapTiledJSON("map", "assets/tilemaps/tablero.json");
-    this.load.image("tilesBelow", "assets/images/cueva-atlas.png");
-    this.load.image("tilesPlatform", "assets/images/casilas atlas.png");
+    this.load.image("tilesBelow", "assets/images/cuevaAtlas.png");
+    this.load.image("tilesPlatform", "assets/images/casillasAtlas.png");
   }
 
   init(data) {
@@ -255,7 +255,7 @@ export class Tablero extends Phaser.Scene {
         .image(
           this.cameras.main.midPoint.x - 10,
           this.cameras.main.midPoint.y + 125,
-          "botone"
+          "boton"
         )
         .setInteractive()
 
@@ -296,7 +296,7 @@ export class Tablero extends Phaser.Scene {
         .image(
           this.cameras.main.midPoint.x - 10,
           this.cameras.main.midPoint.y + 125,
-          "botone"
+          "boton"
         )
         .setInteractive()
 

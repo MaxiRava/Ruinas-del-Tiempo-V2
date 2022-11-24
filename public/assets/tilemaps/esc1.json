@@ -249,7 +249,7 @@
         {
          "columns":60,
          "firstgid":1,
-         "image":"..\/images\/jungla-atlas.png",
+         "image":"..\/images\/junglaAtlas.png",
          "imageheight":1080,
          "imagewidth":1920,
          "margin":0,
@@ -262,7 +262,7 @@
         {
          "columns":39,
          "firstgid":1981,
-         "image":"..\/images\/plataforma.png",
+         "image":"..\/images\/plataformaJungla.png",
          "imageheight":540,
          "imagewidth":1248,
          "margin":0,

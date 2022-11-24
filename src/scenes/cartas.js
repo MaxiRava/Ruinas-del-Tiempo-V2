@@ -19,13 +19,13 @@ export class Cartas extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY,
-      "cueva2"
+      "cuevaTablero"
     );
 
     this.add.image(
       this.cameras.main.centerX + 15,
       this.cameras.main.centerY - 140,
-      "elegirCarta"
+      "seleccionCarta"
     );
     this.texto = this.add.text(
       this.cameras.main.centerX - 180,
@@ -40,6 +40,7 @@ export class Cartas extends Phaser.Scene {
     );
 
     let salvado = Phaser.Math.Between(1, 3);
+    console.log(salvado);
 
     this.card = this.add
       .image(this.cameras.main.centerX, this.cameras.main.centerY + 50, "carta")
@@ -138,7 +139,7 @@ export class Cartas extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY + 50,
-      "cartabuena"
+      "cartaBuena"
     );
     this.add.text(
       this.cameras.main.centerX - 240,
@@ -171,7 +172,7 @@ export class Cartas extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY + 50,
-      "cartacorrer"
+      "cartaCorrer"
     );
     this.add.text(
       this.cameras.main.centerX - 230,
@@ -205,7 +206,7 @@ export class Cartas extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY + 50,
-      "cartacorrer"
+      "cartaCorrer"
     );
     this.add.text(
       this.cameras.main.centerX - 230,

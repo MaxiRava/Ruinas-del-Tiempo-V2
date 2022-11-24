@@ -17,7 +17,7 @@ export class MainMenu extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY,
-      "cueva"
+      "cuevaInicio"
     );
     this.add.image(
       this.cameras.main.centerX + 50,

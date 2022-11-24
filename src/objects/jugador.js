@@ -9,11 +9,11 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
       this.setCollideWorldBounds(true);
     }
 
-    if (texture === "dude2") {
+    if (texture === "callejero") {
       this.run = "run2";
       this.jump = "jump2";
       this.derrota = "derrota2";
-      this.boton = "botone2";
+      this.boton = "botonCiudad";
 
       this.texture,
         {
@@ -23,24 +23,24 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 
       this.anims.create({
         key: "run2",
-        frames: this.anims.generateFrameNumbers("dude2", { start: 0, end: 3 }),
-        frameRate: 7,
+        frames: this.anims.generateFrameNumbers("callejero", { start: 0, end: 3 }),
+        frameRate: 5,
         repeat: -1,
       });
 
       this.anims.create({
         key: "jump2",
-        frames: [{ key: "dude2", frame: 4 }],
+        frames: [{ key: "callejero", frame: 4 }],
         frameRate: 20,
       });
       this.setCircle(50, 10, 40);
     }
 
-    if (texture === "dude") {
+    if (texture === "explorador") {
       this.run = "run";
       this.jump = "jump";
       this.derrota = "derrota";
-      this.boton = "Botonejungla";
+      this.boton = "botonJungla";
 
       this.texture,
         {
@@ -50,14 +50,14 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 
       this.anims.create({
         key: "run",
-        frames: this.anims.generateFrameNumbers("dude", { start: 0, end: 2 }),
+        frames: this.anims.generateFrameNumbers("explorador", { start: 0, end: 2 }),
         frameRate: 5,
         repeat: -1,
       });
 
       this.anims.create({
         key: "jump",
-        frames: [{ key: "dude", frame: 1 }],
+        frames: [{ key: "explorador", frame: 1 }],
         frameRate: 20,
       });
 

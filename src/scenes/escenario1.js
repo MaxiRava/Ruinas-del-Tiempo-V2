@@ -40,7 +40,7 @@ export class Escenario1 extends Phaser.Scene {
 
     const spawnPoint = map1.findObject("Objetos", (obj) => obj.name === "dude");
 
-    this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "dude");
+    this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "explorador");
     this.player.correr();
 
     this.isJumping = false;
@@ -53,7 +53,7 @@ export class Escenario1 extends Phaser.Scene {
     this.final = this.physics.add.sprite(
       spawnPoint2.x,
       spawnPoint2.y,
-      "banderaEsc"
+      "banderaJungla"
     );
 
     this.cursors = this.input.keyboard.createCursorKeys();

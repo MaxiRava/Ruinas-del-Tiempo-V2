@@ -46,7 +46,7 @@ export class Escenario2 extends Phaser.Scene {
 
     const spawnPoint = map2.findObject("Objetos", (obj) => obj.name === "dude");
 
-    this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "dude2");
+    this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "callejero");
 
     this.player.correr();
 
@@ -59,7 +59,7 @@ export class Escenario2 extends Phaser.Scene {
     this.final = this.physics.add.sprite(
       spawnPoint2.x,
       spawnPoint2.y,
-      "banderaciudad"
+      "banderaCiudad"
     );
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -79,9 +79,6 @@ export class Escenario2 extends Phaser.Scene {
           this.gato = this.gatos.create(x, y, "gato");
           this.gato.play("gatoAnimacion");
           this.gato.setBodySize(56, 70);
-
-          const gato = this.gatos.create(x, y, "gato");
-
 
           break;
         }
@@ -175,7 +172,7 @@ export class Escenario2 extends Phaser.Scene {
       .image(
         this.cameras.main.midPoint.x - 10,
         this.cameras.main.midPoint.y + 120,
-        "botone2"
+        "botonCiudad"
       )
       .setInteractive()
 

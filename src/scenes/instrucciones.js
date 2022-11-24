@@ -20,7 +20,7 @@ export class Instrucciones extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY,
-      "cueva2"
+      "cuevaTablero"
     );
     this.add.image(
       this.cameras.main.centerX,
