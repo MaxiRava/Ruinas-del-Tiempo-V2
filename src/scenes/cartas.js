@@ -14,7 +14,6 @@ export class Cartas extends Phaser.Scene {
     this.activo2 = data.activo2;
     this.turno = data.turno;
     this.movimiento = data.movimiento;
-    
   }
   create() {
     this.add.image(
@@ -41,7 +40,6 @@ export class Cartas extends Phaser.Scene {
     );
 
     let salvado = Phaser.Math.Between(1, 3);
-    console.log(salvado);
 
     this.card = this.add
       .image(this.cameras.main.centerX, this.cameras.main.centerY + 50, "carta")

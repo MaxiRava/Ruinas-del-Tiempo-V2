@@ -2,7 +2,6 @@ import Phaser from "phaser";
 import Jugador from "../objects/jugador";
 
 export class Escenario2 extends Phaser.Scene {
-
   constructor() {
     super("Escenario2");
   }
@@ -12,7 +11,7 @@ export class Escenario2 extends Phaser.Scene {
     this.load.image("tilesBelow2", "assets/images/fondonoche - atlas.png");
     this.load.image(
       "tilesPlatform2",
-      "assets/images/plataformas-ladrillos.png" 
+      "assets/images/plataformas-ladrillos.png"
     );
   }
   init(data) {
@@ -21,12 +20,10 @@ export class Escenario2 extends Phaser.Scene {
     this.turno = data.turno;
     this.movimiento = data.movimiento;
     this.activo2 = data.activo2;
-    this.audio2=data.audio2;
-    // recibir mapa a usar
-    
+    this.audio2 = data.audio2;
   }
   create() {
-    this.audio4 = this.sound.add('theme4', {loop: true});
+    this.audio4 = this.sound.add("theme4", { loop: true });
     this.audio4.play();
 
     const map2 = this.make.tilemap({ key: "map2" });
@@ -51,7 +48,7 @@ export class Escenario2 extends Phaser.Scene {
 
     this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "dude2");
 
-    this.player.correr();  
+    this.player.correr();
 
     this.isJumping = false;
 
@@ -83,21 +80,35 @@ export class Escenario2 extends Phaser.Scene {
           this.gato.play("gatoAnimacion");
           this.gato.setBodySize(56, 70);
 
+          const gato = this.gatos.create(x, y, "gato");
+
+
           break;
         }
       }
     });
-
     this.count = 0;
-    
+
     this.physics.add.collider(this.player, worldLayer);
     this.physics.add.collider(this.tachos, worldLayer);
     this.physics.add.collider(this.gatos, worldLayer);
     this.physics.add.collider(this.final, worldLayer);
 
-    this.physics.add.overlap(this.player, this.tachos, this.hitTacho, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.tachos,
+      this.hitTacho,
+      null,
+      this
+    );
     this.physics.add.overlap(this.player, this.gatos, this.hitGato, null, this);
-    this.physics.add.overlap(this.player, this.final, this.hitFinal, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.final,
+      this.hitFinal,
+      null,
+      this
+    );
 
     this.player.vida();
 
@@ -152,19 +163,18 @@ export class Escenario2 extends Phaser.Scene {
   }
 
   hitFinal(player, final) {
-
     this.physics.pause();
     this.gato.anims.play("gatoStop");
     player.anims.play("jump2");
     let victory = this.add.image(
-      this.cameras.main.midPoint.x - 6,
-      this.cameras.main.midPoint.y - 45,
+      this.cameras.main.midPoint.x,
+      this.cameras.main.midPoint.y,
       "victoria2"
     );
     let boton = this.add
       .image(
-        this.cameras.main.midPoint.x - 19,
-        this.cameras.main.midPoint.y + 118,
+        this.cameras.main.midPoint.x - 10,
+        this.cameras.main.midPoint.y + 120,
         "botone2"
       )
       .setInteractive()
@@ -204,6 +214,7 @@ export class Escenario2 extends Phaser.Scene {
     }
 
     if (this.count === 3) {
+      this.audio4.stop();
       this.player.muerte();
     }
   }

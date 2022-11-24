@@ -1,15 +1,17 @@
 class Jugador extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture, turno) {
     super(scene, x, y, texture, turno);
-
-    scene.add.existing(this);
-    scene.physics.add.existing(this);
     this.scene = scene;
+    this.scene.add.existing(this);
+    this.scene.physics.add.existing(this);
+
+    if (texture === "prota" || texture === "prota2") {
+      this.setCollideWorldBounds(true);
+    }
 
     if (texture === "dude2") {
-
-      this.run= "run2";
-      this.jump= "jump2";
+      this.run = "run2";
+      this.jump = "jump2";
       this.derrota = "derrota2";
       this.boton = "botone2";
 
@@ -34,37 +36,36 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
       this.setCircle(50, 10, 40);
     }
 
-      if (texture === "dude") {
-        this.run= "run";
-        this.jump= "jump";
-        this.derrota = "derrota";
-        this.boton = "botone";
+    if (texture === "dude") {
+      this.run = "run";
+      this.jump = "jump";
+      this.derrota = "derrota";
+      this.boton = "Botonejungla";
 
-        this.texture,
-          {
-            frameWidth: 150,
-            frameHeight: 155,
-          };
-  
-        this.anims.create({
-          key: "run",
-          frames: this.anims.generateFrameNumbers("dude", { start: 0, end: 2 }),
-          frameRate: 7,
-          repeat: -1,
-        });
-  
-        this.anims.create({
-          key: "jump",
-          frames: [{ key: "dude", frame: 1 }],
-          frameRate: 20,
-        });
-      
+      this.texture,
+        {
+          frameWidth: 150,
+          frameHeight: 155,
+        };
+
+      this.anims.create({
+        key: "run",
+        frames: this.anims.generateFrameNumbers("dude", { start: 0, end: 2 }),
+        frameRate: 5,
+        repeat: -1,
+      });
+
+      this.anims.create({
+        key: "jump",
+        frames: [{ key: "dude", frame: 1 }],
+        frameRate: 20,
+      });
+
       this.setCircle(50, 40, 40);
     }
 
-    
     // or en if ( == || ==)
-}
+  }
   saltar() {
     this.setVelocityY(-520);
     this.setVelocityX(120);
@@ -78,7 +79,7 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.isJumping = false;
   }
 
-  vida(){
+  vida() {
     this.number = 3;
     this.texto = this.scene.add.text(330, 200, `Vidas: ${this.number}`, {
       stroke: "black",
@@ -89,12 +90,12 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.texto.setScrollFactor(0);
   }
 
-  perderVida(){
+  perderVida() {
     this.number = 3 - this.scene.count;
     this.texto.setText(`Vidas: ${this.number}`);
   }
 
-  muerte(){
+  muerte() {
     setTimeout(() => {
       this.scene.gameOver = true;
 
@@ -116,8 +117,7 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
         )
         .setInteractive()
         .on("pointerdown", () => {
-          //audio3.stop()
-          //audio2.play()
+          this.scene.audio2.play();
           if (this.scene.turno === 1) {
             this.scene.turno = 0;
           } else {
@@ -125,7 +125,7 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
               this.scene.turno = 1;
             }
           }
-  
+
           this.scene.scene.start("Tablero", {
             distancia: this.scene.distancia,
             distancia2: this.scene.distancia2,
@@ -145,12 +145,12 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     }, 900);
   }
 
-  movimientoJ1(){
+  movimientoJ1() {
     this.scene.player.setX(this.scene.distancia + 128 * this.scene.valor);
     this.scene.player.setScale(1);
   }
 
-  movimientoJ2(){
+  movimientoJ2() {
     this.scene.player2.setX(this.scene.distancia2 + 128 * this.scene.valor);
     this.scene.player2.setScale(1);
   }

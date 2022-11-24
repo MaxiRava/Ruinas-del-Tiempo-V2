@@ -77,13 +77,11 @@ export class Tablero extends Phaser.Scene {
     );
 
     if (this.turno === 0) {
-      console.log("jugador a seguir 1");
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.player.setScale(1.1);
       this.letrero = "Turno Jugador 1";
       this.cara = "cara1";
     } else {
-      console.log("jugador a seguir 2");
       this.cameras.main.startFollow(this.player2, true, 0.08, 0.08);
       this.player2.setScale(1.1);
       this.letrero = "Turno Jugador 2";
@@ -106,8 +104,6 @@ export class Tablero extends Phaser.Scene {
       .setInteractive()
 
       .on("pointerdown", () => {
-        console.log(this.activo2);
-
         if (this.activo2) {
           this.audio2.pause();
         } else {
@@ -130,7 +126,9 @@ export class Tablero extends Phaser.Scene {
 
     this.musica.setScrollFactor(0);
 
-    this.add.image(960, 320, "turnoJugador").setScrollFactor(0);
+    this.cartelFondo = this.add
+      .image(960, 320, "turnoJugador")
+      .setScrollFactor(0);
     this.pj = this.add.image(1150, 320, this.cara).setScrollFactor(0);
     this.cartelTurno = this.add.text(790, 290, this.letrero, {
       stroke: "black",
@@ -161,9 +159,11 @@ export class Tablero extends Phaser.Scene {
   }
 
   cambiarLetreroJ1() {
-    console.log("cambiarLetreroJ1", this.gameOver);
     if (!this.gameOver) {
       setTimeout(() => {
+        if (this.gameOver) {
+          return;
+        }
         this.letrero = "Turno Jugador 1";
         this.cartelTurno.setText(this.letrero);
 
@@ -179,6 +179,9 @@ export class Tablero extends Phaser.Scene {
   mostrarCartas() {
     if (!this.gameOver) {
       setTimeout(() => {
+        if (this.gameOver) {
+          return;
+        }
         this.scene.start("Cartas", {
           distancia: this.player.x,
           distancia2: this.player2.x,
@@ -193,24 +196,27 @@ export class Tablero extends Phaser.Scene {
   }
 
   cambiarLetreroJ2() {
-    console.log("cambiarLetreroJ1", this.gameOver);
-    if (!this.gameOver) {
-      setTimeout(() => {
-        this.letrero = "Turno Jugador 2";
-        this.cartelTurno.setText(this.letrero);
+    setTimeout(() => {
+      if (this.gameOver) {
+        return;
+      }
+      this.letrero = "Turno Jugador 2";
+      this.cartelTurno.setText(this.letrero);
 
-        this.cara = "cara2";
-        this.pj.setTexture(this.cara);
+      this.cara = "cara2";
+      this.pj.setTexture(this.cara);
 
-        this.cameras.main.startFollow(this.player2);
-        this.player2.setScale(1.1);
-      }, 5000);
-    }
+      this.cameras.main.startFollow(this.player2);
+      this.player2.setScale(1.1);
+    }, 5000);
   }
 
   mostrarCartas2() {
     if (!this.gameOver) {
       setTimeout(() => {
+        if (this.gameOver) {
+          return;
+        }
         this.scene.start("Cartas", {
           distancia: this.player.x,
           distancia2: this.player2.x,
@@ -234,23 +240,27 @@ export class Tablero extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
     this.dado.destroy();
     this.musica.destroy();
+    this.cartelFondo.destroy();
+    this.pj.destroy();
+    this.cartelTurno.destroy();
 
     setTimeout(() => {
       this.cameras.main.stopFollow();
       this.add.image(
         this.cameras.main.midPoint.x,
         this.cameras.main.midPoint.y,
-        "completo"
+        "juegoCompleto1"
       );
       let otro = this.add
         .image(
-          this.cameras.main.midPoint.x,
-          this.cameras.main.midPoint.y,
+          this.cameras.main.midPoint.x - 10,
+          this.cameras.main.midPoint.y + 125,
           "botone"
         )
         .setInteractive()
 
         .on("pointerdown", () => {
+          this.audio2.stop();
           this.scene.start("Preloads");
         })
 
@@ -265,29 +275,33 @@ export class Tablero extends Phaser.Scene {
   }
 
   hitFinal2(player2, final) {
-    this.gameOver = true;
+    this.gameOver === true;
     this.physics.pause();
     this.cameras.main.startFollow(this.player2);
     this.dado.destroy();
     this.musica.destroy();
+    this.cartelFondo.destroy();
+    this.pj.destroy();
+    this.cartelTurno.destroy();
 
     setTimeout(() => {
       this.cameras.main.stopFollow();
 
       this.add.image(
         this.cameras.main.midPoint.x,
-        this.cameras.main.midPoint.y,
-        "completo"
+        this.cameras.main.midPoint.y + 5,
+        "juegoCompleto2"
       );
       let otro = this.add
         .image(
-          this.cameras.main.midPoint.x,
-          this.cameras.main.midPoint.y,
+          this.cameras.main.midPoint.x - 10,
+          this.cameras.main.midPoint.y + 125,
           "botone"
         )
         .setInteractive()
 
         .on("pointerdown", () => {
+          this.audio2.stop();
           this.scene.start("Preloads");
         })
 
@@ -315,7 +329,7 @@ export class Tablero extends Phaser.Scene {
         this.cambiarLetreroJ1();
         this.mostrarCartas();
       }
-    }, 3000);
+    }, 4000);
   }
 
   update() {}
