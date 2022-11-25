@@ -25,11 +25,17 @@ export class MainMenu extends Phaser.Scene {
       "inicio"
     );
 
-    this.Jugar = this.add
-      .image(
+    this.botonJugar = this.add
+      .text(
         this.cameras.main.centerX,
         this.cameras.main.centerY + 320,
-        "jugar"
+        "JUGAR",
+        {
+          fontFamily: "Fuente",
+          stroke: "black",
+          strokeThickness: 10,
+          fontSize: "60px",
+        }
       )
       .setInteractive()
 
@@ -39,11 +45,11 @@ export class MainMenu extends Phaser.Scene {
       })
 
       .on("pointerover", () => {
-        this.Jugar.setScale(1.1);
+        this.botonJugar.setScale(1.1);
       })
 
       .on("pointerout", () => {
-        this.Jugar.setScale(1);
+        this.botonJugar.setScale(1);
       });
 
     this.creditos = this.add
