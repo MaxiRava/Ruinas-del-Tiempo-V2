@@ -1,8 +1,13 @@
 import Phaser from "phaser";
 import Jugador from "../objects/jugador";
 import Dado from "../objects/dado";
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 
 export class Tablero extends Phaser.Scene {
+  #wasChangedLanguage = TODO;
+  #language;
   constructor() {
     super("Tablero");
   }
@@ -23,9 +28,17 @@ export class Tablero extends Phaser.Scene {
     this.movimiento = data.movimiento;
     this.number = data.number;
     this.avance = data.avance;
+    console.log(data);
+    this.#language = data.language;
+    console.log(this.#language);
   }
 
   create() {
+    const { width, height } = this.scale;
+    const positionCenter = {
+      x: width / 2,
+      y: height / 2,
+    };
     this.gameOver = false;
 
     const map = this.make.tilemap({ key: "map" });
@@ -79,12 +92,12 @@ export class Tablero extends Phaser.Scene {
     if (this.turno === 0) {
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.player.setScale(1.1);
-      this.letrero = "Turno Jugador 1";
+      this.letrero = getPhrase("Turno Jugador 1");
       this.cara = "cara1";
     } else {
       this.cameras.main.startFollow(this.player2, true, 0.08, 0.08);
       this.player2.setScale(1.1);
-      this.letrero = "Turno Jugador 2";
+      this.letrero = getPhrase("Turno Jugador 2");
       this.cara = "cara2";
     }
 
@@ -136,6 +149,12 @@ export class Tablero extends Phaser.Scene {
       fontSize: "50px Arial",
       fill: "white",
     });
+    
+  
+
+
+
+
 
     this.cartelTurno.setScrollFactor(0);
 
@@ -161,10 +180,14 @@ export class Tablero extends Phaser.Scene {
   cambiarLetreroJ1() {
     if (!this.gameOver) {
       setTimeout(() => {
+<<<<<<< HEAD
+        this.letrero = getPhrase("Turno Jugador 1");
+=======
         if (this.gameOver) {
           return;
         }
         this.letrero = "Turno Jugador 1";
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
         this.cartelTurno.setText(this.letrero);
 
         this.cara = "cara1";
@@ -196,12 +219,20 @@ export class Tablero extends Phaser.Scene {
   }
 
   cambiarLetreroJ2() {
+<<<<<<< HEAD
+    console.log("cambiarLetreroJ1", this.gameOver);
+    if (!this.gameOver) {
+      setTimeout(() => {
+        this.letrero = getPhrase("Turno Jugador 2");
+        this.cartelTurno.setText(this.letrero);
+=======
     setTimeout(() => {
       if (this.gameOver) {
         return;
       }
       this.letrero = "Turno Jugador 2";
       this.cartelTurno.setText(this.letrero);
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
 
       this.cara = "cara2";
       this.pj.setTexture(this.cara);
@@ -332,5 +363,30 @@ export class Tablero extends Phaser.Scene {
     }, 4000);
   }
 
-  update() {}
+  updateWasChangedLanguage = () => {
+    this.#wasChangedLanguage = FETCHED;
+  };
+
+  async getTranslations(language) {
+    this.#language = language;
+    this.#wasChangedLanguage = FETCHING;
+
+    await getTranslations(language, this.updateWasChangedLanguage);
+  }
+
+  update() {
+
+    if (this.#wasChangedLanguage === FETCHED) {
+      this.#wasChangedLanguage = READY;
+      //this.Juegocompletado.setText(getPhrase("Juego completado"));
+      if (this.turno = 0) {
+        this.letrero.setText(getPhrase("Turno Jugador 1"));
+      }else{
+        this.letrero.setText(getPhrase("Turno Jugador 2"));
+      }
+      this..setText(getPhrase("Juego Completado"));
+      
+      
+    }
+  }
 }

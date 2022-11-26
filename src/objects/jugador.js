@@ -1,13 +1,23 @@
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 class Jugador extends Phaser.Physics.Arcade.Sprite {
+  #wasChangedLanguage = TODO;
+  #language;
   constructor(scene, x, y, texture, turno) {
     super(scene, x, y, texture, turno);
     this.scene = scene;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
 
+<<<<<<< HEAD
+
+    if (texture === "dude2") {
+=======
     if (texture === "prota" || texture === "prota2") {
       this.setCollideWorldBounds(true);
     }
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
 
     if (texture === "callejero") {
       this.run = "run2";
@@ -65,7 +75,28 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     }
 
     // or en if ( == || ==)
+<<<<<<< HEAD
+}
+
+init(data){
+
+  console.log(data);
+  this.#language = data.language;
+  console.log(this.#language);
+
+}
+create(){
+  
+    const { width, height } = this.scale;
+    const positionCenter = {
+      x: width / 2,
+      y: height / 2,
+    };
+}
+
+=======
   }
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   saltar() {
     this.setVelocityY(-520);
     this.setVelocityX(120);
@@ -81,7 +112,8 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 
   vida() {
     this.number = 3;
-    this.texto = this.scene.add.text(330, 200, `Vidas: ${this.number}`, {
+    
+    this.texto = this.scene.add.text(330, 200, getPhrase(`Vidas: ${this.number}`), {
       stroke: "black",
       strokeThickness: 5,
       fontSize: "54px Arial",
@@ -90,9 +122,14 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.texto.setScrollFactor(0);
   }
 
+<<<<<<< HEAD
+
+  perderVida(){
+=======
   perderVida() {
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
     this.number = 3 - this.scene.count;
-    this.texto.setText(`Vidas: ${this.number}`);
+    this.texto.setText(getPhrase(`Vidas: ${this.number}`));
   }
 
   muerte() {
@@ -154,6 +191,28 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.scene.player2.setX(this.scene.distancia2 + 128 * this.scene.valor);
     this.scene.player2.setScale(1);
   }
+<<<<<<< HEAD
+  updateWasChangedLanguage = () => {
+    this.#wasChangedLanguage = FETCHED;
+  };
+
+  async getTranslations(language) {
+    this.#language = language;
+    this.#wasChangedLanguage = FETCHING;
+
+    await getTranslations(language, this.updateWasChangedLanguage);
+  }
+
+  update(){
+    if (this.#wasChangedLanguage === FETCHED) {
+      this.#wasChangedLanguage = READY;
+      this.texto.setText(getPhrase("Vidas:"));
+  }
+  //https://labs.phaser.io/edit.html?src=src/game%20objects/text/align%20text.js&v=3.55.2
+  //https://phaser.io/examples/v3/view/game-objects/text/word-wrap-by-width
+=======
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
+}
 }
 
 export default Jugador;

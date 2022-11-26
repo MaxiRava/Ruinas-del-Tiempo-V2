@@ -1,7 +1,15 @@
 import Phaser from "phaser";
 import Jugador from "../objects/jugador";
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 
 export class Escenario2 extends Phaser.Scene {
+<<<<<<< HEAD
+  #wasChangedLanguage = TODO;
+  #language;
+=======
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   constructor() {
     super("Escenario2");
   }
@@ -20,10 +28,27 @@ export class Escenario2 extends Phaser.Scene {
     this.turno = data.turno;
     this.movimiento = data.movimiento;
     this.activo2 = data.activo2;
+<<<<<<< HEAD
+    this.audio2=data.audio2;
+    console.log(data);
+    this.#language = data.language;
+    console.log(this.#language);
+    // recibir mapa a usar
+    
+  }
+  create() {
+    const { width, height } = this.scale;
+    const positionCenter = {
+      x: width / 2,
+      y: height / 2,
+    };
+    this.audio4 = this.sound.add('theme4', {loop: true});
+=======
     this.audio2 = data.audio2;
   }
   create() {
     this.audio4 = this.sound.add("theme4", { loop: true });
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
     this.audio4.play();
 
     const map2 = this.make.tilemap({ key: "map2" });
@@ -197,6 +222,18 @@ export class Escenario2 extends Phaser.Scene {
       });
   }
 
+  updateWasChangedLanguage = () => {
+    this.#wasChangedLanguage = FETCHED;
+  };
+
+  async getTranslations(language) {
+    this.#language = language;
+    this.#wasChangedLanguage = FETCHING;
+
+    await getTranslations(language, this.updateWasChangedLanguage);
+  }
+
+
   update() {
     if (this.gameOver) {
       return;
@@ -213,6 +250,12 @@ export class Escenario2 extends Phaser.Scene {
     if (this.count === 3) {
       this.audio4.stop();
       this.player.muerte();
+    }
+    
+    if (this.#wasChangedLanguage === FETCHED) {
+      this.#wasChangedLanguage = READY;
+      this.Victoria.setText(getPhrase("Victoria"));
+      this.Derrota.setText(getPhrase("Derrota"));
     }
   }
 }

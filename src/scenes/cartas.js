@@ -1,6 +1,11 @@
 import Phaser from "phaser";
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 
 export class Cartas extends Phaser.Scene {
+  #wasChangedLanguage = TODO;
+  #language;
   constructor() {
     super("Cartas");
   }
@@ -14,8 +19,20 @@ export class Cartas extends Phaser.Scene {
     this.activo2 = data.activo2;
     this.turno = data.turno;
     this.movimiento = data.movimiento;
+<<<<<<< HEAD
+    console.log(data);
+    this.#language = data.language;
+    console.log(this.#language);
+    
+=======
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   }
   create() {
+    const { width, height } = this.scale;
+    const positionCenter = {
+      x: width / 2,
+      y: height / 2,
+    };
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY,
@@ -27,17 +44,19 @@ export class Cartas extends Phaser.Scene {
       this.cameras.main.centerY - 140,
       "seleccionCarta"
     );
-    this.texto = this.add.text(
-      this.cameras.main.centerX - 180,
+
+      this.Eligetudestino = this.add
+    .text(
+      this.cameras.main.centerX - 230,
       this.cameras.main.centerY - 160,
-      `Elige tu destino...`,
+      getPhrase("Elige tu destino..."),
       {
         stroke: "black",
-        strokeThickness: 5,
-        fontSize: "54px Arial",
+        strokeThickness: 6,
+        fontSize: "45px Arial",
         fill: "white",
       }
-    );
+    )
 
     let salvado = Phaser.Math.Between(1, 3);
     console.log(salvado);
@@ -132,7 +151,7 @@ export class Cartas extends Phaser.Scene {
   }
 
   cartaBuena() {
-    this.texto.destroy();
+    this.Eligetudestino.destroy();
     this.card.destroy();
     this.card2.destroy();
     this.card3.destroy();
@@ -141,17 +160,21 @@ export class Cartas extends Phaser.Scene {
       this.cameras.main.centerY + 50,
       "cartaBuena"
     );
-    this.add.text(
-      this.cameras.main.centerX - 240,
+  
+      
+      this.Lasuerteteacompaña = this.add
+       .text(
+      this.cameras.main.centerX - 230,
       this.cameras.main.centerY - 160,
-      `La suerte te acompaña`,
+      getPhrase("La suerte te acompaña"),
       {
         stroke: "black",
-        strokeThickness: 5,
+        strokeThickness: 6,
         fontSize: "54px Arial",
         fill: "white",
       }
-    );
+    )
+    
     setTimeout(() => {
       this.scene.start("Tablero", {
         distancia: this.distancia,
@@ -165,7 +188,7 @@ export class Cartas extends Phaser.Scene {
   }
 
   cartaJungla() {
-    this.texto.destroy();
+    this.Eligetudestino.destroy();
     this.card.destroy();
     this.card2.destroy();
     this.card3.destroy();
@@ -174,17 +197,22 @@ export class Cartas extends Phaser.Scene {
       this.cameras.main.centerY + 50,
       "cartaCorrer"
     );
-    this.add.text(
-      this.cameras.main.centerX - 230,
-      this.cameras.main.centerY - 160,
-      `Corre para sobrevivir`,
-      {
-        stroke: "black",
-        strokeThickness: 5,
-        fontSize: "54px Arial",
-        fill: "white",
-      }
-    );
+    
+      
+
+      this.CorreparaSobrevivir = this.add
+      .text(
+        this.cameras.main.centerX - 230,
+        this.cameras.main.centerY - 160,
+        getPhrase("Corre para sobrevivir"),
+        {
+          stroke: "black",
+          strokeThickness: 6,
+          fontSize: "54px Arial",
+          fill: "white",
+        }
+      )
+      
     setTimeout(() => {
       this.audio2.stop();
       this.scene.start("Escenario1", {
@@ -199,7 +227,7 @@ export class Cartas extends Phaser.Scene {
   }
 
   cartaNoche() {
-    this.texto.destroy();
+    this.Eligetudestino.destroy();
     this.card.destroy();
     this.card2.destroy();
     this.card3.destroy();
@@ -208,17 +236,19 @@ export class Cartas extends Phaser.Scene {
       this.cameras.main.centerY + 50,
       "cartaCorrer"
     );
-    this.add.text(
+    
+    this.CorreparaSobrevivir = this.add
+    .text(
       this.cameras.main.centerX - 230,
       this.cameras.main.centerY - 160,
-      `Corre para sobrevivir`,
+      getPhrase("Corre para sobrevivir"),
       {
         stroke: "black",
-        strokeThickness: 5,
+        strokeThickness: 6,
         fontSize: "54px Arial",
         fill: "white",
       }
-    );
+    )
 
     setTimeout(() => {
       this.audio2.stop();
@@ -232,6 +262,25 @@ export class Cartas extends Phaser.Scene {
       });
     }, 3000);
   }
+  updateWasChangedLanguage = () => {
+    this.#wasChangedLanguage = FETCHED;
+  };
 
-  update() {}
+  async getTranslations(language) {
+    this.#language = language;
+    this.#wasChangedLanguage = FETCHING;
+
+    await getTranslations(language, this.updateWasChangedLanguage);
+  }
+
+  update() {
+
+    if (this.#wasChangedLanguage === FETCHED) {
+      this.#wasChangedLanguage = READY;
+      this.Lasuerteteacompaña.setText(getPhrase("La suerte te acompaña"));
+      this.CorreparaSobrevivir.setText(getPhrase("Corre para sobrevivir"));
+     
+      this.Eligetudestino .setText(getPhrase("Elige tu destino..."));
+    }
+  }
 }

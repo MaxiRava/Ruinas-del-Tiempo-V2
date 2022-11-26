@@ -1,7 +1,14 @@
 import Phaser from "phaser";
 import Jugador from "../objects/jugador";
-
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 export class Escenario1 extends Phaser.Scene {
+<<<<<<< HEAD
+  #wasChangedLanguage = TODO;
+  #language;
+=======
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   constructor() {
     super("Escenario1");
   }
@@ -18,9 +25,21 @@ export class Escenario1 extends Phaser.Scene {
     this.movimiento = data.movimiento;
     this.activo2 = data.activo2;
     this.audio2 = data.audio2;
+    console.log(data);
+    this.#language = data.language;
+    console.log(this.#language);
   }
   create() {
+<<<<<<< HEAD
+    const { width, height } = this.scale;
+    const positionCenter = {
+      x: width / 2,
+      y: height / 2,
+    };
+    this.audio3 = this.sound.add('theme3', {loop: true});
+=======
     this.audio3 = this.sound.add("theme3", { loop: true });
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
     this.audio3.play();
 
     const map1 = this.make.tilemap({ key: "map1" });
@@ -222,6 +241,18 @@ export class Escenario1 extends Phaser.Scene {
       });
   }
 
+  updateWasChangedLanguage = () => {
+    this.#wasChangedLanguage = FETCHED;
+  };
+
+  async getTranslations(language) {
+    this.#language = language;
+    this.#wasChangedLanguage = FETCHING;
+
+    await getTranslations(language, this.updateWasChangedLanguage);
+  }
+
+
   update() {
     if (this.gameOver) {
       return;
@@ -238,6 +269,14 @@ export class Escenario1 extends Phaser.Scene {
     if (this.count === 3) {
       this.audio3.stop();
       this.player.muerte();
+    }
+
+
+    if (this.#wasChangedLanguage === FETCHED) {
+      this.#wasChangedLanguage = READY;
+      this.Victoria.setText(getPhrase("Victoria"));
+      this.Derrota.setText(getPhrase("Derrota"));
+     
     }
   }
 }
