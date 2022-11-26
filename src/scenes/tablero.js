@@ -358,6 +358,7 @@ export class Tablero extends Phaser.Scene {
       }else{
         this.letrero.setText(getPhrase("Turno Jugador 2"));
       }
+      this..setText(getPhrase("Juego Completado"));
       
       
     }
