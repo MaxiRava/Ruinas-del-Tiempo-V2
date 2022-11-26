@@ -4,8 +4,11 @@ import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 export class Escenario1 extends Phaser.Scene {
+<<<<<<< HEAD
   #wasChangedLanguage = TODO;
   #language;
+=======
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   constructor() {
     super("Escenario1");
   }
@@ -27,12 +30,16 @@ export class Escenario1 extends Phaser.Scene {
     console.log(this.#language);
   }
   create() {
+<<<<<<< HEAD
     const { width, height } = this.scale;
     const positionCenter = {
       x: width / 2,
       y: height / 2,
     };
     this.audio3 = this.sound.add('theme3', {loop: true});
+=======
+    this.audio3 = this.sound.add("theme3", { loop: true });
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
     this.audio3.play();
 
     const map1 = this.make.tilemap({ key: "map1" });
@@ -52,7 +59,7 @@ export class Escenario1 extends Phaser.Scene {
 
     const spawnPoint = map1.findObject("Objetos", (obj) => obj.name === "dude");
 
-    this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "dude");
+    this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "explorador");
     this.player.correr();
 
     this.isJumping = false;
@@ -62,7 +69,11 @@ export class Escenario1 extends Phaser.Scene {
       (obj) => obj.name === "final"
     );
 
-    this.final = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "banderaEsc");
+    this.final = this.physics.add.sprite(
+      spawnPoint2.x,
+      spawnPoint2.y,
+      "banderaJungla"
+    );
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -79,7 +90,9 @@ export class Escenario1 extends Phaser.Scene {
           break;
         }
         case "snake": {
-          const snake = this.snakes.create(x, y, "snake");
+          this.snake = this.snakes.create(x, y, "snake");
+          this.snake.play("snakeAnimacion");
+          this.snake.setBodySize(80, 80);
 
           break;
         }
@@ -90,9 +103,7 @@ export class Escenario1 extends Phaser.Scene {
         }
       }
     });
-
     this.count = 0;
-    
 
     this.physics.add.collider(this.player, worldLayer);
     this.physics.add.collider(this.enemys, worldLayer);
@@ -100,10 +111,28 @@ export class Escenario1 extends Phaser.Scene {
     this.physics.add.collider(this.snakes, worldLayer);
     this.physics.add.collider(this.final, worldLayer);
 
-    this.physics.add.overlap(this.player, this.enemys, this.hitEnemy, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.enemys,
+      this.hitEnemy,
+      null,
+      this
+    );
     this.physics.add.overlap(this.player, this.rooks, this.hitRook, null, this);
-    this.physics.add.overlap(this.player, this.snakes, this.hitSnake, null, this);
-    this.physics.add.overlap(this.player, this.final, this.hitFinal, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.snakes,
+      this.hitSnake,
+      null,
+      this
+    );
+    this.physics.add.overlap(
+      this.player,
+      this.final,
+      this.hitFinal,
+      null,
+      this
+    );
 
     this.texto2 = this.player.vida();
 
@@ -114,7 +143,6 @@ export class Escenario1 extends Phaser.Scene {
     this.cameras.main.setZoom(1.5);
 
     this.cameras.main.setBounds(0, 0, 3200, 960);
-
   }
 
   hitEnemy(player, enemy) {
@@ -133,7 +161,6 @@ export class Escenario1 extends Phaser.Scene {
 
       this.player.anims.play("run");
       this.player.perderVida();
-
     }, 900);
   }
 
@@ -154,7 +181,6 @@ export class Escenario1 extends Phaser.Scene {
 
       this.player.anims.play("run");
       this.player.perderVida();
-   
     }, 900);
   }
 
@@ -167,7 +193,6 @@ export class Escenario1 extends Phaser.Scene {
     this.player.setTint(0xff0000);
 
     this.player.anims.play("jump");
-
     setTimeout(() => {
       this.physics.resume();
 
@@ -175,13 +200,12 @@ export class Escenario1 extends Phaser.Scene {
 
       this.player.anims.play("run");
       this.player.perderVida();
-
     }, 900);
   }
 
   hitFinal(player, final) {
-
     this.physics.pause();
+    this.snake.anims.play("snakeStop");
     player.anims.play("jump");
     let victory = this.add.image(
       this.cameras.main.midPoint.x - 6,
@@ -192,13 +216,13 @@ export class Escenario1 extends Phaser.Scene {
       .image(
         this.cameras.main.midPoint.x - 20,
         this.cameras.main.midPoint.y + 120,
-        "botone"
+        "Botonejungla"
       )
       .setInteractive()
 
       .on("pointerdown", () => {
-        this.audio3.stop()
-        this.audio2.play()
+        this.audio3.stop();
+        this.audio2.play();
         this.scene.start("Tablero", {
           distancia: this.distancia,
           distancia2: this.distancia2,
@@ -215,7 +239,7 @@ export class Escenario1 extends Phaser.Scene {
       .on("pointerout", () => {
         boton.setScale(1);
       });
-  } 
+  }
 
   updateWasChangedLanguage = () => {
     this.#wasChangedLanguage = FETCHED;
@@ -230,7 +254,6 @@ export class Escenario1 extends Phaser.Scene {
 
 
   update() {
-
     if (this.gameOver) {
       return;
     }
@@ -244,6 +267,7 @@ export class Escenario1 extends Phaser.Scene {
     }
 
     if (this.count === 3) {
+      this.audio3.stop();
       this.player.muerte();
     }
 

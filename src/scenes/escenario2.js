@@ -5,8 +5,11 @@ import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 
 export class Escenario2 extends Phaser.Scene {
+<<<<<<< HEAD
   #wasChangedLanguage = TODO;
   #language;
+=======
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   constructor() {
     super("Escenario2");
   }
@@ -16,7 +19,7 @@ export class Escenario2 extends Phaser.Scene {
     this.load.image("tilesBelow2", "assets/images/fondonoche - atlas.png");
     this.load.image(
       "tilesPlatform2",
-      "assets/images/plataformas-ladrillos.png" 
+      "assets/images/plataformas-ladrillos.png"
     );
   }
   init(data) {
@@ -25,6 +28,7 @@ export class Escenario2 extends Phaser.Scene {
     this.turno = data.turno;
     this.movimiento = data.movimiento;
     this.activo2 = data.activo2;
+<<<<<<< HEAD
     this.audio2=data.audio2;
     console.log(data);
     this.#language = data.language;
@@ -39,6 +43,12 @@ export class Escenario2 extends Phaser.Scene {
       y: height / 2,
     };
     this.audio4 = this.sound.add('theme4', {loop: true});
+=======
+    this.audio2 = data.audio2;
+  }
+  create() {
+    this.audio4 = this.sound.add("theme4", { loop: true });
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
     this.audio4.play();
 
     const map2 = this.make.tilemap({ key: "map2" });
@@ -61,9 +71,9 @@ export class Escenario2 extends Phaser.Scene {
 
     const spawnPoint = map2.findObject("Objetos", (obj) => obj.name === "dude");
 
-    this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "dude2");
+    this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, "callejero");
 
-    this.player.correr();  
+    this.player.correr();
 
     this.isJumping = false;
 
@@ -74,7 +84,7 @@ export class Escenario2 extends Phaser.Scene {
     this.final = this.physics.add.sprite(
       spawnPoint2.x,
       spawnPoint2.y,
-      "banderaciudad"
+      "banderaCiudad"
     );
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -86,28 +96,41 @@ export class Escenario2 extends Phaser.Scene {
       const { x = 0, y = 0, name, type } = objData;
       switch (name) {
         case "tacho": {
-          this.tacho = this.tachos.create(x, y, "tacho");
+          const tacho = this.tachos.create(x, y, "tacho");
 
           break;
         }
         case "gato": {
           this.gato = this.gatos.create(x, y, "gato");
+          this.gato.play("gatoAnimacion");
+          this.gato.setBodySize(56, 70);
 
           break;
         }
       }
     });
-
     this.count = 0;
-    
+
     this.physics.add.collider(this.player, worldLayer);
     this.physics.add.collider(this.tachos, worldLayer);
     this.physics.add.collider(this.gatos, worldLayer);
     this.physics.add.collider(this.final, worldLayer);
 
-    this.physics.add.overlap(this.player, this.tachos, this.hitTacho, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.tachos,
+      this.hitTacho,
+      null,
+      this
+    );
     this.physics.add.overlap(this.player, this.gatos, this.hitGato, null, this);
-    this.physics.add.overlap(this.player, this.final, this.hitFinal, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.final,
+      this.hitFinal,
+      null,
+      this
+    );
 
     this.player.vida();
 
@@ -162,19 +185,19 @@ export class Escenario2 extends Phaser.Scene {
   }
 
   hitFinal(player, final) {
-
     this.physics.pause();
+    this.gato.anims.play("gatoStop");
     player.anims.play("jump2");
     let victory = this.add.image(
-      this.cameras.main.midPoint.x - 6,
-      this.cameras.main.midPoint.y - 45,
+      this.cameras.main.midPoint.x,
+      this.cameras.main.midPoint.y,
       "victoria2"
     );
     let boton = this.add
       .image(
-        this.cameras.main.midPoint.x - 19,
-        this.cameras.main.midPoint.y + 118,
-        "botone2"
+        this.cameras.main.midPoint.x - 10,
+        this.cameras.main.midPoint.y + 120,
+        "botonCiudad"
       )
       .setInteractive()
 
@@ -225,6 +248,7 @@ export class Escenario2 extends Phaser.Scene {
     }
 
     if (this.count === 3) {
+      this.audio4.stop();
       this.player.muerte();
     }
     

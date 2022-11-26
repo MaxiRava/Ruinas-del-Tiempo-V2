@@ -1,13 +1,9 @@
 import Phaser from "phaser";
 import Parlante from "../objects/parlante";
-import { getTranslations, getPhrase } from "../services/translations";
-import keys from "../enums/keys";
-import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 
 export class Instrucciones extends Phaser.Scene {
   #parlante;
-  #wasChangedLanguage = TODO;
-  #language;
+
   constructor() {
     super("Instrucciones");
   }
@@ -15,41 +11,27 @@ export class Instrucciones extends Phaser.Scene {
   init(data) {
     this.activo = data.activo;
     console.log(data);
-    this.#language = data.language;
-    console.log(this.#language);
   }
 
   create() {
-    const { width, height } = this.scale;
-    const positionCenter = {
-      x: width / 2,
-      y: height / 2,
-    };
-
     this.audio2 = this.sound.add("theme2", { loop: true });
     this.audio2.play();
 
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY,
-      "cueva2"
+      "cuevaTablero"
     );
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY / 1.1,
-      "dale"
+      "pantallaIntro"
     );
     this.intro = this.add
-      .text(
-        this.cameras.main.centerX - 380,
-        this.cameras.main.centerY + 440,
-        getPhrase("SALTAR INTRODUCCIÓN"),
-        {
-          stroke: "black",
-          strokeThickness: 6,
-          fontSize: "70px Arial",
-          fill: "white",
-        }
+      .image(
+        this.cameras.main.centerX,
+        this.cameras.main.centerY + 470,
+        "intro"
       )
 
       .setInteractive()
@@ -57,7 +39,7 @@ export class Instrucciones extends Phaser.Scene {
       .on("pointerdown", () => {
         if (this.activo) {
           this.activo2 = "music2";
-        }else{
+        } else {
           this.activo2 = "mute2";
         }
         this.scene.start("Tablero", {
@@ -81,22 +63,14 @@ export class Instrucciones extends Phaser.Scene {
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
 
     if (this.#parlante.activo) {
-      console.log("🚀 ~ file: mainmenu.js ~ line 96 ~ MainMenu ~ create ~ this.#parlante", this.#parlante)
-      this.audio2.play()
-    } 
+      console.log(
+        "🚀 ~ file: mainmenu.js ~ line 96 ~ MainMenu ~ create ~ this.#parlante",
+        this.#parlante
+      );
+      this.audio2.play();
+    }
 
     this.escena = 2;
-  }
-
-  updateWasChangedLanguage = () => {
-    this.#wasChangedLanguage = FETCHED;
-  };
-
-  async getTranslations(language) {
-    this.#language = language;
-    this.#wasChangedLanguage = FETCHING;
-
-    await getTranslations(language, this.updateWasChangedLanguage);
   }
 
   update() {
@@ -104,11 +78,6 @@ export class Instrucciones extends Phaser.Scene {
 
     if (!this.activo) {
       this.audio2.pause();
-    }
-
-    if (this.#wasChangedLanguage === FETCHED) {
-      this.#wasChangedLanguage = READY;
-      this.intro.setText(getPhrase("SALTAR INTRODUCCIÓN"));
     }
   }
 }

@@ -19,19 +19,19 @@ export class Creditos extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY,
-      "cueva"
+      "cuevaInicio"
     );
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY,
-      "creditos"
+      "creditosMenu"
     );
 
     let retroceso = this.add
       .image(
         this.cameras.main.centerX / 1.372,
         this.cameras.main.centerY / 4.09,
-        "volver"
+        "botonRetroceso"
       )
       .setInteractive()
 
@@ -51,13 +51,13 @@ export class Creditos extends Phaser.Scene {
       });
 
     console.log("parlante", this.activo);
-    this.activo ? "music" : "mute"
+    this.activo ? "music" : "mute";
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
     this.escena = 1;
   }
 
   update() {
-    this.activo=this.#parlante.activo
+    this.activo = this.#parlante.activo;
   }
 }
 

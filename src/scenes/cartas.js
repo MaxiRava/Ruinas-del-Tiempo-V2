@@ -19,10 +19,13 @@ export class Cartas extends Phaser.Scene {
     this.activo2 = data.activo2;
     this.turno = data.turno;
     this.movimiento = data.movimiento;
+<<<<<<< HEAD
     console.log(data);
     this.#language = data.language;
     console.log(this.#language);
     
+=======
+>>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   }
   create() {
     const { width, height } = this.scale;
@@ -33,13 +36,13 @@ export class Cartas extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY,
-      "cueva2"
+      "cuevaTablero"
     );
 
     this.add.image(
       this.cameras.main.centerX + 15,
       this.cameras.main.centerY - 140,
-      "elegirCarta"
+      "seleccionCarta"
     );
 
       this.Eligetudestino = this.add
@@ -155,7 +158,7 @@ export class Cartas extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY + 50,
-      "cartabuena"
+      "cartaBuena"
     );
   
       
@@ -192,7 +195,7 @@ export class Cartas extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY + 50,
-      "cartacorrer"
+      "cartaCorrer"
     );
     
       
@@ -231,7 +234,7 @@ export class Cartas extends Phaser.Scene {
     this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY + 50,
-      "cartacorrer"
+      "cartaCorrer"
     );
     
     this.CorreparaSobrevivir = this.add

@@ -125,7 +125,7 @@
         {
          "columns":45,
          "firstgid":1,
-         "image":"..\/images\/cueva-atlas.png",
+         "image":"..\/images\/cuevaAtlas.png",
          "imageheight":800,
          "imagewidth":1440,
          "margin":0,
@@ -138,7 +138,7 @@
         {
          "columns":18,
          "firstgid":1126,
-         "image":"..\/images\/casilas atlas.png",
+         "image":"..\/images\/casillasAtlas.png",
          "imageheight":328,
          "imagewidth":600,
          "margin":0,
