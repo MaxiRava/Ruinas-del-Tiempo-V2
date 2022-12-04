@@ -1,9 +1,13 @@
 import Phaser from "phaser";
 import Parlante from "../objects/parlante";
-
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
+import { EN_US, ES_AR } from '../enums/languages'
 export class MainMenu extends Phaser.Scene {
   #parlante;
-
+  #wasChangedLanguage = TODO;
+  #language;
   constructor() {
     super("MainMenu");
   }
@@ -11,6 +15,9 @@ export class MainMenu extends Phaser.Scene {
   init(data) {
     this.audio = data.audio;
     this.activo = data.activo;
+    console.log(data);
+    this.#language = data.language;
+    console.log(this.#language);
   }
 
   create() {
@@ -24,12 +31,25 @@ export class MainMenu extends Phaser.Scene {
       this.cameras.main.centerY - 210,
       "inicio"
     );
+    
+//esto hay que modificarlo
+    
+this.add.image(100, 100, "ARG")
+		.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+			this.getTranslations(ES_AR)
+		})
+		
 
+		this.add.image(200, 100, "ING")
+		.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+			this.getTranslations(EN_US)
+		})
+    
     this.botonJugar = this.add
       .text(
-        this.cameras.main.centerX,
+        this.cameras.main.centerX - 140, 
         this.cameras.main.centerY + 320,
-        "JUGAR",
+        getPhrase("JUGAR"),
         {
           fontFamily: "Fuente",
           stroke: "black",
@@ -53,10 +73,16 @@ export class MainMenu extends Phaser.Scene {
       });
 
     this.creditos = this.add
-      .image(
-        this.cameras.main.centerX,
+      .text(
+        this.cameras.main.centerX - 190, 
         this.cameras.main.centerY + 450,
-        "creditos"
+      getPhrase("CREDITOS"),
+      {
+        fontFamily: "Fuente",
+        stroke: "black",
+        strokeThickness: 10,
+        fontSize: "60px",
+      }
       )
       .setInteractive()
 
@@ -83,7 +109,20 @@ export class MainMenu extends Phaser.Scene {
     this.escena = 1;
   }
 
+  updateWasChangedLanguage = () => {
+    this.#wasChangedLanguage = FETCHED;
+  };
+
+  async getTranslations(language) {
+    this.#language = language;
+    this.#wasChangedLanguage = FETCHING;
+
+    await getTranslations(language, this.updateWasChangedLanguage);
+  }
+
   update() {
     this.activo = this.#parlante.activo;
+    this.botonJugar.setText(getPhrase("JUGAR"));
+    this.creditos.setText(getPhrase("CREDITOS"));
   }
 }

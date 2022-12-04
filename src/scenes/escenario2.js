@@ -177,11 +177,23 @@ export class Escenario2 extends Phaser.Scene {
     this.physics.pause();
     this.gato.anims.play("gatoStop");
     player.anims.play("jump2");
-    this.textVictoria = this.add.image(
-      this.cameras.main.midPoint.x,
+
+    this.textVictoria = this.add
+    .image(
+      this.cameras.main.midPoint.x - 6,
       this.cameras.main.midPoint.y,
       "victoria2"
     );
+
+    // this.Victoria = this.add
+    // .text(
+    //   this.cameras.main.midPoint.x - 180,
+    //   this.cameras.main.midPoint.y - 165,
+    //   "Victoria", 
+    //   {
+    //     fontSize: "70px",
+    //   }
+    // );
     let boton = this.add
       .image(
         this.cameras.main.midPoint.x - 10,
@@ -242,7 +254,7 @@ export class Escenario2 extends Phaser.Scene {
 
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
-      this.textVictoria.setText(getPhrase("Victoria"));
+      //this.Victoria.setText(getPhrase("Victoria"));
       
     }
   }

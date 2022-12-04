@@ -1,8 +1,14 @@
 import Phaser from "phaser";
 import Parlante from "../objects/parlante";
+import { getTranslations, getPhrase } from "../services/translations";
+import keys from "../enums/keys";
+import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
+import { EN_US, ES_AR } from '../enums/languages'
 
 export class Creditos extends Phaser.Scene {
   #parlante;
+  #wasChangedLanguage = TODO;
+  #language;
   constructor() {
     super("Creditos");
   }
@@ -13,6 +19,8 @@ export class Creditos extends Phaser.Scene {
     this.audio = data.audio;
     this.activo = data.activo;
     console.log(data);
+    this.#language = data.language;
+    console.log(this.#language);
   }
 
   create() {
@@ -26,8 +34,20 @@ export class Creditos extends Phaser.Scene {
       this.cameras.main.centerY,
       "creditosMenu"
     );
+   
+      this.creditos = this.add
+      .text(
+        this.cameras.main.centerX - 200, 
+        this.cameras.main.centerY - 370,
+        getPhrase("CREDITOS"),
+        {
+          stroke: "black",
+          strokeThickness: 10,
+          fontSize: "85px",
+        }
+      )
 
-    let retroceso = this.add
+      let retroceso = this.add
       .image(
         this.cameras.main.centerX / 1.372,
         this.cameras.main.centerY / 4.09,
@@ -56,8 +76,20 @@ export class Creditos extends Phaser.Scene {
     this.escena = 1;
   }
 
+  updateWasChangedLanguage = () => {
+    this.#wasChangedLanguage = FETCHED;
+  };
+
+  async getTranslations(language) {
+    this.#language = language;
+    this.#wasChangedLanguage = FETCHING;
+
+    await getTranslations(language, this.updateWasChangedLanguage);
+  }
+
   update() {
     this.activo = this.#parlante.activo;
+    this.creditos.setText(getPhrase("CREDITOS"));
   }
 }
 

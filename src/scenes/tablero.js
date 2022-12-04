@@ -260,6 +260,20 @@ export class Tablero extends Phaser.Scene {
         this.cameras.main.midPoint.y,
         "juegoCompleto1"
       );
+ //  this.juegocompletado = this.add
+      // .text(
+      //   this.cameras.main.midPoint.x,
+      //   this.cameras.main.midPoint.y + 5,
+      //   "Juego Completado"
+      // );
+
+       //  this.ganoj1 = this.add
+      // .text(
+      //   this.cameras.main.midPoint.x,
+      //   this.cameras.main.midPoint.y,
+      //   "Gano Jugador 1"
+      // );
+      
       let otro = this.add
         .image(
           this.cameras.main.midPoint.x - 10,
@@ -301,6 +315,20 @@ export class Tablero extends Phaser.Scene {
         this.cameras.main.midPoint.y + 5,
         "juegoCompleto2"
       );
+      //  this.juegocompletado = this.add
+      // .text(
+      //   this.cameras.main.midPoint.x,
+      //   this.cameras.main.midPoint.y + 5,
+      //   "Juego Completado"
+      // );
+
+       //  this.ganoj2 = this.add
+      // .text(
+      //   this.cameras.main.midPoint.x,
+      //   this.cameras.main.midPoint.y,
+      //   "Gano Jugador 2"
+      // );
+      
       let otro = this.add
         .image(
           this.cameras.main.midPoint.x - 10,
@@ -362,8 +390,10 @@ export class Tablero extends Phaser.Scene {
       }else{
         this.letrero.setText(getPhrase("Turno Jugador 2"));
       }
-      //this..setText(getPhrase("Juego Completado"));
-      
+      //this.juegocompletado.setText(getPhrase("Juego Completado"));
+
+      //this.ganoj1.setText(getPhrase("Gano Jugado 1"));
+     //this.ganoj2.setText(getPhrase("Gano Jugador2"));
       
     }
   }
