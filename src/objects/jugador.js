@@ -10,14 +10,9 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
 
-<<<<<<< HEAD
-
-    if (texture === "dude2") {
-=======
     if (texture === "prota" || texture === "prota2") {
       this.setCollideWorldBounds(true);
     }
->>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
 
     if (texture === "callejero") {
       this.run = "run2";
@@ -75,7 +70,6 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
     }
 
     // or en if ( == || ==)
-<<<<<<< HEAD
 }
 
 init(data){
@@ -94,9 +88,6 @@ create(){
     };
 }
 
-=======
-  }
->>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   saltar() {
     this.setVelocityY(-520);
     this.setVelocityX(120);
@@ -122,12 +113,8 @@ create(){
     this.texto.setScrollFactor(0);
   }
 
-<<<<<<< HEAD
 
   perderVida(){
-=======
-  perderVida() {
->>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
     this.number = 3 - this.scene.count;
     this.texto.setText(getPhrase(`Vidas: ${this.number}`));
   }
@@ -141,7 +128,7 @@ create(){
       this.scene.player.setTint(0xff0000);
       this.scene.player.anims.play(this.jump);
 
-      let derrota = this.scene.add.image(
+      this.textDerrota = this.scene.add.image(
         this.scene.cameras.main.midPoint.x,
         this.scene.cameras.main.midPoint.y,
         this.derrota
@@ -191,7 +178,6 @@ create(){
     this.scene.player2.setX(this.scene.distancia2 + 128 * this.scene.valor);
     this.scene.player2.setScale(1);
   }
-<<<<<<< HEAD
   updateWasChangedLanguage = () => {
     this.#wasChangedLanguage = FETCHED;
   };
@@ -207,11 +193,10 @@ create(){
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
       this.texto.setText(getPhrase("Vidas:"));
+      this.textDerrota.setText(getPhrase("Derrota"));
   }
   //https://labs.phaser.io/edit.html?src=src/game%20objects/text/align%20text.js&v=3.55.2
   //https://phaser.io/examples/v3/view/game-objects/text/word-wrap-by-width
-=======
->>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
 }
 }
 

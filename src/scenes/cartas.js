@@ -19,13 +19,10 @@ export class Cartas extends Phaser.Scene {
     this.activo2 = data.activo2;
     this.turno = data.turno;
     this.movimiento = data.movimiento;
-<<<<<<< HEAD
     console.log(data);
     this.#language = data.language;
     console.log(this.#language);
     
-=======
->>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   }
   create() {
     const { width, height } = this.scale;

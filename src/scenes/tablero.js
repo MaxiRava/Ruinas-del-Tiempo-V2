@@ -149,12 +149,6 @@ export class Tablero extends Phaser.Scene {
       fontSize: "50px Arial",
       fill: "white",
     });
-    
-  
-
-
-
-
 
     this.cartelTurno.setScrollFactor(0);
 
@@ -180,14 +174,7 @@ export class Tablero extends Phaser.Scene {
   cambiarLetreroJ1() {
     if (!this.gameOver) {
       setTimeout(() => {
-<<<<<<< HEAD
         this.letrero = getPhrase("Turno Jugador 1");
-=======
-        if (this.gameOver) {
-          return;
-        }
-        this.letrero = "Turno Jugador 1";
->>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
         this.cartelTurno.setText(this.letrero);
 
         this.cara = "cara1";
@@ -219,20 +206,11 @@ export class Tablero extends Phaser.Scene {
   }
 
   cambiarLetreroJ2() {
-<<<<<<< HEAD
     console.log("cambiarLetreroJ1", this.gameOver);
     if (!this.gameOver) {
       setTimeout(() => {
         this.letrero = getPhrase("Turno Jugador 2");
         this.cartelTurno.setText(this.letrero);
-=======
-    setTimeout(() => {
-      if (this.gameOver) {
-        return;
-      }
-      this.letrero = "Turno Jugador 2";
-      this.cartelTurno.setText(this.letrero);
->>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
 
       this.cara = "cara2";
       this.pj.setTexture(this.cara);
@@ -241,7 +219,7 @@ export class Tablero extends Phaser.Scene {
       this.player2.setScale(1.1);
     }, 5000);
   }
-
+  }
   mostrarCartas2() {
     if (!this.gameOver) {
       setTimeout(() => {
@@ -384,9 +362,10 @@ export class Tablero extends Phaser.Scene {
       }else{
         this.letrero.setText(getPhrase("Turno Jugador 2"));
       }
-      this..setText(getPhrase("Juego Completado"));
+      //this..setText(getPhrase("Juego Completado"));
       
       
     }
   }
 }
+

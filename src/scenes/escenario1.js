@@ -30,16 +30,12 @@ export class Escenario1 extends Phaser.Scene {
     console.log(this.#language);
   }
   create() {
-<<<<<<< HEAD
     const { width, height } = this.scale;
     const positionCenter = {
       x: width / 2,
       y: height / 2,
     };
     this.audio3 = this.sound.add('theme3', {loop: true});
-=======
-    this.audio3 = this.sound.add("theme3", { loop: true });
->>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
     this.audio3.play();
 
     const map1 = this.make.tilemap({ key: "map1" });
