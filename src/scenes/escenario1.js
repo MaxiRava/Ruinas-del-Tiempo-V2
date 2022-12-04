@@ -4,11 +4,8 @@ import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 export class Escenario1 extends Phaser.Scene {
-<<<<<<< HEAD
   #wasChangedLanguage = TODO;
   #language;
-=======
->>>>>>> 42f5281dc6d38ffe96e35c5202623b05c50320c5
   constructor() {
     super("Escenario1");
   }
