@@ -273,7 +273,7 @@
         {
          "columns":60,
          "firstgid":1,
-         "image":"..\/images\/fondoNocheAtlas.png",
+         "image":"..\/images\/fondonoche - atlas.png",
          "imageheight":1080,
          "imagewidth":1920,
          "margin":0,
@@ -286,7 +286,7 @@
         {
          "columns":17,
          "firstgid":1981,
-         "image":"..\/images\/plataformasLadrillos.png",
+         "image":"..\/images\/plataformas-ladrillos.png",
          "imageheight":450,
          "imagewidth":572,
          "margin":0,
