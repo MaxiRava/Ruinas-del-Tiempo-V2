@@ -308,7 +308,7 @@ export class Tablero extends Phaser.Scene {
   }
 
   hitFinal2(player2, final) {
-    this.gameOver === true;
+    this.gameOver = true;
     this.physics.pause();
     this.cameras.main.startFollow(this.player2);
     this.dado.destroy();
@@ -402,14 +402,25 @@ export class Tablero extends Phaser.Scene {
   update() {
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
-      if ((this.turno = 0)) {
+
+      if ((this.turno = 0 && !this.gameOver)) {
         this.letrero.setText(getPhrase("Turno Jugador 1"));
-      } else {
-        this.letrero.setText(getPhrase("Turno Jugador 2"));
+      } else { 
+        if (this.turno = 1 && !this.gameOver) {
+          this.letrero.setText(getPhrase("Turno Jugador 2"));
+        }
       }
-      this.JuegoCompletado.setText(getPhrase("Juego completado"));
-      this.GanadorJ1.setText(getPhrase("Gano Jugador 1"));
-      this.GanadorJ2.setText(getPhrase("Gano Jugador 2"));
+      
+      if (this.turno = 0 && this.gameOver) {
+        this.JuegoCompletado.setText(getPhrase("Juego completado"));
+        this.GanadorJ1.setText(getPhrase("Gano Jugador 1"));
+
+      }else{
+        if (this.turno = 1 && this.gameOver) {
+          this.JuegoCompletado.setText(getPhrase("Juego completado"));
+          this.GanadorJ2.setText(getPhrase("Gano Jugador 2"));
+        }
+      }
     }
   }
 }
