@@ -7,8 +7,6 @@ export class Preloads extends Phaser.Scene {
     this.load.image("cuevaInicio", "assets/images/cuevaInicio.png");
     this.load.image("cuevaTablero", "assets/images/cuevaTablero.png");
     this.load.image("inicio", "assets/images/Ruinas_del_tiempo.png");
-    //this.load.image("jugar", "assets/images/jugar.png");
-    //this.load.image("creditos", "assets/images/credi.png");
     this.load.image("creditosMenu", "assets/images/pantallacreditos.png");
     this.load.image("music", "assets/images/sonido.png");
     this.load.image("mute", "assets/images/mute.png");
@@ -16,7 +14,6 @@ export class Preloads extends Phaser.Scene {
     this.load.image("mute2", "assets/images/mute2.png");
     this.load.image("botonRetroceso", "assets/images/retroceso.png");
     this.load.image("pantallaIntro", "assets/images/Intrucciones.png");
-    //this.load.image("intro", "assets/images/saltar intro.png");
     this.load.image("dado", "assets/images/dados.png");
     this.load.image("turnoJugador", "assets/images/turnoJugador.png");
     this.load.image("carta", "assets/images/carta.png");
@@ -31,19 +28,19 @@ export class Preloads extends Phaser.Scene {
     this.load.image("ING", "assets/images/INGLES.png");
     this.load.image(
       "victoria",
-      "assets/images/pop ups victoria derrota/vic.png"
+      "assets/images/pop ups victoria derrota/victoriaJungla.png"
     );
     this.load.image(
       "derrota",
-      "assets/images/pop ups victoria derrota/der.png"
+      "assets/images/pop ups victoria derrota/derrotaJungla.png"
     );
     this.load.image(
       "victoria2",
-      "assets/images/pop ups victoria derrota/vicc.png"
+      "assets/images/pop ups victoria derrota/victoriaCiudad.png"
     );
     this.load.image(
       "derrota2",
-      "assets/images/pop ups victoria derrota/derc.png"
+      "assets/images/pop ups victoria derrota/derrotaCiudad.png"
     );
     this.load.image(
       "boton",

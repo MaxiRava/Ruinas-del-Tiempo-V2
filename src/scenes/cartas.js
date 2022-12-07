@@ -42,7 +42,7 @@ export class Cartas extends Phaser.Scene {
       "seleccionCarta"
     );
 
-      this.Eligetudestino = this.add
+      this.TextoDestino = this.add
     .text(
       this.cameras.main.centerX - 230,
       this.cameras.main.centerY - 160,
@@ -148,7 +148,7 @@ export class Cartas extends Phaser.Scene {
   }
 
   cartaBuena() {
-    this.Eligetudestino.destroy();
+    this.TextoDestino.destroy();
     this.card.destroy();
     this.card2.destroy();
     this.card3.destroy();
@@ -159,7 +159,7 @@ export class Cartas extends Phaser.Scene {
     );
   
       
-      this.Lasuerteteacompaña = this.add
+      this.TextoCartaSuerte = this.add
        .text(
       this.cameras.main.centerX - 230,
       this.cameras.main.centerY - 160,
@@ -185,7 +185,7 @@ export class Cartas extends Phaser.Scene {
   }
 
   cartaJungla() {
-    this.Eligetudestino.destroy();
+    this.TextoDestino.destroy();
     this.card.destroy();
     this.card2.destroy();
     this.card3.destroy();
@@ -197,7 +197,7 @@ export class Cartas extends Phaser.Scene {
     
       
 
-      this.CorreparaSobrevivir = this.add
+      this.TextoCartaPeligro = this.add
       .text(
         this.cameras.main.centerX - 230,
         this.cameras.main.centerY - 160,
@@ -224,7 +224,7 @@ export class Cartas extends Phaser.Scene {
   }
 
   cartaNoche() {
-    this.Eligetudestino.destroy();
+    this.TextoDestino.destroy();
     this.card.destroy();
     this.card2.destroy();
     this.card3.destroy();
@@ -234,7 +234,7 @@ export class Cartas extends Phaser.Scene {
       "cartaCorrer"
     );
     
-    this.CorreparaSobrevivir = this.add
+    this.TextoCartaPeligro = this.add
     .text(
       this.cameras.main.centerX - 230,
       this.cameras.main.centerY - 160,
@@ -274,10 +274,10 @@ export class Cartas extends Phaser.Scene {
 
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
-      this.Lasuerteteacompaña.setText(getPhrase("La suerte te acompaña"));
-      this.CorreparaSobrevivir.setText(getPhrase("Corre para sobrevivir"));
+      this.TextoCartaSuerte.setText(getPhrase("La suerte te acompaña"));
+      this.TextoCartaPeligro.setText(getPhrase("Corre para sobrevivir"));
      
-      this.Eligetudestino .setText(getPhrase("Elige tu destino..."));
+      this.TextoDestino .setText(getPhrase("Elige tu destino..."));
     }
   }
 }

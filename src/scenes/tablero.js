@@ -212,13 +212,13 @@ export class Tablero extends Phaser.Scene {
         this.letrero = getPhrase("Turno Jugador 2");
         this.cartelTurno.setText(this.letrero);
 
-      this.cara = "cara2";
-      this.pj.setTexture(this.cara);
+        this.cara = "cara2";
+        this.pj.setTexture(this.cara);
 
-      this.cameras.main.startFollow(this.player2);
-      this.player2.setScale(1.1);
-    }, 5000);
-  }
+        this.cameras.main.startFollow(this.player2);
+        this.player2.setScale(1.1);
+      }, 5000);
+    }
   }
   mostrarCartas2() {
     if (!this.gameOver) {
@@ -260,20 +260,29 @@ export class Tablero extends Phaser.Scene {
         this.cameras.main.midPoint.y,
         "juegoCompleto1"
       );
- //  this.juegocompletado = this.add
-      // .text(
-      //   this.cameras.main.midPoint.x,
-      //   this.cameras.main.midPoint.y + 5,
-      //   "Juego Completado"
-      // );
 
-       //  this.ganoj1 = this.add
-      // .text(
-      //   this.cameras.main.midPoint.x,
-      //   this.cameras.main.midPoint.y,
-      //   "Gano Jugador 1"
-      // );
-      
+      this.JuegoCompletado = this.add.text(
+        this.cameras.main.midPoint.x,
+        this.cameras.main.midPoint.y + 5,
+        "Juego Completado",
+        {
+          stroke: "black",
+          strokeThickness: 10,
+          fontSize: "53px",
+        }
+      );
+
+      this.GanadorJ1 = this.add.text(
+        this.cameras.main.midPoint.x,
+        this.cameras.main.midPoint.y,
+        "Gano Jugador 1",
+        {
+          stroke: "black",
+          strokeThickness: 10,
+          fontSize: "53px",
+        }
+      );
+
       let otro = this.add
         .image(
           this.cameras.main.midPoint.x - 10,
@@ -315,20 +324,29 @@ export class Tablero extends Phaser.Scene {
         this.cameras.main.midPoint.y + 5,
         "juegoCompleto2"
       );
-      //  this.juegocompletado = this.add
-      // .text(
-      //   this.cameras.main.midPoint.x,
-      //   this.cameras.main.midPoint.y + 5,
-      //   "Juego Completado"
-      // );
 
-       //  this.ganoj2 = this.add
-      // .text(
-      //   this.cameras.main.midPoint.x,
-      //   this.cameras.main.midPoint.y,
-      //   "Gano Jugador 2"
-      // );
-      
+      this.JuegoCompletado = this.add.text(
+        this.cameras.main.midPoint.x,
+        this.cameras.main.midPoint.y + 5,
+        "Juego Completado",
+        {
+          stroke: "black",
+          strokeThickness: 10,
+          fontSize: "53px",
+        }
+      );
+
+      this.GanadorJ2 = this.add.text(
+        this.cameras.main.midPoint.x,
+        this.cameras.main.midPoint.y,
+        "Gano Jugador 2",
+        {
+          stroke: "black",
+          strokeThickness: 10,
+          fontSize: "53px",
+        }
+      );
+
       let otro = this.add
         .image(
           this.cameras.main.midPoint.x - 10,
@@ -381,21 +399,16 @@ export class Tablero extends Phaser.Scene {
   }
 
   update() {
-
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
-      //this.Juegocompletado.setText(getPhrase("Juego completado"));
-      if (this.turno = 0) {
+      if ((this.turno = 0)) {
         this.letrero.setText(getPhrase("Turno Jugador 1"));
-      }else{
+      } else {
         this.letrero.setText(getPhrase("Turno Jugador 2"));
       }
-      //this.juegocompletado.setText(getPhrase("Juego Completado"));
-
-      //this.ganoj1.setText(getPhrase("Gano Jugado 1"));
-     //this.ganoj2.setText(getPhrase("Gano Jugador2"));
-      
+      this.JuegoCompletado.setText(getPhrase("Juego completado"));
+      this.GanadorJ1.setText(getPhrase("Gano Jugador 1"));
+      this.GanadorJ2.setText(getPhrase("Gano Jugador 2"));
     }
   }
 }
-

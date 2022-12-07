@@ -4,10 +4,12 @@ import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 import { EN_US, ES_AR } from '../enums/languages'
+
 export class MainMenu extends Phaser.Scene {
-  #parlante;
   #wasChangedLanguage = TODO;
   #language;
+  #parlante;
+  
   constructor() {
     super("MainMenu");
   }
@@ -34,18 +36,32 @@ export class MainMenu extends Phaser.Scene {
     
 //esto hay que modificarlo
     
-this.add.image(100, 100, "ARG")
+let argentina = this.add.image(100, 100, "ARG")
 		.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
 			this.getTranslations(ES_AR)
 		})
-		
+    .on("pointerover", () => {
+      argentina.setScale(1.1);
+    })
 
-		this.add.image(200, 100, "ING")
+    .on("pointerout", () => {
+      argentina.setScale(1);
+    });
+
+
+		let ingles = this.add.image(200, 100, "ING")
 		.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
 			this.getTranslations(EN_US)
 		})
+    .on("pointerover", () => {
+      ingles.setScale(1.1);
+    })
+
+    .on("pointerout", () => {
+      ingles.setScale(1);
+    });
     
-    this.botonJugar = this.add
+    this.BotonJugar = this.add
       .text(
         this.cameras.main.centerX - 140, 
         this.cameras.main.centerY + 320,
@@ -65,14 +81,14 @@ this.add.image(100, 100, "ARG")
       })
 
       .on("pointerover", () => {
-        this.botonJugar.setScale(1.1);
+        this.BotonJugar.setScale(1.1);
       })
 
       .on("pointerout", () => {
-        this.botonJugar.setScale(1);
+        this.BotonJugar.setScale(1);
       });
 
-    this.creditos = this.add
+    this.BotonCreditos = this.add
       .text(
         this.cameras.main.centerX - 190, 
         this.cameras.main.centerY + 450,
@@ -96,11 +112,11 @@ this.add.image(100, 100, "ARG")
       })
 
       .on("pointerover", () => {
-        this.creditos.setScale(1.1);
+        this.BotonCreditos.setScale(1.1);
       })
 
       .on("pointerout", () => {
-        this.creditos.setScale(1);
+        this.BotonCreditos.setScale(1);
       });
 
     this.activo ? "music" : "mute";
@@ -122,7 +138,7 @@ this.add.image(100, 100, "ARG")
 
   update() {
     this.activo = this.#parlante.activo;
-    this.botonJugar.setText(getPhrase("JUGAR"));
-    this.creditos.setText(getPhrase("CREDITOS"));
+    this.BotonJugar.setText(getPhrase("JUGAR"));
+    this.BotonCreditos.setText(getPhrase("CREDITOS"));
   }
 }
