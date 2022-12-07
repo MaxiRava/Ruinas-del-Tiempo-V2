@@ -92,12 +92,16 @@ export class Tablero extends Phaser.Scene {
     if (this.turno === 0) {
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.player.setScale(1.1);
-      this.letrero = getPhrase("Turno Jugador 1");
+      this.letrero = getPhrase("Turno Jugador 1"),{
+        fontFamily: "Fuente",
+      }
       this.cara = "cara1";
     } else {
       this.cameras.main.startFollow(this.player2, true, 0.08, 0.08);
       this.player2.setScale(1.1);
-      this.letrero = getPhrase("Turno Jugador 2");
+      this.letrero = getPhrase("Turno Jugador 2"),{
+        fontFamily: "Fuente",
+      }
       this.cara = "cara2";
     }
 
@@ -241,7 +245,7 @@ export class Tablero extends Phaser.Scene {
   }
 
   updateTexto() {
-    this.valor = Phaser.Math.Between(1, 6);
+    this.valor = Phaser.Math.Between(14, 14);
   }
 
   hitFinal(player, final) {
@@ -262,25 +266,29 @@ export class Tablero extends Phaser.Scene {
         "juegoCompleto1"
       );
 
-      this.JuegoCompletado = this.add.text(
-        this.cameras.main.midPoint.x,
-        this.cameras.main.midPoint.y + 5,
-        "Juego Completado",
+      this.JuegoCompletado = this.add
+      .text(
+        this.cameras.main.midPoint.x -255,
+        this.cameras.main.midPoint.y - 150,
+        getPhrase('Juego Completado'),
         {
+          fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 10,
-          fontSize: "53px",
+          fontSize: "35px",
         }
       );
 
-      this.GanadorJ1 = this.add.text(
-        this.cameras.main.midPoint.x,
-        this.cameras.main.midPoint.y,
-        "Gano Jugador 1",
+      this.GanadorJ1 = this.add
+      .text(
+        this.cameras.main.midPoint.x -240,
+        this.cameras.main.midPoint.y + 1,
+        getPhrase('Gano Jugador 1'),
         {
+          fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 10,
-          fontSize: "53px",
+          fontSize: "35px",
         }
       );
 
@@ -306,9 +314,9 @@ export class Tablero extends Phaser.Scene {
         });
     }, 3000);
   }
-
+ 
   hitFinal2(player2, final) {
-    this.gameOver === true;
+    this.gameOver = true;
     this.physics.pause();
     this.cameras.main.startFollow(this.player2);
     this.dado.destroy();
@@ -326,25 +334,29 @@ export class Tablero extends Phaser.Scene {
         "juegoCompleto2"
       );
 
-      this.JuegoCompletado = this.add.text(
-        this.cameras.main.midPoint.x,
-        this.cameras.main.midPoint.y + 5,
-        "Juego Completado",
+      this.JuegoCompletado = this
+      .add.text(
+        this.cameras.main.midPoint.x -255,
+        this.cameras.main.midPoint.y - 150,
+        getPhrase('Juego Completado'),
         {
+          fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 10,
-          fontSize: "53px",
+          fontSize: "35px",
         }
       );
 
-      this.GanadorJ2 = this.add.text(
-        this.cameras.main.midPoint.x,
-        this.cameras.main.midPoint.y,
-        "Gano Jugador 2",
+      this.GanadorJ2 = this.add
+      .text(
+        this.cameras.main.midPoint.x -215,
+        this.cameras.main.midPoint.y + 20,
+        getPhrase('Gano Jugador 2'),
         {
+          fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 10,
-          fontSize: "53px",
+          fontSize: "34px",
         }
       );
 
@@ -401,15 +413,26 @@ export class Tablero extends Phaser.Scene {
 
   update() {
     if (this.#wasChangedLanguage === FETCHED) {
-      this.#wasChangedLanguage = READY;
-      if ((this.turno = 0)) {
+      this.#wasChangedLanguage = READY; 
+      if ((this.turno = 0 && !this.gameOver)) {
         this.letrero.setText(getPhrase("Turno Jugador 1"));
-      } else {
-        this.letrero.setText(getPhrase("Turno Jugador 2"));
+      } else { 
+        if (this.turno = 1 && !this.gameOver) {
+          this.letrero.setText(getPhrase("Turno Jugador 2"));
+        }
       }
-      this.JuegoCompletado.setText(getPhrase("Juego completado"));
-      this.GanadorJ1.setText(getPhrase("Gano Jugador 1"));
-      this.GanadorJ2.setText(getPhrase("Gano Jugador 2"));
+
+      if (this.turno = 0 && this.gameOver) {
+        this.JuegoCompletado.setText(getPhrase("Juego Completado"));
+        this.GanadorJ1.setText(getPhrase("Gano Jugador 1"));
+
+      }else{
+        if (this.turno = 1 && this.gameOver) {
+          this.JuegoCompletado.setText(getPhrase("Juego Completado"));
+          this.GanadorJ2.setText(getPhrase("Gano Jugador 2"));
+        }
+      }
+     
     }
   }
 }

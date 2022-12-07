@@ -310,15 +310,18 @@ export class Runner extends Phaser.Scene {
       this.cartelVictoria
     );
 
-    // this.TextoVictoria = this.add
-    // .text(
-    //   this.cameras.main.midPoint.x - 180,
-    //   this.cameras.main.midPoint.y - 165,
-    //   "Victoria",
-    //   {
-    //     fontSize: "70px",
-    //   }
-    // );
+    this.TextoVictoria = this.add
+    .text(
+      this.cameras.main.midPoint.x - 180,
+      this.cameras.main.midPoint.y - 145,
+      getPhrase('Victoria'),
+      {
+        fontFamily: "Fuente",
+          stroke: "black",
+          strokeThickness: 10,
+          fontSize: "55px",
+      }
+    );
 
     let boton = this.add
       .image(
@@ -380,7 +383,7 @@ export class Runner extends Phaser.Scene {
 
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
-      //this.TextoVictoria.setText(getPhrase("Victoria"));
+      this.TextoVictoria.setText(getPhrase("Victoria"));
       //this.Derrota.setText(getPhrase("Derrota"));
     }
   }

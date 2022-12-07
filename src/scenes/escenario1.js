@@ -201,18 +201,18 @@ export class Escenario1 extends Phaser.Scene {
     this.snake.anims.play("snakeStop");
     player.anims.play("jump");
 
-    this.textVictoria = this.add
+    this.Victoria = this.add
     .image(
       this.cameras.main.midPoint.x - 6,
       this.cameras.main.midPoint.y,
       "victoria"
     );
 
-    // this.Victoria = this.add
+    // this.textoVictoria = this.add
     // .text(
     //   this.cameras.main.midPoint.x - 180,
     //   this.cameras.main.midPoint.y - 165,
-    //   "Victoria", 
+    //   getPhrase('Victoria'), 
     //   {
     //     fontSize: "70px",
     //   }
@@ -280,7 +280,7 @@ export class Escenario1 extends Phaser.Scene {
 
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
-      //this.Victoria.setText(getPhrase("Victoria"));
+      //this.textoVictoria.setText(getPhrase("Victoria"));
       //this.Derrota.setText(getPhrase("Derrota"));
      
     }

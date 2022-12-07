@@ -38,68 +38,77 @@ export class Instrucciones extends Phaser.Scene {
     );
     this.texttablero = this.add
       .text(
-        this.cameras.main.centerX - 140,
-        this.cameras.main.centerY - 310,
-        "TABLERO",
+        this.cameras.main.centerX - 180,
+        this.cameras.main.centerY - 335,
+        getPhrase('TABLERO'),
         {
-          stroke: "black",
-          strokeThickness: 10,
-          fontSize: "70px",
+          fontFamily: "Fuente",
+          stroke: "white",
+          fill: "black",
+          strokeThickness: 5,
+          fontSize: "55px",
         }
       )
       this.instrucciones= this.add
       .text(
         this.cameras.main.centerX - 275,
-        this.cameras.main.centerY - 470,
-        "INSTRUCCIONES",
+        this.cameras.main.centerY - 450,
+        getPhrase('INSTRUCCIONES'),
         {
-          stroke: "black",
+          fontFamily: "Fuente",
+          stroke: "white",
+          fill: "black",
           strokeThickness: 10,
-          fontSize: "70px",
+          fontSize: "48px",
         }
       )
       this.textelegircarta = this.add
       .text(
         this.cameras.main.centerX - 180,
         this.cameras.main.centerY - 180,
-        "ELEGIR UNA CARTA",
+        getPhrase('ELEGIR UNA CARTA'),
         {
+          fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 10,
-          fontSize: "45px",
+          fontSize: "29px",
         }
       )
       this.texttirardados = this.add
       .text(
         this.cameras.main.centerX - 180,
         this.cameras.main.centerY - 134,
-        "TIRAR DADOS",
+        getPhrase('TIRAR DADOS'),
         {
+          fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 10,
-          fontSize: "45px",
+          fontSize: "29px",
         }
       )
       this.textteclado = this.add
       .text(
         this.cameras.main.centerX - 140,
         this.cameras.main.centerY + 60,
-        "TECLADO",
+        getPhrase('TECLADO'),
         {
-          stroke: "black",
+          fontFamily: "Fuente",
+          stroke: "white",
+          fill: "black",
           strokeThickness: 10,
-          fontSize: "60px",
+          fontSize: "40px",
         }
       )
       this.textteclaparasaltar = this.add
       .text(
-        this.cameras.main.centerX - 280,
-        this.cameras.main.centerY + 120,
-        "TECLA PARA SALTAR",
+        this.cameras.main.centerX - 240,
+        this.cameras.main.centerY + 125,
+        getPhrase('TECLA PARA SALTAR'),
         {
+          fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 10,
-          fontSize: "53px",
+          fontSize: "31px",
         }
       )
       
@@ -107,7 +116,7 @@ export class Instrucciones extends Phaser.Scene {
       .text(
         this.cameras.main.centerX - 410,
         this.cameras.main.centerY + 430,
-        "SALTAR INTRODUCCIONES",
+        getPhrase('SALTAR INTRODUCCION'),
         {
           fontFamily: "Fuente",
           stroke: "black",
