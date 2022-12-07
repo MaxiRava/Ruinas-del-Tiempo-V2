@@ -8,6 +8,7 @@ import {Instrucciones} from './scenes/instrucciones'
 import {MainMenu} from './scenes/mainmenu'
 import {Preloads} from './scenes/preloads'
 import {Tablero} from './scenes/tablero'
+import {Runner} from './scenes/runner'
 
 
 const config = {
@@ -33,7 +34,7 @@ const config = {
 			debug: false,
 		}
 	},
-	scene: [Preloads, MainMenu, Instrucciones, Escenario1, Escenario2, Tablero, Cartas, Creditos]
+	scene: [Preloads, MainMenu, Instrucciones, Escenario1, Escenario2, Tablero, Cartas, Creditos, Runner]
 }
 
 export default new Phaser.Game(config)

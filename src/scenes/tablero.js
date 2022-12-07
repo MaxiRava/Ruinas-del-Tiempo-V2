@@ -220,6 +220,7 @@ export class Tablero extends Phaser.Scene {
       }, 5000);
     }
   }
+
   mostrarCartas2() {
     if (!this.gameOver) {
       setTimeout(() => {
@@ -240,7 +241,7 @@ export class Tablero extends Phaser.Scene {
   }
 
   updateTexto() {
-    this.valor = Phaser.Math.Between(14, 14);
+    this.valor = Phaser.Math.Between(1, 6);
   }
 
   hitFinal(player, final) {

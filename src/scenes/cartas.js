@@ -195,8 +195,6 @@ export class Cartas extends Phaser.Scene {
       "cartaCorrer"
     );
     
-      
-
       this.TextoCartaPeligro = this.add
       .text(
         this.cameras.main.centerX - 230,
@@ -212,13 +210,14 @@ export class Cartas extends Phaser.Scene {
       
     setTimeout(() => {
       this.audio2.stop();
-      this.scene.start("Escenario1", {
+      this.scene.start("Runner", {
         distancia: this.distancia,
         distancia2: this.distancia2,
         turno: this.turno,
         movimiento: this.movimiento,
         audio2: this.audio2,
         activo2: this.activo2,
+        mapas: 1,
       });
     }, 3000);
   }
@@ -249,13 +248,14 @@ export class Cartas extends Phaser.Scene {
 
     setTimeout(() => {
       this.audio2.stop();
-      this.scene.start("Escenario2", {
+      this.scene.start("Runner", {
         distancia: this.distancia,
         distancia2: this.distancia2,
         turno: this.turno,
         movimiento: this.movimiento,
         audio2: this.audio2,
         activo2: this.activo2,
+        mapas: 2,
       });
     }, 3000);
   }
