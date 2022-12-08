@@ -47,8 +47,8 @@ export class Runner extends Phaser.Scene {
       this.audio = this.sound.add("theme3", { loop: true });
       this.audio.play();
       this.key = "map1";
-      this.tilesBelows = "jungla-atlas", "tilesBelow1";
-      this.tilesPlatform = "plataforma", "tilesPlatform1";
+      this.tilesBelows = ["jungla-atlas", "tilesBelow1"];
+      this.tilesPlatform = ["plataforma", "tilesPlatform1"];
       this.jugador = "explorador";
       this.bandera = "banderaJungla";
       this.cartelVictoria = "victoria";
@@ -61,8 +61,8 @@ export class Runner extends Phaser.Scene {
       this.audio = this.sound.add("theme4", { loop: true });
       this.audio.play();
       this.key = "map2";
-      this.tilesBelows = "fondonoche - atlas" , "tilesBelow2";
-      this.tilesPlatform = "plataformas-ladrillos" , "tilesPlatform2";
+      this.tilesBelows = ["fondonoche - atlas" , "tilesBelow2"];
+      this.tilesPlatform = ["plataformas-ladrillos" , "tilesPlatform2"];
       this.jugador = "callejero";
       this.bandera = "banderaCiudad";
       this.cartelVictoria = "victoria2";
