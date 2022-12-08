@@ -44,11 +44,15 @@ export class Runner extends Phaser.Scene {
     if ((this.mapas === 1)) {
       this.run = "run";
       this.jump = "jump";
+
       this.audio = this.sound.add("theme3", { loop: true });
       this.audio.play();
+
       this.key = "map1";
-      this.tilesBelows = ["jungla-atlas", "tilesBelow1"];
-      this.tilesPlatform = ["plataforma", "tilesPlatform1"];
+      this.tilesBelows = "jungla-atlas", 
+      this.tilesBelows1 = "tilesBelow1";
+      this.tilesPlatform = "plataforma";
+      this.tilesPlatform1 = "tilesPlatform1";
       this.jugador = "explorador";
       this.bandera = "banderaJungla";
       this.cartelVictoria = "victoria";
@@ -58,11 +62,15 @@ export class Runner extends Phaser.Scene {
     if ((this.mapas === 2)) {
       this.run = "run2";
       this.jump = "jump2";
+
       this.audio = this.sound.add("theme4", { loop: true });
       this.audio.play();
+
       this.key = "map2";
-      this.tilesBelows = ["fondonoche - atlas" , "tilesBelow2"];
-      this.tilesPlatform = ["plataformas-ladrillos" , "tilesPlatform2"];
+      this.tilesBelows = "fondonoche - atlas";
+      this.tilesBelows1= "tilesBelow2";
+      this.tilesPlatform = "plataformas-ladrillos";
+      this.tilesPlatform1= "tilesPlatform2";
       this.jugador = "callejero";
       this.bandera = "banderaCiudad";
       this.cartelVictoria = "victoria2";
@@ -71,9 +79,9 @@ export class Runner extends Phaser.Scene {
 
     const map = this.make.tilemap({ key: this.key });
 
-    const tilesetBelow = map.addTilesetImage(this.tilesBelows);
+    const tilesetBelow = map.addTilesetImage(this.tilesBelows, this.tilesBelows1);
 
-    const tilesetPlatform = map.addTilesetImage(this.tilesPlatform);
+    const tilesetPlatform = map.addTilesetImage(this.tilesPlatform, this.tilesPlatform1);
 
     const belowLayer = map.createLayer("Fondo", tilesetBelow, 0, 0);
     const worldLayer = map.createLayer("Plataformas", tilesetPlatform, 0, 0);

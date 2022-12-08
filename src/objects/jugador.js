@@ -104,7 +104,7 @@ create(){
   vida() {
     this.number = 3;
     
-    this.texto = this.scene.add.text(330, 200, getPhrase(`Vidas: ${this.number}`), {
+    this.texto = this.scene.add.text(330, 200, getPhrase(('Vidas: ')) + this.number , {
       stroke: "black",
       strokeThickness: 5,
       fontSize: "54px Arial",
@@ -116,7 +116,7 @@ create(){
 
   perderVida(){
     this.number = 3 - this.scene.count;
-    this.texto.setText(getPhrase(`Vidas: ${this.number}`));
+    this.texto.setText(getPhrase(('Vidas: ')) + this.number);
   }
 
   muerte() {
@@ -203,7 +203,7 @@ create(){
   update(){
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
-      this.texto.setText(getPhrase("Vidas:"));
+      this.texto.setText(getPhrase('Vidas: '));
       this.TextoDerrota.setText(getPhrase("Derrota"));
   }
   //https://labs.phaser.io/edit.html?src=src/game%20objects/text/align%20text.js&v=3.55.2
