@@ -91,20 +91,10 @@ export class Tablero extends Phaser.Scene {
     );
 
     if (this.turno === 0) {
-      this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
-      this.player.setScale(1.1);
-      this.letrero = getPhrase("Turno Jugador 1"),{
-        fontFamily: "Fuente",
-      }
       this.cara = "cara1";
-    } else {
-      this.cameras.main.startFollow(this.player2, true, 0.08, 0.08);
-      this.player2.setScale(1.1);
-      this.letrero = getPhrase("Turno Jugador 2"),{
-        fontFamily: "Fuente",
-      }
+    }else{
       this.cara = "cara2";
-    }
+  }
 
     this.cameras.main.setZoom(2);
 
@@ -114,8 +104,9 @@ export class Tablero extends Phaser.Scene {
 
     this.activo2 = "music2";
     if (!this.activo2) {
-      this.activo2 = "mute2";
-    }
+      this.activo2 = "mute2";}
+      
+    
 
     this.musica = this.add
       .image(1395, 310, this.activo2)
@@ -154,6 +145,36 @@ export class Tablero extends Phaser.Scene {
       fontSize: "50px Arial",
       fill: "white",
     });
+    if (this.turno === 0) {
+      this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+      this.player.setScale(1.1);
+      this.TextoTurnoJugador = this.add.text (
+        this.cameras.main.midPoint.x +220,
+        this.cameras.main.midPoint.y - 285,
+        getPhrase("Turno Jugador 1"),{
+        fontFamily: "Fuente",
+        stroke: "black",
+        strokeThickness: 7,
+        fontSize: "26.5px",
+        fill: "white",
+        
+      })
+      this.cara = "cara1";
+    } else {
+      this.cameras.main.startFollow(this.player2, true, 0.08, 0.08);
+      this.player2.setScale(1.1);
+      this.TextoTurnoJugador = this.add.text (
+        this.cameras.main.midPoint.x +220,
+        this.cameras.main.midPoint.y - 285,
+        getPhrase("Turno Jugador 2"),{
+          fontFamily: "Fuente",
+          stroke: "black",
+          strokeThickness: 7,
+          fontSize: "26.5px",
+          fill: "white",
+      })
+      this.cara = "cara2";
+    }
 
     this.cartelTurno.setScrollFactor(0);
 
@@ -179,8 +200,8 @@ export class Tablero extends Phaser.Scene {
   cambiarLetreroJ1() {
     if (!this.gameOver) {
       setTimeout(() => {
-        this.letrero = getPhrase("Turno Jugador 1");
-        this.cartelTurno.setText(this.letrero);
+        this.TextoTurnoJugador = getPhrase("Turno Jugador 1");
+        this.cartelTurno.setText(this.TextoTurnoJugador);
 
         this.cara = "cara1";
         this.pj.setTexture(this.cara);
@@ -214,8 +235,8 @@ export class Tablero extends Phaser.Scene {
     console.log("cambiarLetreroJ1", this.gameOver);
     if (!this.gameOver) {
       setTimeout(() => {
-        this.letrero = getPhrase("Turno Jugador 2");
-        this.cartelTurno.setText(this.letrero);
+        this.TextoTurnoJugador = getPhrase("Turno Jugador 2");
+        this.cartelTurno.setText(this.TextoTurnoJugador);
 
         this.cara = "cara2";
         this.pj.setTexture(this.cara);
@@ -246,7 +267,7 @@ export class Tablero extends Phaser.Scene {
   }
 
   updateTexto() {
-    this.valor = Phaser.Math.Between(1, 6);
+    this.valor = Phaser.Math.Between(14, 14);
   }
 
   hitFinal(player, final) {
@@ -296,7 +317,7 @@ export class Tablero extends Phaser.Scene {
       let otro = this.add
         .image(
           this.cameras.main.midPoint.x - 10,
-          this.cameras.main.midPoint.y + 125,
+          this.cameras.main.midPoint.y + 140,
           "boton"
         )
         .setInteractive()
@@ -364,7 +385,7 @@ export class Tablero extends Phaser.Scene {
       let otro = this.add
         .image(
           this.cameras.main.midPoint.x - 10,
-          this.cameras.main.midPoint.y + 125,
+          this.cameras.main.midPoint.y + 145,
           "boton"
         )
         .setInteractive()
@@ -417,10 +438,10 @@ export class Tablero extends Phaser.Scene {
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY; 
       if ((this.turno = 0 && !this.gameOver)) {
-        this.letrero.setText(getPhrase("Turno Jugador 1"));
+        this.TextoTurnoJugador.setText(getPhrase("Turno Jugador 1"));
       } else { 
         if (this.turno = 1 && !this.gameOver) {
-          this.letrero.setText(getPhrase("Turno Jugador 2"));
+          this.TextoTurnoJugador.setText(getPhrase("Turno Jugador 2"));
         }
       }
 

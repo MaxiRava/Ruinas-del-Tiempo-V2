@@ -105,9 +105,10 @@ create(){
     this.number = 3;
     
     this.texto = this.scene.add.text(330, 200, getPhrase(('Vidas: ')) + this.number , {
+      fontFamily: "Fuente",
       stroke: "black",
       strokeThickness: 5,
-      fontSize: "54px Arial",
+      fontSize: "35px",
       fill: "white",
     });
     this.texto.setScrollFactor(0);

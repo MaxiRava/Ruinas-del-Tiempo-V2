@@ -42,16 +42,16 @@ export class Cartas extends Phaser.Scene {
       "seleccionCarta"
     );
 
-      this.TextoDestino = this.add
+      this.TextoElige = this.add
     .text(
-      this.cameras.main.centerX - 230,
-      this.cameras.main.centerY - 160,
-      getPhrase("Elige tu destino..."),
+      this.cameras.main.centerX - 237,
+      this.cameras.main.centerY - 138,
+      getPhrase("Elige tu destino. . ."),
       {
         fontFamily: "Fuente",
         stroke: "black",
         strokeThickness: 6,
-        fontSize: "45px Arial",
+        fontSize: "23px",
         fill: "white",
       }
     )
@@ -149,7 +149,7 @@ export class Cartas extends Phaser.Scene {
   }
 
   cartaBuena() {
-    this.TextoDestino.destroy();
+    this.TextoElige.destroy();
     this.card.destroy();
     this.card2.destroy();
     this.card3.destroy();
@@ -163,13 +163,13 @@ export class Cartas extends Phaser.Scene {
       this.TextoCartaSuerte = this.add
        .text(
       this.cameras.main.centerX - 230,
-      this.cameras.main.centerY - 160,
+      this.cameras.main.centerY - 140,
       getPhrase("La suerte te acompaña"),
       {
         fontFamily: "Fuente",
         stroke: "black",
         strokeThickness: 6,
-        fontSize: "54px Arial",
+        fontSize: "25px",
         fill: "white",
       }
     )
@@ -187,7 +187,7 @@ export class Cartas extends Phaser.Scene {
   }
 
   cartaJungla() {
-    this.TextoDestino.destroy();
+    this.TextoElige.destroy();
     this.card.destroy();
     this.card2.destroy();
     this.card3.destroy();
@@ -200,13 +200,13 @@ export class Cartas extends Phaser.Scene {
       this.TextoCartaPeligro = this.add
       .text(
         this.cameras.main.centerX - 230,
-        this.cameras.main.centerY - 160,
+        this.cameras.main.centerY - 138,
         getPhrase("Corre para sobrevivir"),
         {
           fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 6,
-          fontSize: "54px Arial",
+          fontSize: "26px",
           fill: "white",
         }
       )
@@ -226,7 +226,7 @@ export class Cartas extends Phaser.Scene {
   }
 
   cartaNoche() {
-    this.TextoDestino.destroy();
+    this.TextoElige.destroy();
     this.card.destroy();
     this.card2.destroy();
     this.card3.destroy();
@@ -239,12 +239,13 @@ export class Cartas extends Phaser.Scene {
     this.TextoCartaPeligro = this.add
     .text(
       this.cameras.main.centerX - 230,
-      this.cameras.main.centerY - 160,
+      this.cameras.main.centerY - 138,
       getPhrase("Corre para sobrevivir"),
       {
+        fontFamily: "Fuente",
         stroke: "black",
         strokeThickness: 6,
-        fontSize: "54px Arial",
+        fontSize: "26px",
         fill: "white",
       }
     )
@@ -280,7 +281,7 @@ export class Cartas extends Phaser.Scene {
       this.TextoCartaSuerte.setText(getPhrase("La suerte te acompaña"));
       this.TextoCartaPeligro.setText(getPhrase("Corre para sobrevivir"));
      
-      this.TextoDestino .setText(getPhrase("Elige tu destino..."));
+      this.TextoElige .setText(getPhrase("Elige tu destino. . ."));
     }
   }
 }
