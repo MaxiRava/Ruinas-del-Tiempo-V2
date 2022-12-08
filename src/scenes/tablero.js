@@ -27,6 +27,7 @@ export class Tablero extends Phaser.Scene {
     this.audio2 = data.audio2;
     this.movimiento = data.movimiento;
     this.number = data.number;
+    this.fondoNumero = data.fondoNumero;
     this.avance = data.avance;
     console.log(data);
     this.#language = data.language;
@@ -245,7 +246,7 @@ export class Tablero extends Phaser.Scene {
   }
 
   updateTexto() {
-    this.valor = Phaser.Math.Between(14, 14);
+    this.valor = Phaser.Math.Between(1, 6);
   }
 
   hitFinal(player, final) {
@@ -386,6 +387,7 @@ export class Tablero extends Phaser.Scene {
   avanzar() {
     setTimeout(() => {
       this.number.destroy();
+      this.fondoNumero.destroy();
       if (this.turno === 0) {
         this.turno = 1;
         this.player.movimientoJ1();

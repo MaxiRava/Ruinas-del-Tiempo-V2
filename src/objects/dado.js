@@ -11,8 +11,14 @@ class Dado extends Phaser.GameObjects.Sprite {
         this.destroy();
         scene.updateTexto();
 
+        scene.fondoNumero = scene.add.image(
+          scene.cameras.main.midPoint.x - 2,
+          scene.cameras.main.midPoint.y - 115,
+          "cartelNumero"
+        );
+
         scene.number = scene.add.text(
-          scene.cameras.main.midPoint.x,
+          scene.cameras.main.midPoint.x - 20,
           scene.cameras.main.midPoint.y - 150,
           scene.valor,
           {
@@ -22,6 +28,7 @@ class Dado extends Phaser.GameObjects.Sprite {
             fill: "white",
           }
         );
+
         scene?.avanzar();
       })
       .on("pointerover", () => {
