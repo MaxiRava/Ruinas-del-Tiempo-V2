@@ -128,11 +128,22 @@ create(){
       this.scene.player.setTint(0xff0000);
       this.scene.player.anims.play(this.jump);
 
-      this.textDerrota = this.scene.add.image(
+      this.CartelDerrota = this.scene.add.image(
         this.scene.cameras.main.midPoint.x,
         this.scene.cameras.main.midPoint.y,
         this.derrota
       );
+
+      this.TextoDerrota = this.scene.add.text(
+        this.scene.cameras.main.midPoint.x - 180,
+        this.scene.cameras.main.midPoint.y - 140,
+        getPhrase('Derrota'), {
+          fontFamily: "Fuente",
+          stroke: "black",
+          strokeThickness: 10,
+          fontSize: "55px",
+        }
+      )
       let boton = this.scene.add
         .image(
           this.scene.cameras.main.midPoint.x - 6,
@@ -193,7 +204,7 @@ create(){
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
       this.texto.setText(getPhrase("Vidas:"));
-      this.textDerrota.setText(getPhrase("Derrota"));
+      this.TextoDerrota.setText(getPhrase("Derrota"));
   }
   //https://labs.phaser.io/edit.html?src=src/game%20objects/text/align%20text.js&v=3.55.2
   //https://phaser.io/examples/v3/view/game-objects/text/word-wrap-by-width

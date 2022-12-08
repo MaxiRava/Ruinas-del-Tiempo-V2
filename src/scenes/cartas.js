@@ -48,6 +48,7 @@ export class Cartas extends Phaser.Scene {
       this.cameras.main.centerY - 160,
       getPhrase("Elige tu destino..."),
       {
+        fontFamily: "Fuente",
         stroke: "black",
         strokeThickness: 6,
         fontSize: "45px Arial",
@@ -165,6 +166,7 @@ export class Cartas extends Phaser.Scene {
       this.cameras.main.centerY - 160,
       getPhrase("La suerte te acompaña"),
       {
+        fontFamily: "Fuente",
         stroke: "black",
         strokeThickness: 6,
         fontSize: "54px Arial",
@@ -201,6 +203,7 @@ export class Cartas extends Phaser.Scene {
         this.cameras.main.centerY - 160,
         getPhrase("Corre para sobrevivir"),
         {
+          fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 6,
           fontSize: "54px Arial",

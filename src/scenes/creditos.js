@@ -37,13 +37,15 @@ export class Creditos extends Phaser.Scene {
    
       this.creditos = this.add
       .text(
-        this.cameras.main.centerX - 200, 
+        this.cameras.main.centerX - 250, 
         this.cameras.main.centerY - 370,
         getPhrase("CREDITOS"),
         {
-          stroke: "black",
+          fontFamily: "Fuente",
+          stroke: "white",
+          fill: "black",
           strokeThickness: 10,
-          fontSize: "85px",
+          fontSize: "75px",
         }
       )
 
