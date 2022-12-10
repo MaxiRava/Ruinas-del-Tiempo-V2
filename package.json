@@ -17,6 +17,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.10.5",
 		"@babel/plugin-proposal-class-properties": "^7.10.4",
+		"@types/react-router-dom": "^5.3.3",
 		"babel-eslint": "^10.1.0",
 		"eslint": "^6.8.0",
 		"minimist": ">=1.2.2",
@@ -26,7 +27,8 @@
 	"dependencies": {
 		"firebase": "^9.15.0",
 		"phaser": "^3.55.2",
-		"phaser3-rex-plugins": "^1.1.77"
+		"phaser3-rex-plugins": "^1.1.77",
+		"react-router-dom": "^6.4.5"
 	},
 	"parcelCleanPaths": [
 		"dist"
