@@ -10,6 +10,7 @@ var firebaseConfig = {
   messagingSenderId: "190667805552",
   appId: "1:190667805552:web:9cdcdc91c47bbb52dcb5b5",
   measurementId: "G-97XXMMFSHE",
+  databaseURL: "https://ruinas-del-tiempo-default-rtdb.firebaseio.com/",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -17,7 +18,7 @@ const db = getDatabase(app);
 
 export async function getData() {
   const dbRef = ref(db);
-  get(child(dbRef, "users/victoryId"))
+  get(child(dbRef, "users/inicioJugador"))
     .then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot.val());
@@ -32,9 +33,9 @@ export async function getData() {
     });
 }
 
-export async function pushData(turno) {
+export async function pushData(comienzo) {
   update(ref(db, "users/"), {
-    turnoId: turno,
+    inicioJugador: comienzo,
   })
     .then(() => {
       console.log("data updated");

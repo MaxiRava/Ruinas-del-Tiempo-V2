@@ -3,6 +3,7 @@ import Jugador from "../objects/jugador";
 import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
+
 export class Runner extends Phaser.Scene {
   #wasChangedLanguage = TODO;
   #language;
@@ -206,6 +207,7 @@ export class Runner extends Phaser.Scene {
     this.cameras.main.setZoom(1.5);
 
     this.cameras.main.setBounds(0, 0, 3200, 960);
+
   }
 
   hitEnemy(player, enemy) {

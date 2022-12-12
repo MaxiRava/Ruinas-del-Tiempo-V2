@@ -3,7 +3,10 @@ import Parlante from "../objects/parlante";
 import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
-import { EN_US, ES_AR } from '../enums/languages'
+import { EN_US, ES_AR } from '../enums/languages';
+import { getData, pushData } from "../services/firebase";
+import { sharedInstance as events } from "../scenes/EventCenter";
+
 
 export class MainMenu extends Phaser.Scene {
   #wasChangedLanguage = TODO;
@@ -76,7 +79,7 @@ let argentina = this.add.image(100, 100, "ARG")
 
       .on("pointerdown", () => {
         this.audio.stop();
-        this.scene.start("Instrucciones", { activo: this.activo });
+        this.scene.start("Instrucciones", { activo: this.activo, comienzo: this.comienzo });
       })
 
       .on("pointerover", () => {
@@ -121,7 +124,9 @@ let argentina = this.add.image(100, 100, "ARG")
     this.activo ? "music" : "mute";
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
 
-    this.escena = 1;
+    getData();
+    events.on("dato-recibido", this.dato, this);
+
   }
 
   updateWasChangedLanguage = () => {
@@ -140,5 +145,8 @@ let argentina = this.add.image(100, 100, "ARG")
     this.BotonJugar.setText(getPhrase("JUGAR"));
     this.BotonCreditos.setText(getPhrase("CREDITOS"));
   }
-  //Borrame
+  
+  dato(data){
+    this.comienzo = data;
+  }
 }

@@ -4,6 +4,8 @@ import Dado from "../objects/dado";
 import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
+import { pushData } from "../services/firebase";
+
 
 export class Tablero extends Phaser.Scene {
   #wasChangedLanguage = TODO;
@@ -246,7 +248,7 @@ export class Tablero extends Phaser.Scene {
   }
 
   updateTexto() {
-    this.valor = Phaser.Math.Between(14, 14);
+    this.valor = Phaser.Math.Between(1, 6);
   }
 
   hitFinal(player, final) {
@@ -386,11 +388,13 @@ export class Tablero extends Phaser.Scene {
       this.fondoNumero.destroy();
       if (this.turno === 0) {
         this.turno = 1;
+        pushData(this.turno);
         this.player.movimientoJ1();
         this.cambiarLetreroJ2();
         this.mostrarCartas2();
       } else {
         this.turno = 0;
+        pushData(this.turno);
         this.player.movimientoJ2();
         this.cambiarLetreroJ1();
         this.mostrarCartas();

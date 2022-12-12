@@ -14,12 +14,12 @@ export class Instrucciones extends Phaser.Scene {
   
   }
 
-  
   init(data) {
     this.activo = data.activo;
     console.log(data);
     this.#language = data.language;
     console.log(this.#language);
+    this.comienzo = data.comienzo;
   }
 
   create() {
@@ -124,7 +124,6 @@ export class Instrucciones extends Phaser.Scene {
           fontSize: "60px",
         }
       )
-
       .setInteractive()
 
       .on("pointerdown", () => {
@@ -136,7 +135,7 @@ export class Instrucciones extends Phaser.Scene {
         this.scene.start("Tablero", {
           distancia: 75,
           distancia2: 65,
-          turno: 0,
+          turno: this.comienzo,
           movimiento: 0,
           activo2: this.activo2,
           audio2: this.audio2,
@@ -156,8 +155,7 @@ export class Instrucciones extends Phaser.Scene {
     if (this.#parlante.activo) {
       this.audio2.play();
     }
-
-    this.escena = 2;
+    //this.escena = 2;
   }
   
   updateWasChangedLanguage = () => {
