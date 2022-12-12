@@ -18,13 +18,14 @@ class Dado extends Phaser.GameObjects.Sprite {
         );
 
         scene.number = scene.add.text(
-          scene.cameras.main.midPoint.x - 20,
-          scene.cameras.main.midPoint.y - 150,
+          scene.cameras.main.midPoint.x - 27,
+          scene.cameras.main.midPoint.y - 145,
           scene.valor,
           {
+            fontFamily: "Fuente",
             stroke: "black",
             strokeThickness: 5,
-            fontSize: "60px Arial",
+            fontSize: "50px",
             fill: "white",
           }
         );
