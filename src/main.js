@@ -1,9 +1,8 @@
 import Phaser from 'phaser'
+import FirebasePlugin from 'phaser3-rex-plugins/plugins/firebase-plugin.js';
 
 import {Cartas} from './scenes/cartas'
 import {Creditos} from './scenes/creditos'
-import {Escenario1} from './scenes/escenario1'
-import {Escenario2} from './scenes/escenario2'
 import {Instrucciones} from './scenes/instrucciones'
 import {MainMenu} from './scenes/mainmenu'
 import {Preloads} from './scenes/preloads'
@@ -34,7 +33,15 @@ const config = {
 			debug: false,
 		}
 	},
-	scene: [Preloads, MainMenu, Instrucciones, Escenario1, Escenario2, Tablero, Cartas, Creditos, Runner]
+
+	plugins: {
+        global: [{
+            key: 'rexFirebase',
+            plugin: FirebasePlugin,
+            start: true,
+        }]
+    },
+	scene: [Preloads, MainMenu, Instrucciones, Tablero, Cartas, Creditos, Runner]
 }
 
 export default new Phaser.Game(config)

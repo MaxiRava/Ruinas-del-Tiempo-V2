@@ -19,7 +19,6 @@ export class MainMenu extends Phaser.Scene {
     this.activo = data.activo;
     console.log(data);
     this.#language = data.language;
-    console.log(this.#language);
   }
 
   create() {

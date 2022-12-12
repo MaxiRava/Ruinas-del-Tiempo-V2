@@ -392,7 +392,6 @@ export class Runner extends Phaser.Scene {
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
       this.TextoVictoria.setText(getPhrase("Victoria"));
-      //this.Derrota.setText(getPhrase("Derrota"));
     }
   }
 }
