@@ -65,6 +65,7 @@ export class Preloads extends Phaser.Scene {
     this.load.image("prota", "assets/images/prota.png");
     this.load.image("prota2", "assets/images/prota2.png");
 
+    //precarga de las animaciones
     this.load.spritesheet("snakeA", "assets/images/snakeA.png", {
       frameWidth: 80,
       frameHeight: 80,
@@ -73,7 +74,7 @@ export class Preloads extends Phaser.Scene {
     this.load.spritesheet("gatoA", "assets/images/gatoA.png", {
       frameWidth: 56,
       frameHeight: 70,
-    }); 
+    });
 
     this.load.spritesheet("explorador", "assets/images/personajeJunglaA.png", {
       frameWidth: 150,
@@ -91,6 +92,7 @@ export class Preloads extends Phaser.Scene {
     this.load.audio("theme4", "assets/sounds/noche.mp3");
   }
 
+  //creacion de las animaciones
   create() {
     this.anims.create({
       key: "snakeAnimacion",
@@ -117,9 +119,9 @@ export class Preloads extends Phaser.Scene {
       frames: [{ key: "gatoA", frame: 1 }],
       frameRate: 20,
     });
-  
-  
-    this.audio = this.sound.add('theme', {loop: true});
+
+    //audio del mainmenu
+    this.audio = this.sound.add("theme", { loop: true });
 
     this.audio.play();
 

@@ -3,16 +3,15 @@ import Parlante from "../objects/parlante";
 import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
-import { EN_US, ES_AR } from '../enums/languages';
-import { getData, pushData } from "../services/firebase";
+import { EN_US, ES_AR } from "../enums/languages";
+import { getData } from "../services/firebase";
 import { sharedInstance as events } from "../scenes/EventCenter";
-
 
 export class MainMenu extends Phaser.Scene {
   #wasChangedLanguage = TODO;
   #language;
   #parlante;
-  
+
   constructor() {
     super("MainMenu");
   }
@@ -20,7 +19,6 @@ export class MainMenu extends Phaser.Scene {
   init(data) {
     this.audio = data.audio;
     this.activo = data.activo;
-    console.log(data);
     this.#language = data.language;
   }
 
@@ -35,37 +33,42 @@ export class MainMenu extends Phaser.Scene {
       this.cameras.main.centerY - 210,
       "inicio"
     );
-    
-//esto hay que modificarlo
-    
-let argentina = this.add.image(100, 100, "ARG")
-		.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-			this.getTranslations(ES_AR)
-		})
-    .on("pointerover", () => {
-      argentina.setScale(1.1);
-    })
 
-    .on("pointerout", () => {
-      argentina.setScale(1);
-    });
+    //botones de traduccion
 
+    let argentina = this.add
+      .image(100, 100, "ARG")
+      .setInteractive()
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+        this.getTranslations(ES_AR);
+      })
+      .on("pointerover", () => {
+        argentina.setScale(1.1);
+      })
 
-		let ingles = this.add.image(200, 100, "ING")
-		.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-			this.getTranslations(EN_US)
-		})
-    .on("pointerover", () => {
-      ingles.setScale(1.1);
-    })
+      .on("pointerout", () => {
+        argentina.setScale(1);
+      });
 
-    .on("pointerout", () => {
-      ingles.setScale(1);
-    });
-    
+    let ingles = this.add
+      .image(200, 100, "ING")
+      .setInteractive()
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+        this.getTranslations(EN_US);
+      })
+      .on("pointerover", () => {
+        ingles.setScale(1.1);
+      })
+
+      .on("pointerout", () => {
+        ingles.setScale(1);
+      });
+
+    //boton para ir a la siguente escena de juego
+
     this.BotonJugar = this.add
       .text(
-        this.cameras.main.centerX - 140, 
+        this.cameras.main.centerX - 140,
         this.cameras.main.centerY + 320,
         getPhrase("JUGAR"),
         {
@@ -79,7 +82,10 @@ let argentina = this.add.image(100, 100, "ARG")
 
       .on("pointerdown", () => {
         this.audio.stop();
-        this.scene.start("Instrucciones", { activo: this.activo, comienzo: this.comienzo });
+        this.scene.start("Instrucciones", {
+          activo: this.activo,
+          comienzo: this.comienzo,
+        });
       })
 
       .on("pointerover", () => {
@@ -92,15 +98,15 @@ let argentina = this.add.image(100, 100, "ARG")
 
     this.BotonCreditos = this.add
       .text(
-        this.cameras.main.centerX - 190, 
+        this.cameras.main.centerX - 190,
         this.cameras.main.centerY + 450,
-      getPhrase("CREDITOS"),
-      {
-        fontFamily: "Fuente",
-        stroke: "black",
-        strokeThickness: 10,
-        fontSize: "60px",
-      }
+        getPhrase("CREDITOS"),
+        {
+          fontFamily: "Fuente",
+          stroke: "black",
+          strokeThickness: 10,
+          fontSize: "60px",
+        }
       )
       .setInteractive()
 
@@ -123,10 +129,10 @@ let argentina = this.add.image(100, 100, "ARG")
 
     this.activo ? "music" : "mute";
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
+    this.escena = 1;
 
     getData();
     events.on("dato-recibido", this.dato, this);
-
   }
 
   updateWasChangedLanguage = () => {
@@ -142,11 +148,12 @@ let argentina = this.add.image(100, 100, "ARG")
 
   update() {
     this.activo = this.#parlante.activo;
+    
     this.BotonJugar.setText(getPhrase("JUGAR"));
     this.BotonCreditos.setText(getPhrase("CREDITOS"));
   }
-  
-  dato(data){
+
+  dato(data) {
     this.comienzo = data;
   }
 }

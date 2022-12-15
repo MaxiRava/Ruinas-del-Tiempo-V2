@@ -12,10 +12,12 @@ export class Runner extends Phaser.Scene {
   }
 
   preload() {
+    //mapa jungla
     this.load.tilemapTiledJSON("map1", "assets/tilemaps/esc1.json");
     this.load.image("tilesBelow1", "assets/images/jungla-atlas.png");
     this.load.image("tilesPlatform1", "assets/images/plataforma.png");
 
+    //mapa noche
     this.load.tilemapTiledJSON("map2", "assets/tilemaps/esc2.json");
     this.load.image("tilesBelow2", "assets/images/fondonoche - atlas.png");
     this.load.image(
@@ -42,7 +44,7 @@ export class Runner extends Phaser.Scene {
       y: height / 2,
     };
 
-    if ((this.mapas === 1)) {
+    if (this.mapas === 1) {
       this.run = "run";
       this.jump = "jump";
 
@@ -60,7 +62,7 @@ export class Runner extends Phaser.Scene {
       this.aspectoBoton = "botonJungla";
     }
 
-    if ((this.mapas === 2)) {
+    if (this.mapas === 2) {
       this.run = "run2";
       this.jump = "jump2";
 
@@ -94,7 +96,6 @@ export class Runner extends Phaser.Scene {
 
     this.player = new Jugador(this, spawnPoint.x, spawnPoint.y, this.jugador);
     this.player.correr();
-
     this.isJumping = false;
 
     const spawnPoint2 = map.findObject(
@@ -311,7 +312,6 @@ export class Runner extends Phaser.Scene {
 
   hitFinal(player, final) {
     this.physics.pause();
-    //this.snake.anims.play("snakeStop");
     player.anims.play(this.jump);
 
     let victoria = this.add.image(

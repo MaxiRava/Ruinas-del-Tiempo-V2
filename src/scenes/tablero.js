@@ -6,7 +6,6 @@ import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
 import { pushData } from "../services/firebase";
 
-
 export class Tablero extends Phaser.Scene {
   #wasChangedLanguage = TODO;
   #language;
@@ -30,10 +29,7 @@ export class Tablero extends Phaser.Scene {
     this.movimiento = data.movimiento;
     this.number = data.number;
     this.fondoNumero = data.fondoNumero;
-    this.avance = data.avance;
-    console.log(data);
     this.#language = data.language;
-    console.log(this.#language);
   }
 
   create() {
@@ -42,8 +38,10 @@ export class Tablero extends Phaser.Scene {
       x: width / 2,
       y: height / 2,
     };
+
     this.gameOver = false;
 
+    //creacion para el tiled
     const map = this.make.tilemap({ key: "map" });
 
     const tilesetBelow = map.addTilesetImage("cueva-atlas", "tilesBelow");
@@ -67,11 +65,8 @@ export class Tablero extends Phaser.Scene {
     );
 
     // creacion del jugador y collides
-
     this.player2 = new Jugador(this, this.distancia2, 862.83, "prota2", 1);
     this.player = new Jugador(this, this.distancia, 862.83, "prota", 0);
-
-    this.avance = false;
 
     this.physics.add.collider(this.player, worldLayer);
     this.physics.add.collider(this.player2, worldLayer);
@@ -92,12 +87,12 @@ export class Tablero extends Phaser.Scene {
       this
     );
 
+    //configuracion de camara
     this.cameras.main.setZoom(2);
 
     this.cameras.main.setBounds(0, 0, 1952, 1080);
 
     //parlante distinto
-
     this.activo2 = "music2";
     if (!this.activo2) {
       this.activo2 = "mute2";
@@ -128,21 +123,24 @@ export class Tablero extends Phaser.Scene {
         this.musica.setScale(1);
       });
 
+    //fijacion en la pantalla
     this.musica.setScrollFactor(0);
 
+    //precarga de variables
     if (this.turno === 0) {
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.player.setScale(1.1);
-      this.TextoTurnoJugador = "Turno Jugador 1";
-      
+      this.TextoTurnoJugador = getPhrase("Turno Jugador 1");
       this.cara = "cara1";
+
     } else {
       this.cameras.main.startFollow(this.player2, true, 0.08, 0.08);
       this.player2.setScale(1.1);
-      this.TextoTurnoJugador = "Turno Jugador 2";
+      this.TextoTurnoJugador = getPhrase("Turno Jugador 2");
       this.cara = "cara2";
     }
 
+    //aplicacion de variables
     this.cartelFondo = this.add
       .image(960, 320, "turnoJugador")
       .setScrollFactor(0);
@@ -159,9 +157,11 @@ export class Tablero extends Phaser.Scene {
 
     this.cartelTurno.setScrollFactor(0);
 
+    //dado
     this.dado = new Dado(this, 535, 320, "dado");
     this.dado.setScrollFactor(0);
 
+    //para saber cuando se mueve el pj y cuando no
     if (this.movimiento === 0) {
       this.dado.destroy();
 
@@ -213,7 +213,6 @@ export class Tablero extends Phaser.Scene {
   }
 
   cambiarLetreroJ2() {
-    console.log("cambiarLetreroJ1", this.gameOver);
     if (!this.gameOver) {
       setTimeout(() => {
         this.TextoTurnoJugador = getPhrase("Turno Jugador 2");
@@ -293,7 +292,7 @@ export class Tablero extends Phaser.Scene {
         }
       );
 
-      let otro = this.add
+      let botonFinal = this.add
         .image(
           this.cameras.main.midPoint.x - 10,
           this.cameras.main.midPoint.y + 140,
@@ -307,11 +306,11 @@ export class Tablero extends Phaser.Scene {
         })
 
         .on("pointerover", () => {
-          otro.setScale(1.1);
+          botonFinal.setScale(1.1);
         })
 
         .on("pointerout", () => {
-          otro.setScale(1);
+          botonFinal.setScale(1);
         });
     }, 3000);
   }
@@ -359,7 +358,7 @@ export class Tablero extends Phaser.Scene {
         }
       );
 
-      let otro = this.add
+      let botonFinal = this.add
         .image(
           this.cameras.main.midPoint.x - 10,
           this.cameras.main.midPoint.y + 145,
@@ -373,11 +372,11 @@ export class Tablero extends Phaser.Scene {
         })
 
         .on("pointerover", () => {
-          otro.setScale(1.1);
+          botonFinal.setScale(1.1);
         })
 
         .on("pointerout", () => {
-          otro.setScale(1);
+          botonFinal.setScale(1);
         });
     }, 3000);
   }

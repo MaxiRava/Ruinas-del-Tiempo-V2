@@ -18,9 +18,7 @@ export class Creditos extends Phaser.Scene {
   init(data) {
     this.audio = data.audio;
     this.activo = data.activo;
-    console.log(data);
     this.#language = data.language;
-    console.log(this.#language);
   }
 
   create() {
@@ -73,9 +71,11 @@ export class Creditos extends Phaser.Scene {
       });
 
     console.log("parlante", this.activo);
+
     this.activo ? "music" : "mute";
     this.#parlante = new Parlante(this, 1830, 80, this.activo);
-    //this.escena = 1;
+
+    this.escena = 1;
   }
 
   updateWasChangedLanguage = () => {

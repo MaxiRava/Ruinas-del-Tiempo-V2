@@ -1,6 +1,7 @@
 import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
+
 class Jugador extends Phaser.Physics.Arcade.Sprite {
   #wasChangedLanguage = TODO;
   #language;
@@ -28,7 +29,10 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 
       this.anims.create({
         key: "run2",
-        frames: this.anims.generateFrameNumbers("callejero", { start: 0, end: 3 }),
+        frames: this.anims.generateFrameNumbers("callejero", {
+          start: 0,
+          end: 3,
+        }),
         frameRate: 5,
         repeat: -1,
       });
@@ -55,7 +59,10 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 
       this.anims.create({
         key: "run",
-        frames: this.anims.generateFrameNumbers("explorador", { start: 0, end: 2 }),
+        frames: this.anims.generateFrameNumbers("explorador", {
+          start: 0,
+          end: 2,
+        }),
         frameRate: 5,
         repeat: -1,
       });
@@ -68,25 +75,20 @@ class Jugador extends Phaser.Physics.Arcade.Sprite {
 
       this.setCircle(50, 40, 40);
     }
+  }
 
-    // or en if ( == || ==)
-}
-
-init(data){
-
-  console.log(data);
-  this.#language = data.language;
-  console.log(this.#language);
-
-}
-create(){
-  
+  init(data) {
+    console.log(data);
+    this.#language = data.language;
+    console.log(this.#language);
+  }
+  create() {
     const { width, height } = this.scale;
     const positionCenter = {
       x: width / 2,
       y: height / 2,
     };
-}
+  }
 
   saltar() {
     this.setVelocityY(-520);
@@ -103,21 +105,25 @@ create(){
 
   vida() {
     this.number = 3;
-    
-    this.TextoVida = this.scene.add.text(330, 200, getPhrase(('Vidas: ')) + this.number , {
-      fontFamily: "Fuente",
-      stroke: "black",
-      strokeThickness: 5,
-      fontSize: "35px",
-      fill: "white",
-    });
+
+    this.TextoVida = this.scene.add.text(
+      330,
+      200,
+      getPhrase("Vidas: ") + this.number,
+      {
+        fontFamily: "Fuente",
+        stroke: "black",
+        strokeThickness: 5,
+        fontSize: "35px",
+        fill: "white",
+      }
+    );
     this.TextoVida.setScrollFactor(0);
   }
 
-
-  perderVida(){
+  perderVida() {
     this.number = 3 - this.scene.count;
-    this.TextoVida.setText(getPhrase(('Vidas: ')) + this.number);
+    this.TextoVida.setText(getPhrase("Vidas: ") + this.number);
   }
 
   muerte() {
@@ -138,13 +144,14 @@ create(){
       this.TextoDerrota = this.scene.add.text(
         this.scene.cameras.main.midPoint.x - 180,
         this.scene.cameras.main.midPoint.y - 140,
-        getPhrase('Derrota'), {
+        getPhrase("Derrota"),
+        {
           fontFamily: "Fuente",
           stroke: "black",
           strokeThickness: 10,
           fontSize: "55px",
         }
-      )
+      );
       let boton = this.scene.add
         .image(
           this.scene.cameras.main.midPoint.x - 6,
@@ -190,6 +197,7 @@ create(){
     this.scene.player2.setX(this.scene.distancia2 + 128 * this.scene.valor);
     this.scene.player2.setScale(1);
   }
+
   updateWasChangedLanguage = () => {
     this.#wasChangedLanguage = FETCHED;
   };
@@ -201,15 +209,12 @@ create(){
     await getTranslations(language, this.updateWasChangedLanguage);
   }
 
-  update(){
+  update() {
     if (this.#wasChangedLanguage === FETCHED) {
       this.#wasChangedLanguage = READY;
-      this.TextoVida.setText(getPhrase('Vidas: '));
+      this.TextoVida.setText(getPhrase("Vidas: "));
       this.TextoDerrota.setText(getPhrase("Derrota"));
+    }
   }
-  //https://labs.phaser.io/edit.html?src=src/game%20objects/text/align%20text.js&v=3.55.2
-  //https://phaser.io/examples/v3/view/game-objects/text/word-wrap-by-width
 }
-}
-
 export default Jugador;

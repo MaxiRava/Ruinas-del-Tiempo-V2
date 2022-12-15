@@ -10,6 +10,7 @@ class Parlante extends Phaser.GameObjects.Sprite {
 
     this.setInteractive()
       .on("pointerdown", () => {
+        //inicio y creditos
         if (this.activo && this.scene.escena === 1) {
           this.scene.audio.pause();
         }else{
@@ -18,6 +19,7 @@ class Parlante extends Phaser.GameObjects.Sprite {
           }
         }
 
+        //instrucciones
         if (this.activo && this.scene.escena === 2) {
           this.scene.audio2.pause();
         }else{

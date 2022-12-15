@@ -21,15 +21,12 @@ export async function getData() {
   get(child(dbRef, "users/inicioJugador"))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
         const data = snapshot.val();
         events.emit("dato-recibido", data);
       } else {
-        console.log("No data available (control)");
       }
     })
     .catch((error) => {
-      console.error(error);
     });
 }
 
@@ -38,9 +35,7 @@ export async function pushData(comienzo) {
     inicioJugador: comienzo,
   })
     .then(() => {
-      console.log("data updated");
     })
     .catch((error) => {
-      console.log("not updated" + error);
     });
 }
