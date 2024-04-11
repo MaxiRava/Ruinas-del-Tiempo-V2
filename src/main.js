@@ -1,5 +1,5 @@
-//import Phaser from 'phaser'
-import FirebasePlugin from '/phaser3-rex-plugins/plugins/firebase-plugin.js';
+import Phaser from 'phaser'
+import FirebasePlugin from 'phaser3-rex-plugins/plugins/firebase-plugin.js';
 
 import {Preloads} from './scenes/preloads'
 import {MainMenu} from './scenes/mainmenu'
