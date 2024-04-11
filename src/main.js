@@ -1,12 +1,12 @@
 import Phaser from 'phaser'
 import FirebasePlugin from 'phaser3-rex-plugins/plugins/firebase-plugin.js';
 
+import {Preloads} from './scenes/preloads'
+import {MainMenu} from './scenes/mainmenu'
+import {Instrucciones} from './scenes/instrucciones'
+import {Tablero} from './scenes/tablero'
 import {Cartas} from './scenes/cartas'
 import {Creditos} from './scenes/creditos'
-import {Instrucciones} from './scenes/instrucciones'
-import {MainMenu} from './scenes/mainmenu'
-import {Preloads} from './scenes/preloads'
-import {Tablero} from './scenes/tablero'
 import {Runner} from './scenes/runner'
 
 
