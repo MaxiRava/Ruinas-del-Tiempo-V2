@@ -1,16 +1,9 @@
-![Logo](https://github.com/PedroDepa/phaser3-parcel-template/blob/masterV2/public/assets/images/logo%20del%20juego.png)
-
-# Ruinas del Tiempo
-
-El juego se trata de un juego de plataformas tipo Runner donde los dos jugadores se encuentran con dos instancias. Una instancia es el tablero donde avanza por casillas, las cuales tienen cartas de peligro que les muestra al jugador antes de tirar los dados. Y en la segunda instancia, cuando se elige una carta y esta es mala, aparece un escenario al cual se debe completar.
-
-## Framework
-
 ![phaser3-parceljs-template](https://user-images.githubusercontent.com/2236153/71606463-37a0da80-2b2e-11ea-9b5f-5d26ccc84f91.png)
 
-# Link to game
+# Phaser 3 + Parcel Template
+> For people who want to spend time making games instead of configuring build tools.
 
-https://ruinas-del-tiempo.netlify.app/
+![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Prerequisites
 
