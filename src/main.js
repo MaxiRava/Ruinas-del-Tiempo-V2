@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+
 
 
 import {Preloads} from './scenes/preloads';
