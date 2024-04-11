@@ -34,13 +34,7 @@ const config = {
 		}
 	},
 
-	plugins: {
-        global: [{
-            key: 'rexFirebase',
-            plugin: FirebasePlugin,
-            start: true,
-        }]
-    },
+	
 	scene: [Preloads, MainMenu, Instrucciones, Tablero, Cartas, Creditos, Runner],
 };
 
