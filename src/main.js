@@ -1,13 +1,13 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 import FirebasePlugin from 'phaser3-rex-plugins/plugins/firebase-plugin.js';
 
-import {Preloads} from './scenes/preloads'
-import {MainMenu} from './scenes/mainmenu'
-import {Instrucciones} from './scenes/instrucciones'
-import {Tablero} from './scenes/tablero'
-import {Cartas} from './scenes/cartas'
-import {Creditos} from './scenes/creditos'
-import {Runner} from './scenes/runner'
+import {Preloads} from './scenes/preloads';
+import {MainMenu} from './scenes/mainmenu';
+import {Instrucciones} from './scenes/instrucciones';
+import {Tablero} from './scenes/tablero';
+import {Cartas} from './scenes/cartas';
+import {Creditos} from './scenes/creditos';
+import {Runner} from './scenes/runner';
 
 
 const config = {
@@ -41,8 +41,8 @@ const config = {
             start: true,
         }]
     },
-	scene: [Preloads, MainMenu, Instrucciones, Tablero, Cartas, Creditos, Runner]
-}
+	scene: [Preloads, MainMenu, Instrucciones, Tablero, Cartas, Creditos, Runner],
+};
 
-export default new Phaser.Game(config)
+export default new Phaser.Game(config);
 
