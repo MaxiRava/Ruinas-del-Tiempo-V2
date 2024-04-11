@@ -1,4 +1,5 @@
-
+import Phaser from 'phaser';
+import FirebasePlugin from 'phaser3-rex-plugins/plugins/firebase-plugin.js';
 
 
 import {Preloads} from './scenes/preloads';
@@ -33,6 +34,15 @@ const config = {
 			debug: false,
 		}
 	},
+
+	
+	plugins: {
+        global: [{
+            key: 'rexFirebase',
+            plugin: FirebasePlugin,
+            start: true,
+        }]
+    },
 
 	
 	scene: [Preloads, MainMenu, Instrucciones, Tablero, Cartas, Creditos, Runner],
