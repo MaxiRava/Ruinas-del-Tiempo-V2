@@ -3,7 +3,7 @@ import Parlante from "../objects/parlante";
 import { getTranslations, getPhrase } from "../services/translations";
 import keys from "../enums/keys";
 import { FETCHED, FETCHING, READY, TODO } from "../enums/status";
-import { EN_US, ES_AR } from '../enums/languages'
+
 
 export class Creditos extends Phaser.Scene {
   #parlante;
